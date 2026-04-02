@@ -1,2 +1,0 @@
-# Jupti
-Fabio Silva

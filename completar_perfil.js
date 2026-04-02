@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // --- ETAPA 2: SALVAR DADOS DO PERFIL ---
             submitButton.textContent = "Finalizando...";
-            const completeProfileResponse = await fetch('/.netlify/functions/complete-profile', {
+            const completeProfileResponse = await fetch('/api/complete-profile', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Cole aqui as funções preencherDadosIniciais e configurarPagina que não foram alteradas
     async function preencherDadosIniciais() {
         try {
-            const response = await fetch('/.netlify/functions/get-profile-data', {
+            const response = await fetch('/api/get-profile-data', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

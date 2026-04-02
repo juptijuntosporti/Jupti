@@ -43,7 +43,7 @@ async function loadAgreementDetails(id) {
             throw new Error('Você não está autenticado. Por favor, faça o login novamente.');
         }
 
-        const apiUrl = `/.netlify/functions/get-commitment-details?commitment_id=${id}`;
+        const apiUrl = `/api/get-commitment-details?commitment_id=${id}`;
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
