@@ -15,7 +15,7 @@
 
 // --- 1. IMPORTAÇÕES ---
 import { getProfileData, getFeed, searchUsers } from './apiService.js';
-import { createPostHtml, initPostInteractions } from './Global.js';
+import { createPostHtml, initPostInteractions } from './global.js';
 import { initNotifications } from './notifications.js';
 import { initModalActionHandlers } from './modalHandlers.js';
 

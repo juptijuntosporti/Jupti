@@ -4,7 +4,7 @@
  * =========================================================
 **/
 import { getChildPosts } from './apiService.js';
-import { createPostHtml, initPostInteractions } from './Global.js';
+import { createPostHtml, initPostInteractions } from './global.js';
 import { initModalActionHandlers } from './modalHandlers.js';
 import { initPostCore } from './postcore.js';
 

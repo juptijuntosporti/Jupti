@@ -21,7 +21,7 @@ import {
     toggleFollow,
     checkFollowStatus
 } from './apiService.js';
-import { createPostHtml, initPostInteractions } from './Global.js';
+import { createPostHtml, initPostInteractions } from './global.js';
 import { initModalActionHandlers } from './modalHandlers.js'; // ✅ 1. IMPORTA O "CÉREBRO" DOS MODAIS
 
 document.addEventListener('DOMContentLoaded', function() {

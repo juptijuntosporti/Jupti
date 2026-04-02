@@ -11,7 +11,7 @@
  */
 
 // --- 1. IMPORTAÇÕES ---
-import { openCommentsModal } from './Comments.js';
+import { openCommentsModal } from './comments.js';
 import { initGlobalUserProfileRedirects } from './userProfileRedirect.js';
 import { toggleLike, addShare, toggleFavorite, getProfileData } from './apiService.js';
 import { getAvatarHtml } from './avatarUtils.js';

@@ -10,7 +10,7 @@
  * =================================================================
  */
 
-import { getLoggedInUserId } from './Global.js';
+import { getLoggedInUserId } from './global.js';
 
 /**
  * Inicializa o listener de clique global para redirecionamento de perfil.

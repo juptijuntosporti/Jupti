@@ -4,7 +4,7 @@
  * =================================================================
  */
 
-import { openCommentsModal } from './Comments.js';
+import { openCommentsModal } from './comments.js';
 
 // --- 1. Lógica de Navegação e Efeitos Visuais ---
 document.addEventListener('DOMContentLoaded', () => {

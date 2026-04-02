@@ -14,7 +14,7 @@
 
 // --- 1. IMPORTAÇÕES (sem alterações) ---
 import { getNotifications, markNotificationsAsRead } from './apiService.js';
-import { openCommentsModal } from './Comments.js';
+import { openCommentsModal } from './comments.js';
 import { getAvatarHtml } from './avatarUtils.js';
 
 // --- 2. SELETORES E VARIÁVEIS (sem alterações) ---
