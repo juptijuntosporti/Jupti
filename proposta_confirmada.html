@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Enviada - JUPTI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Header com cor Azul Petróleo JUPTI */
+        .header {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3d52 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .child-name {
+            font-size: 20px;
+            color: #1a5f7a;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            background: #FFC107;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .status-badge.accepted {
+            background: #27ae60;
+            color: white;
+        }
+
+        .status-badge.rejected {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Botão Copiar */
+        .copy-button {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #1a5f7a;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .copy-button:hover {
+            background: #1a5f7a;
+            color: white;
+            border-color: #1a5f7a;
+        }
+
+        .copy-button.copied {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        /* Protocolo com copy */
+        .protocol-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .protocol-id {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 10px 15px;
+            border-radius: 8px;
+            flex: 1;
+            word-break: break-all;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 30px 0;
+        }
+
+        /* Mensagem informativa */
+        .info-message {
+            background: #e8f4f8;
+            border-left: 4px solid #1a5f7a;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .info-message i {
+            color: #1a5f7a;
+            margin-right: 10px;
+        }
+
+        /* Botões */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3d52 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(26, 95, 122, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #1a5f7a;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1a5f7a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Error state */
+        .error-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-icon {
+            font-size: 64px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header-icon {
+                font-size: 48px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .protocol-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .copy-button {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Proposta Enviada!</h1>
+            <p>Seu compromisso foi registrado com sucesso</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Carregando detalhes da proposta...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-container" style="display: none;">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <p class="error-message" id="errorMessage">Erro ao carregar a proposta</p>
+                <button class="btn btn-primary" onclick="window.location.href='configuracoes_filho.html'">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+            </div>
+
+            <!-- Success State -->
+            <div id="successState" style="display: none;">
+                <!-- Contexto da Criança -->
+                <div class="info-section">
+                    <div class="info-label">Para a convivência com:</div>
+                    <div class="info-value child-name" id="childName">Carregando...</div>
+                </div>
+
+                <!-- Protocolo -->
+                <div class="info-section">
+                    <div class="info-label">Protocolo da Proposta:</div>
+                    <div class="protocol-container">
+                        <div class="protocol-id" id="protocolId">-</div>
+                        <button class="copy-button" onclick="copyProtocol()" id="copyBtn">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="info-section">
+                    <div class="info-label">Status:</div>
+                    <div>
+                        <span class="status-badge" id="statusBadge">Aguardando Resposta</span>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Mensagem Informativa -->
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>
+                        Sua proposta foi enviada com sucesso! O outro genitor receberá uma notificação e poderá aceitar ou sugerir alterações.
+                    </span>
+                </div>
+
+                <!-- Botões -->
+                <div class="button-group">
+                <button class="btn btn-primary" onclick="window.location.href='configuracoes_filho.html'">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let commitmentData = null;
+
+        /**
+         * Copia o ID do protocolo para a área de transferência
+         */
+        function copyProtocol() {
+            const protocolId = document.getElementById('protocolId').textContent;
+            navigator.clipboard.writeText(protocolId).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.innerHTML;
+                
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        /**
+         * Exibe o estado de erro
+         */
+        function showError(message) {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('successState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'block';
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        /**
+         * Exibe o estado de sucesso com dados carregados
+         */
+        function showSuccess(data) {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'none';
+            document.getElementById('successState').style.display = 'block';
+
+            // Preencher dados
+            document.getElementById('childName').textContent = data.child_name || 'Criança';
+            document.getElementById('protocolId').textContent = data.id;
+            
+            // Status badge com cor apropriada
+            const statusBadge = document.getElementById('statusBadge');
+            if (data.negotiation_status === 'ACCEPTED') {
+                statusBadge.textContent = 'Aceito';
+                statusBadge.classList.add('accepted');
+            } else if (data.negotiation_status === 'REJECTED') {
+                statusBadge.textContent = 'Rejeitado';
+                statusBadge.classList.add('rejected');
+            } else {
+                statusBadge.textContent = 'Aguardando Resposta';
+            }
+
+            commitmentData = data;
+        }
+
+        /**
+         * Carrega os detalhes da proposta da API
+         */
+        async function loadCommitmentDetails() {
+            try {
+                // Obter commitment_id da URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const commitmentId = urlParams.get('id');
+
+                if (!commitmentId) {
+                    showError('ID da proposta não fornecido na URL');
+                    return;
+                }
+
+                // Obter token
+                const token = localStorage.getItem('authTokenJUPTI') || localStorage.getItem('authToken');
+                
+                if (!token) {
+                    showError('Você não está autenticado. Por favor, faça login novamente.');
+                    return;
+                }
+
+                // Chamar API
+                const apiUrl = `${window.location.origin}/.netlify/functions/get-commitment-details?commitment_id=${commitmentId}`;
+                console.log('📥 Carregando detalhes da proposta:', commitmentId);
+
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    showError(error.message || 'Erro ao carregar proposta');
+                    return;
+                }
+
+                const result = await response.json();
+                console.log('✅ Detalhes carregados:', result);
+
+                if (result.success && result.commitment) {
+                    showSuccess(result.commitment);
+                } else {
+                    showError(result.message || 'Erro ao processar resposta');
+                }
+
+            } catch (error) {
+                console.error('❌ Erro ao carregar detalhes:', error);
+                showError(`Erro: ${error.message}`);
+            }
+        }
+
+        // Carregar dados ao iniciar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Página de confirmação carregada');
+            loadCommitmentDetails();
+        });
+    </script>
+</body>
+</html>

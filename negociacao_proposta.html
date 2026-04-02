@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analisar Proposta - JUPTI</title>
+  
+  <!-- Links para os arquivos de estilo (CSS) e ícones -->
+  <link rel="stylesheet" href="negociacao_proposta.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página -->
+  <header class="np-header">
+    <a href="#" class="np-header-link" id="backButton">
+      <i class="fas fa-arrow-left np-back-icon"></i>
+      <div class="np-header-content">
+        <h1 class="np-header-title" id="proposalTitle">Analisando Proposta...</h1>
+        <p class="np-header-subtitle" id="proposalSender">Enviada por ...</p>
+      </div>
+    </a>
+    <div class="np-status-badge" id="proposalStatus">
+      <i class="fas fa-spinner fa-spin"></i>
+      <span>Carregando...</span>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="np-container">
+    
+    <!-- Descrição Introdutória (Dinâmica baseada no contexto) -->
+    <div class="np-intro-box" id="introBox">
+      <i class="fas fa-info-circle"></i>
+      <p id="introText">Revise cada detalhe da proposta de convivência. Você pode aceitar o item como está ou sugerir uma alteração com sua justificativa.</p>
+    </div>
+
+    <!-- Container onde os cards de compromisso serão inseridos pelo JS -->
+    <div class="np-commitments-container" id="commitments-container">
+      <!-- O JS vai popular esta área -->
+      <div class="np-loading-placeholder">
+        <div class="np-spinner"></div>
+        <p>Carregando detalhes da proposta...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Botões de Ação Final (Fixos no rodapé) -->
+  <div class="np-action-buttons">
+    <button class="np-btn np-btn-primary" id="acceptAllBtn">
+      <i class="fas fa-check-circle"></i>
+      Aceitar Proposta Inteira
+    </button>
+    <button class="np-btn np-btn-secondary" id="sendCounterBtn" style="display: none;">
+      <i class="fas fa-paper-plane"></i>
+      Enviar Contraproposta
+    </button>
+  </div>
+
+  <!-- Template do Modal Customizável -->
+  <div class="np-modal" id="suggestionModal">
+    <div class="np-modal-overlay"></div>
+    <div class="np-modal-content">
+      <div class="np-modal-header">
+        <h2 id="modalTitle">Sugerir Alteração</h2>
+        <button class="np-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="np-modal-body" id="modalBody">
+        <!-- O formulário do modal será inserido aqui pelo JS conforme o tipo -->
+      </div>
+      <div class="np-modal-footer">
+        <button class="np-modal-btn np-modal-btn-cancel">Cancelar</button>
+        <button class="np-modal-btn np-modal-btn-submit">Enviar Sugestão</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="negociacao_proposta.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recuperar Senha - JUPTI</title>
+  <link rel="stylesheet" href="recuperar_senha.css" />
+</head>
+<body>
+
+  <!-- Div para a imagem de fundo -->
+  <div class="login-background"></div>
+  
+  <!-- Div para a sobreposição de cor azulada -->
+  <div class="login-overlay"></div>
+
+  <!-- Container principal com o formulário -->
+  <div class="container">
+    <h1>Recuperar senha do <span class="brand">JUPTI</span></h1>
+    
+    <p class="subtitle">Digite seu e-mail cadastrado para receber o link de recuperação de senha.</p>
+
+    <form id="recuperarSenhaForm">
+      <!-- Grupo de E-mail -->
+      <div class="form-group">
+        <label for="email">E-MAIL</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      </div>
+
+      <button type="submit">ENVIAR LINK</button>
+      <a href="index.html" class="link">VOLTAR AO LOGIN</a>
+    </form>
+  </div>
+
+  <script src="recuperar_senha.js"></script>
+</body>
+</html>
+

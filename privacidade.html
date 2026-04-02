@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacidade - JUPTI</title>
+  <!-- Estilos Globais e Específicos -->
+  <link rel="stylesheet" href="Global.css" />
+  <link rel="stylesheet" href="privacidade.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página -->
+  <header class="glbs-app-header">
+    <div class="glbs-header-left">
+      <div class="glbs-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glbs-header-title">Privacidade</div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="glb-container">
+    
+    <!-- Lista de Configurações de Privacidade -->
+    <div class="priv-settings-list">
+      
+      <!-- Item 1: Quem pode me acompanhar -->
+      <div class="priv-setting-item" id="whoCanFollowOption">
+        <div class="priv-setting-icon"><i class="fas fa-user-friends"></i></div>
+        <div class="priv-setting-content">
+          <div class="priv-setting-title">Quem pode me acompanhar</div>
+          <div class="priv-setting-value" id="currentFollowSetting">Todos</div>
+        </div>
+        <div class="priv-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      
+      <!-- Item 2: Lista de seguidores -->
+      <div class="priv-setting-item" id="followersListOption">
+        <div class="priv-setting-icon"><i class="fas fa-walking"></i></div>
+        <div class="priv-setting-content">
+          <div class="priv-setting-title"><span id="followersCount">0</span> pessoas acompanham sua jornada</div>
+          <div class="priv-setting-description">Veja quem está te acompanhando</div>
+        </div>
+        <div class="priv-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- MODAIS -->
+  <!-- ====================================================== -->
+
+  <!-- Modal 1: "Quem pode me acompanhar" -->
+  <div class="priv-modal-overlay" id="whoCanFollowModal">
+    <div class="priv-modal-pane">
+      <div class="priv-modal-header">
+        <div class="priv-modal-title">Quem pode me acompanhar</div>
+        <div class="priv-modal-close" data-close-modal="whoCanFollowModal"><i class="fas fa-times"></i></div>
+      </div>
+      <div class="priv-modal-content">
+        <div class="priv-radio-option">
+          <input type="radio" id="follow_all" name="follow_privacy" value="all" checked>
+          <label for="follow_all">Todos</label>
+        </div>
+        <div class="priv-radio-option">
+          <input type="radio" id="follow_mutual" name="follow_privacy" value="mutual">
+          <label for="follow_mutual">Somente quem eu acompanho</label>
+        </div>
+        <div class="priv-radio-option">
+          <input type="radio" id="follow_request" name="follow_privacy" value="request">
+          <label for="follow_request">Somente quem eu aceitar (Perfil privado)</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Lista de Seguidores -->
+  <div class="priv-modal-overlay" id="followersListModal">
+    <div class="priv-modal-pane">
+      <div class="priv-modal-header">
+        <div class="priv-modal-title">Acompanhando sua jornada</div>
+        <div class="priv-modal-close" data-close-modal="followersListModal"><i class="fas fa-times"></i></div>
+      </div>
+      <div class="priv-modal-content" id="followersListContainer">
+        <!-- A lista de seguidores será carregada aqui via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Ações para um Seguidor -->
+  <div class="glb-options-modal" id="followerActionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="view-profile"><i class="fas fa-user"></i> <span>Ver perfil</span></div>
+      <div class="glb-option-item" data-action="remove-follower" style="color: #ff3b30;"><i class="fas fa-user-minus"></i> <span>Remover da caminhada</span></div>
+      <div class="glb-option-item" data-action="toggle-follow"><i class="fas fa-walking"></i> <span id="toggleFollowText">Acompanhar</span></div>
+      <div class="glb-option-item cancel" data-action="cancel"><i class="fas fa-times"></i> <span>Cancelar</span></div>
+    </div>
+  </div>
+
+  <!-- Rodapé de Navegação -->
+  <nav class="glb-bottom-nav">
+    <!-- ... (código do rodapé) ... -->
+  </nav>
+  
+  <!-- Scripts -->
+  <script src="apiService.js" type="module"></script>
+  <script src="privacidade.js" type="module"></script>
+  <script>
+    document.getElementById('backButton').addEventListener('click', () => history.back());
+  </script>
+
+</body>
+</html>

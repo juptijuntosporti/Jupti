@@ -1,0 +1,521 @@
+/* ================================================
+   📌 CSS — Compromisso de Convivência (Versão Moderna)
+   ================================================ */
+
+:root {
+    --cor-primaria: #0f4c5c;
+    --cor-primaria-hover: #0a333d;
+    --cor-secundaria: #1abc9c;
+    --cor-fundo: #f8f9fa;
+    --cor-card: #ffffff;
+    --cor-texto: #2c3e50;
+    --cor-texto-leve: #7f8c8d;
+    --cor-borda: #ecf0f1;
+    --cor-sucesso: #27ae60;
+    --cor-aviso: #f39c12;
+    --cor-erro: #e74c3c;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --sombra-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--cor-texto);
+}
+
+/* ===== CABEÇALHO ===== */
+.ccv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--cor-card);
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--sombra);
+}
+
+.ccv-header-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.ccv-back-icon {
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+}
+
+.ccv-header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin: 0;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.ccv-container {
+    max-width: 100%;
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.form-description {
+    background: linear-gradient(135deg, rgba(15, 76, 92, 0.05) 0%, rgba(26, 188, 156, 0.05) 100%);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    color: var(--cor-texto-leve);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 4px solid var(--cor-primaria);
+}
+
+/* ===== CARDS DE COMPROMISSO ===== */
+.commitment-card {
+    background-color: var(--cor-card);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.commitment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(15, 76, 92, 0.08) 0%, rgba(26, 188, 156, 0.08) 100%);
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, #0a333d 100%);
+    color: white;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin: 0;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+/* ===== LABELS E INPUTS ===== */
+.input-label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--cor-texto);
+    font-size: 0.95rem;
+}
+
+.input-label:first-child {
+    margin-top: 0;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--cor-borda);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fafbfc;
+    transition: all 0.3s ease;
+    color: var(--cor-texto);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(15, 76, 92, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 90px;
+    font-family: inherit;
+}
+
+/* ===== CHECKBOX E RADIO GROUPS ===== */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.checkbox-group label,
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background-color: #f0f3f5;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cor-texto-leve);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.checkbox-group label:hover,
+.radio-group label:hover {
+    background-color: #e8ecf0;
+    border-color: var(--cor-primaria);
+}
+
+.checkbox-group input[type="checkbox"]:checked + label,
+.radio-group input[type="radio"]:checked + label {
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, #0a333d 100%);
+    color: white;
+    border-color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+/* ===== SEÇÃO DE VISITAS ===== */
+.visit-form-section {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--cor-borda);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== CAMPOS DE PENSÃO (NOVOS) ===== */
+.pension-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .pension-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pension-field-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.pension-field-wrapper .form-input {
+    width: 100%;
+}
+
+/* ===== BOTÃO DE ENVIO ===== */
+.glbs-primary-button {
+    width: 100%;
+    margin: 30px 0 40px 0;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, #0a333d 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--sombra);
+}
+
+.glbs-primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+}
+
+.glbs-primary-button:active {
+    transform: translateY(0);
+}
+
+.glbs-primary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.glbs-primary-button i {
+    font-size: 1.1rem;
+}
+
+/* ===== STATUS DO FORMULÁRIO ===== */
+.form-status {
+    display: none;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.form-status.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-status.info {
+    display: block;
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* ===== VALIDAÇÃO DE CAMPOS ===== */
+.form-input.error,
+.form-select.error,
+.form-textarea.error {
+    border-color: var(--cor-erro);
+    background-color: #fff5f5;
+}
+
+.error-message {
+    color: var(--cor-erro);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: none;
+}
+
+.form-input.error ~ .error-message,
+.form-select.error ~ .error-message,
+.form-textarea.error ~ .error-message {
+    display: block;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .ccv-container {
+        padding: 16px;
+    }
+
+    .card-header {
+        padding: 14px;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+
+    .ccv-header-title {
+        font-size: 1.1rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .input-label {
+        font-size: 0.9rem;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .glbs-primary-button {
+        font-size: 1rem;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ccv-container {
+        padding: 12px;
+    }
+
+    .card-header {
+        padding: 12px;
+    }
+
+    .card-content {
+        padding: 12px;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .ccv-header-title {
+        font-size: 1rem;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    .checkbox-group,
+    .radio-group {
+        gap: 8px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .pension-fields {
+        gap: 12px;
+    }
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    max-width: 350px;
+    word-wrap: break-word;
+    
+    /* Animação de entrada/saída */
+    transform: translateX(400px);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Estado visível do toast */
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Tipo: Info (Azul) */
+.toast.info {
+    background-color: #3498db;
+}
+
+/* Tipo: Sucesso (Verde) */
+.toast.success {
+    background-color: #27ae60;
+}
+
+/* Tipo: Erro (Vermelho) */
+.toast.error {
+    background-color: #e74c3c;
+}
+
+/* Tipo: Aviso (Laranja) */
+.toast.warning {
+    background-color: #f39c12;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 480px) {
+    .toast {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compromissos e Provas - JUPTI</title>
+  <link rel="stylesheet" href="global.css"/>
+  <link rel="stylesheet" href="linha_juridica.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="glbs-app-header">
+    <div class="glbs-header-left">
+      <div class="glbs-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glbs-header-title">Compromissos e Provas</div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="glb-container">
+    <div class="lj-content-container">
+      <!-- Seção de Estatísticas -->
+      <div class="lj-stats-section">
+        <div class="lj-stats-row">
+          <div class="lj-stats-label">
+            <i class="fas fa-chart-line" style="margin-right: 8px; color: #0f4c5c;"></i>
+            Índice de Presença Parental:
+          </div>
+          <div class="lj-stats-value">72%</div>
+        </div>
+        <div class="lj-progress-container">
+          <div class="lj-progress-bar">
+            <div class="lj-progress-fill" style="width: 72%;"></div>
+          </div>
+        </div>
+        <div class="lj-stats-row">
+          <div class="lj-stats-label">
+            <i class="fas fa-check-circle" style="margin-right: 8px; color: #2e7d32;"></i>
+            Compromissos Cumpridos:
+          </div>
+          <div class="lj-stats-value">12</div>
+        </div>
+        <div class="lj-stats-row">
+          <div class="lj-stats-label">
+            <i class="fas fa-times-circle" style="margin-right: 8px; color: #c62828;"></i>
+            Compromissos Não Cumpridos:
+          </div>
+          <div class="lj-stats-value">4</div>
+        </div>
+        <div class="lj-stats-row">
+          <div class="lj-stats-label">
+            <i class="fas fa-clock" style="margin-right: 8px; color: #616161;"></i>
+            Pendentes:
+          </div>
+          <div class="lj-stats-value">2</div>
+        </div>
+      </div>
+      
+      <!-- Seção de Compromissos -->
+      <div class="lj-compromissos-card">
+        <div class="lj-section-title" style="cursor: pointer;" onclick="navegarPara('compromissos.html')">
+          <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>
+          Compromissos
+          <i class="fas fa-chevron-right" style="font-size: 14px; margin-left: auto; color: #888;"></i>
+        </div>
+        
+        <!-- Compromisso 2: Vídeo Chamada Não Cumprido -->
+        <div class="lj-commitment-item">
+          <div class="lj-commitment-left">
+            <div class="lj-commitment-title">
+              <i class="fas fa-video" style="margin-right: 8px; color: #0f4c5c;"></i>
+              Vídeo chamada
+            </div>
+            <div class="lj-commitment-date">Vence 18, abr. 2024</div>
+          </div>
+          <div class="lj-commitment-status lj-status-failed">NÃO CUMPRIDO</div>
+        </div>
+        
+        <!-- Compromisso 3: Fotos Não Cumprido -->
+        <div class="lj-commitment-item">
+          <div class="lj-commitment-left">
+            <div class="lj-commitment-title">
+              <i class="fas fa-camera" style="margin-right: 8px; color: #0f4c5c;"></i>
+              Fotos
+            </div>
+            <div class="lj-commitment-date">Vence 5, abr. 2024</div>
+          </div>
+          <div class="lj-commitment-status lj-status-failed">NÃO CUMPRIDO</div>
+        </div>
+        
+        <!-- Compromisso 4: Participação escolar -->
+        <div class="lj-commitment-item">
+          <div class="lj-commitment-left">
+            <div class="lj-commitment-title">
+              <i class="fas fa-school" style="margin-right: 8px; color: #0f4c5c;"></i>
+              Participação escolar
+            </div>
+            <div class="lj-commitment-date">Vence 25, abr. 2024</div>
+          </div>
+          <div class="lj-commitment-status lj-status-pending">PENDENTE</div>
+        </div>
+      </div>
+      
+      <!-- Linha do Tempo Jurídica -->
+      <div class="lj-action-button lj-with-arrow" id="legalTimelineBtn">
+        <span>
+          <i class="fas fa-timeline" style="margin-right: 10px;"></i>
+          Linha do Tempo Jurídica
+        </span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      
+      <!-- Gerar Relatório -->
+      <div class="lj-action-button" id="generateReportBtn">
+        <i class="fas fa-file-alt" style="margin-right: 10px;"></i>
+        Gerar Relatório
+      </div>
+      
+      <!-- Encaminhar para Análise Jurídica -->
+      <div class="lj-action-button" id="forwardToLegalBtn">
+        <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>
+        Encaminhar para Análise Jurídica
+      </div>
+      
+      <!-- Caso pronto para ação de guarda -->
+      <div class="lj-action-button primary" id="readyForActionBtn">
+        <i class="fas fa-gavel" style="margin-right: 10px;"></i>
+        Caso pronto para ação de guarda
+      </div>
+    </div>
+  </div>
+  
+  <!-- Rodapé Fixo com ícones Font Awesome -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item active" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon">
+        <i class="fas fa-house"></i>
+      </div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon">
+        <i class="fas fa-scale-balanced"></i>
+      </div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="support" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+  </nav>
+
+  <!-- Script de navegação centralizado -->
+  <script src="navegacao.js"></script>
+  <script src="global.js"></script>
+  <script src="Linha_juridica.js"></script>
+</body>
+</html>

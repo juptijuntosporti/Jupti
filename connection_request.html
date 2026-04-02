@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Conexão - JUPTI</title>
+    <link rel="stylesheet" href="connection_request.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Container principal que ocupa a tela toda -->
+    <div class="conn-page-container">
+        <div class="conn-pane">
+
+            <!-- ETAPA 1: Pedido de Conexão (Conteúdo Inicial) -->
+            <div class="conn-step active" id="requestStep">
+                <div class="conn-icon yellow"><i class="fas fa-hand-holding-heart"></i></div>
+                <h2 class="conn-title">Um Pedido de Conexão</h2>
+                <div class="conn-avatars">
+                    <div class="conn-avatar" id="senderAvatar"></div>
+                    <i class="fas fa-link conn-link-icon"></i>
+                    <div class="conn-avatar" id="childAvatar"></div>
+                </div>
+                <p class="conn-body">
+                    <strong id="senderName">...</strong> deseja se conectar com <strong id="childName">...</strong>
+                </p>
+                <p class="conn-quote">
+                     "O amor de um pai ou mãe nunca deve ser distante. Dê ao seu filho a chance de sentir o amor dos dois lados."
+                </p>
+                <div class="conn-footer">
+                    <button class="conn-btn secondary" id="refuseButton">[ Recusar por agora ]</button>
+                    <button class="conn-btn primary" id="acceptButton">[ Aceitar conexão ]</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 2A: Confirmação de Aceite -->
+            <div class="conn-step" id="acceptanceStep">
+                <div class="conn-icon green"><i class="fas fa-check-circle"></i></div>
+                <h2 class="conn-title">Conexão Realizada!</h2>
+                <p class="conn-body">
+                    Que passo incrível! Você está construindo uma ponte de amor para o futuro do seu filho. O outro genitor foi notificado.
+                </p>
+                <div class="conn-footer">
+                    <button class="conn-btn primary" id="acceptanceOkButton">[ Ótimo! ]</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 2B: Mensagem de Reflexão (Recusa) -->
+            <div class="conn-step" id="rejectionStep">
+                <div class="conn-icon red"><i class="fas fa-heart-broken"></i></div>
+                <h2 class="conn-title">Um Momento para Refletir</h2>
+                <p class="conn-body">
+                    Tudo bem se ainda for difícil...<br><br>
+                    Lembre-se: cada tentativa de aproximação é um gesto de amor pelo seu filho. O JUPTI está aqui para ajudar a construir pontes, não muros.
+                </p>
+                <div class="conn-footer">
+                    <button class="conn-btn secondary" id="rejectionOkButton">[ Entendi ]</button>
+                </div>
+            </div>
+            
+            <!-- ETAPA DE LOADING -->
+            <div class="conn-step" id="loadingStep">
+                <div class="conn-spinner"></div>
+                <p class="conn-body">Processando sua decisão...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- O JavaScript dedicado para esta página -->
+    <script src="connection_request.js" type="module"></script>
+
+</body>
+</html>

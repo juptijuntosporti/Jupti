@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selecionar Perfil - JUPTI</title>
+  <link rel="stylesheet" href="style-v3.css" />
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="perf-container">
+    
+    <!-- Cabeçalho (sem alterações) -->
+    <header class="glbs-app-header">
+      <div class="glbs-header-left">
+        <div class="glbs-back-button" id="backButton">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="glbs-header-title">Painel de Perfis</div>
+      </div>
+      <div class="glbs-header-right">
+        <div class="glbs-header-menu">
+          <i class="fas fa-ellipsis-vertical"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Seção de Introdução (sem alterações) -->
+    <div class="perf-intro-section">
+      <div class="perf-intro-title">Bem-vindo ao <span class="perf-brand-highlight">JUPTI</span></div>
+      <div class="perf-intro-subtitle">
+        Crie o perfil dos seus filhos para começar sua jornada de cuidado e proteção familiar
+      </div>
+    </div>
+    
+    <!-- Seção de perfis -->
+    <div class="perf-profiles-grid">
+      
+      <!-- Perfil do usuário (pai/mãe) -->
+      <div class="perf-profile-card perf-profile-item" data-profile="user">
+        <div class="perf-profile-content">
+          <div class="perf-profile-avatar" id="userProfileAvatar">
+            <!-- Conteúdo dinâmico -->
+          </div>
+          <div class="perf-profile-info">
+            <div class="perf-profile-name" id="userProfileName">Carregando...</div>
+            <div class="perf-profile-type" id="userProfileType">...</div>
+          </div>
+          <div class="perf-profile-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contêiner dinâmico para perfis de filhos -->
+      <div id="perfisFilhosContainer">
+        <!-- Perfis dos filhos carregados pelo JS -->
+      </div>
+
+      <!-- ✅✅✅ CORREÇÃO APLICADA AQUI ✅✅✅ -->
+
+      <!-- Botão de Criar Perfil -->
+      <div class="perf-profile-card perf-profile-item perf-create-profile" data-profile="criar" id="createChildProfileButton">
+        <div class="perf-profile-content">
+          <div class="perf-profile-avatar perf-create-avatar">
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="perf-profile-info">
+            <div class="perf-profile-name">Criar perfil do filho</div>
+            <div class="perf-profile-type">Adicionar novo</div>
+          </div>
+          <div class="perf-profile-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Encontrar Perfil (AGORA DO LADO DE FORA) -->
+      <div class="perf-profile-card perf-profile-item perf-search-profile" id="searchChildProfileButton" style="display: none; border-left: 4px solid #4CAF50;">
+        <div class="perf-profile-content">
+            <div class="perf-profile-avatar perf-create-avatar" style="background-color: #4CAF50;"><i class="fas fa-search"></i></div>
+            <div class="perf-profile-info">
+                <div class="perf-profile-name">Encontrar perfil do filho</div>
+                <div class="perf-profile-type">Conectar-se à jornada</div>
+            </div>
+            <div class="perf-profile-arrow"><i class="fas fa-chevron-right"></i></div>
+        </div>
+      </div>
+      
+      <!-- ✅✅✅ FIM DA CORREÇÃO ✅✅✅ -->
+
+    </div>
+    
+    <!-- Recurso Premium (sem alterações) -->
+    <div class="perf-premium-section">
+      <div class="perf-premium-title">
+        <i class="fas fa-crown"></i>
+        Recursos Premium
+      </div>
+      <div class="perf-premium-description">
+        Com o <span class="perf-premium-highlight">JUPTI Premium</span>, você pode criar perfis ilimitados e acessar recursos avançados de organização familiar.
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé (sem alterações) -->
+    <!-- Rodapé Fixo global.css com ícones Font Awesome -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item active" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon">
+        <i class="fas fa-house"></i>
+      </div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon">
+        <i class="fas fa-scale-balanced"></i>
+      </div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="support" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+  </nav>
+  <!-- Scripts (sem alterações) -->
+  <script src="navegacao.js"></script>
+  <script src="Selecao_de_perfis.js" type="module"></script>
+  <script src="Global.js" type="module"></script>
+
+</body>
+</html>

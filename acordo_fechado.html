@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordo Fechado - JUPTI</title>
+    <link rel="stylesheet" href="acordo_fechado.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i></div>
+            <h1>Acordo Fechado</h1>
+        </header>
+
+        <!-- Estado de Carregamento -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Carregando detalhes do acordo...</p>
+        </div>
+
+        <!-- Conteúdo Principal (inicialmente oculto) -->
+        <main id="content" class="content" style="display: none;">
+            <div class="summary-header">
+                <div class="summary-icon"><i class="fas fa-handshake"></i></div>
+                <h2>Acordo de Convivência de <strong id="childName"></strong></h2>
+                <p>Firmado em: <strong id="agreementDate"></strong></p>
+            </div>
+
+            <!-- Cards de Detalhes -->
+            <div id="detailsContainer" class="details-container">
+                <!-- Cards serão inseridos aqui pelo JS -->
+            </div>
+
+            <!-- Seção de Validade -->
+            <div class="validity-section">
+                <h3>Validade e Regras do Acordo</h3>
+                <div class="validity-info">
+                    <label>Próxima Janela para Revisão</label>
+                    <p id="nextReviewDate"></p>
+                </div>
+                <p class="validity-rules">
+                    Este acordo é válido por 3 meses. Após este período, uma nova negociação poderá ser iniciada. Alterações antes do prazo só serão possíveis mediante abertura de um chamado de suporte para análise de mudanças significativas na rotina.
+                </p>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="generatePdfBtn"><i class="fas fa-print"></i> Gerar PDF do Acordo</button>
+                <button class="btn btn-primary" id="supportBtn"><i class="fas fa-headset"></i> Abrir Suporte para Revisão</button>
+            </div>
+        </main>
+    </div>
+    <script src="acordo_fechado.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responder Contraproposta - JUPTI</title>
+  
+  <!-- Links para os arquivos de estilo (CSS) e ícones -->
+  <link rel="stylesheet" href="contraproposta.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página -->
+  <header class="cp-header">
+    <a href="#" class="cp-header-link" id="backButton">
+      <i class="fas fa-arrow-left cp-back-icon"></i>
+      <div class="cp-header-content">
+        <h1 class="cp-header-title" id="proposalTitle">Respondendo Contraproposta...</h1>
+        <p class="cp-header-subtitle" id="proposalSender">De ...</p>
+      </div>
+    </a>
+    <div class="cp-status-badge" id="proposalStatus">
+      <i class="fas fa-spinner fa-spin"></i>
+      <span>Carregando...</span>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="cp-container">
+    
+    <!-- Descrição Introdutória -->
+    <div class="cp-intro-box">
+      <i class="fas fa-info-circle"></i>
+      <p>Revise as sugestões recebidas. Você pode aceitar a sugestão ou manter sua proposta original. Esta é sua última chance de decidir os termos.</p>
+    </div>
+
+    <!-- Container onde os cards de compromisso serão inseridos pelo JS -->
+    <div class="cp-commitments-container" id="commitments-container">
+      <!-- O JS vai popular esta área -->
+      <div class="cp-loading-placeholder">
+        <div class="cp-spinner"></div>
+        <p>Carregando detalhes da contraproposta...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Botões de Ação Final (Fixos no rodapé) -->
+  <div class="cp-action-buttons">
+    <button class="cp-btn cp-btn-primary" id="finalizeBtn" disabled>
+      <i class="fas fa-check-circle"></i>
+      Firmar Acordo Final
+    </button>
+  </div>
+
+  <!-- Template do Modal para Confirmação -->
+  <div class="cp-modal" id="confirmationModal">
+    <div class="cp-modal-overlay"></div>
+    <div class="cp-modal-content">
+      <div class="cp-modal-header">
+        <h2 id="modalTitle">Confirmar Decisão</h2>
+        <button class="cp-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="cp-modal-body" id="modalBody">
+        <!-- Conteúdo será preenchido pelo JS -->
+      </div>
+      <div class="cp-modal-footer">
+        <button class="cp-modal-btn cp-modal-btn-cancel">Voltar</button>
+        <button class="cp-modal-btn cp-modal-btn-submit">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="contraproposta.js" type="module"></script>
+</body>
+</html>

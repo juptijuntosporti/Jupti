@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil - JUPTI</title>
+  <!-- Estilos Globais e Específicos -->
+  <link rel="stylesheet" href="style-v3.css" />
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="Compartilhar.css"/>
+  <link rel="stylesheet" href="components/modal/modal.css"/>
+  <link rel="stylesheet" href="favoritos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página de Perfil -->
+  <header class="glb-app-header">
+    <div class="glb-header-left">
+      <div class="glb-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glb-header-title">Perfil</div>
+    </div>
+    <div class="glb-header-right">
+      <div class="glb-header-icon" id="profileSettingsIcon">
+        <i class="fas fa-cog"></i>
+      </div>
+      <div class="glb-header-icon">
+        <i class="fas fa-share-alt"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal do Perfil -->
+  <div class="glb-container">
+    
+    <!-- Seção de Perfil -->
+    <div class="pus-profile-section">
+      <div class="pus-profile-cover"><div class="pus-cover-overlay"></div></div>
+      <div class="pus-profile-header">
+        <div class="pus-profile-avatar" id="profileAvatar"></div>
+        <div class="pus-profile-info">
+          <div class="pus-profile-name" id="profileUserName">Carregando...</div>
+          <div class="pus-profile-role" id="profileUserRole">...</div>
+          <div class="pus-profile-stats">
+            <div class="pus-stat-item"><span class="pus-stat-number">...</span><span class="pus-stat-label">registros</span></div>
+            <div class="pus-stat-item"><span class="pus-stat-number">...</span><span class="pus-stat-label">Favoritos</span></div>
+            <div class="pus-stat-item"><span class="pus-stat-number">...</span><span class="pus-stat-label">Momentos</span></div>
+          </div>
+          </div>
+          </div>
+                  <!-- ====================================================== -->
+    <!-- ✅ NOVO BLOCO DE BOTÕES DE AÇÃO DO PERFIL ✅ -->
+    <!-- ====================================================== -->
+    <div class="pus-profile-actions" id="profileActionButtons" style="display: none;">
+      <button class="pus-action-btn secondary" id="messageBtn">
+        <i class="fas fa-comment-dots"></i>
+        <span>Mensagem</span>
+      </button>
+      <button class="pus-action-btn primary" id="followBtn">
+        <i class="fas fa-hand-holding-heart"></i>
+        <span>Acompanhar</span>
+      </button>
+    </div>
+      <div class="pus-profile-bio"><div class="pus-bio-text" id="profileBio">Carregando biografia...</div></div>
+    </div>
+
+    <!-- Navegação por Abas -->
+    <div class="pus-tabs-navigation">
+      <div class="pus-tab-item active" data-tab="timeline"><i class="fas fa-clock pus-tab-icon"></i><span class="pus-tab-label">Linha do Tempo</span></div>
+      <div class="pus-tab-item" data-tab="favorites"><i class="fas fa-star pus-tab-icon"></i><span class="pus-tab-label">Favoritos</span></div>
+      <div class="pus-tab-item" data-tab="moments"><i class="fas fa-camera pus-tab-icon"></i><span class="pus-tab-label">Momento JUPTI</span></div>
+    </div>
+    
+
+    <!-- Conteúdo das Abas -->
+    <div class="pus-tab-content active" id="timeline"><div class="pus-timeline-content" id="timelinePostsContainer"></div></div>
+    
+    <!-- Aba de Favoritos com Grid -->
+    <div class="pus-tab-content" id="favorites">
+      <!-- Filtros -->
+      <div class="fav-filters">
+        <button class="fav-filter-btn active" data-filter="all">
+          <i class="fas fa-th"></i> Todos
+        </button>
+        <button class="fav-filter-btn" data-filter="registros">
+          <i class="fas fa-file-alt"></i> Registros
+        </button>
+        <button class="fav-filter-btn" data-filter="momentos">
+          <i class="fas fa-camera"></i> Momentos
+        </button>
+      </div>
+      <!-- Grid de Favoritos -->
+      <div class="fav-grid-container" id="favoritesGridContainer"></div>
+    </div>
+    
+    <div class="pus-tab-content" id="moments"> 
+          <div class="pus-empty-state">
+           <div class="pus-empty-icon"><i class="fas fa-camera"></i></div>
+        <div class="pus-empty-title">Nenhum momento por aqui</div>
+        <div class="pus-empty-description">Momentos JUPTI aparecerão     aqui</div>
+        </div> 
+      </div>
+  </div>
+
+  <!-- Botão Flutuante (FAB) -->
+  <div class="pus-fab-button" id="fabButton"><i class="fas fa-plus"></i></div>
+
+  <!-- ====================================================== -->
+  <!-- MODAIS (Opções, Comentários, Compartilhamento) -->
+  <!-- ====================================================== -->
+
+  <!-- Modal de Opções de Post (Visitante) -->
+  <div class="glb-options-modal" id="glb-postOptionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="interest"><i class="fas fa-heart"></i> <span>Tenho interesse</span></div>
+      <div class="glb-option-item" data-action="hide"><i class="fas fa-eye-slash"></i> <span>Não quero mais ver</span></div>
+      <div class="glb-option-item" data-action="report"><i class="fas fa-flag"></i> <span>Denunciar</span></div>
+      <div class="glb-option-item" data-action="block"><i class="fas fa-user-slash"></i> <span>Bloquear perfil</span></div>
+      <div class="glb-option-item cancel" data-action="cancel"><i class="fas fa-times"></i> <span>Cancelar</span></div>
+    </div>
+  </div>
+
+  <!-- Modal de Opções de Post (Dono) -->
+  <div class="glb-options-modal" id="glb-profileOptionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="edit-post"><i class="fas fa-edit"></i> <span>Editar post</span></div>
+      <div class="glb-option-item" data-action="delete-post"><i class="fas fa-trash"></i> <span>Excluir post</span></div>
+      <div class="glb-option-item" data-action="privacy-settings"><i class="fas fa-lock"></i> <span>Configurações de privacidade</span></div>
+      <div class="glb-option-item cancel" data-action="cancel"><i class="fas fa-times"></i> <span>Cancelar</span></div>
+    </div>
+  </div>
+
+  <!-- Modal de Comentários -->
+  <div class="glb-comments-modal" id="commentsModal">
+    <div class="glb-comments-content" id="commentsModalContent">
+      <div class="glb-comments-header">
+        <div class="glb-comments-back" id="commentsBackBtn"><i class="fas fa-chevron-down"></i></div>
+        <div class="glb-comments-title">Comentários</div>
+      </div>
+      <div class="glb-comments-list" id="commentsList"></div>
+      <div class="glb-comments-input-section">
+        <div class="glb-comments-user-avatar">
+          <!-- Avatar será preenchido dinamicamente pelo JS com foto ou inicial -->
+        </div>
+        <div class="glb-comments-input-container">
+          <textarea class="glb-comments-input" id="commentsInput" placeholder="Escreva um comentário..." rows="1"></textarea>
+          <button class="glb-comments-send-btn" id="commentsSendBtn" disabled><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Compartilhamento -->
+  <div class="com-modal-overlay" id="shareModal">
+    <div class="com-modal-pane">
+      <div class="com-header">
+        <div class="com-title">Compartilhar</div>
+        <div class="com-close" id="closeShareModal"><i class="fas fa-times"></i></div>
+      </div>
+      <div class="com-options-grid">
+        <div class="com-option" id="shareCopyLink"><div class="com-icon-wrapper copy"><i class="fas fa-copy"></i></div><div class="com-label">Copiar Link</div></div>
+        <div class="com-option" id="shareWhatsApp"><div class="com-icon-wrapper whatsapp"><i class="fab fa-whatsapp"></i></div><div class="com-label">WhatsApp</div></div>
+        <div class="com-option" id="shareTelegram"><div class="com-icon-wrapper telegram"><i class="fab fa-telegram-plane"></i></div><div class="com-label">Telegram</div></div>
+        <div class="com-option" id="shareJupti"><div class="com-icon-wrapper jupti"><i class="fas fa-comment-dots"></i></div><div class="com-label">JUPTI</div></div>
+      </div>
+      <div class="com-link-container">
+        <input type="text" class="com-link-input" id="shareLinkInput" readonly>
+        <button class="com-copy-btn" id="shareCopyBtn">Copiar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Visualização de Favorito -->
+  <div class="fav-modal" id="favModal">
+    <div class="fav-modal-content">
+      <div class="fav-modal-header">
+        <div class="fav-modal-close" id="favModalClose">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="fav-modal-body" id="favModalBody">
+        <!-- Post será inserido aqui -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Criação de Post (Copiado de feed.html) -->
+  <div class="glb-create-post-modal" id="glb-createPostModal">
+    <div class="glb-create-post-options">
+      <div class="glb-create-post-title">Criar publicação</div>
+      <div class="glb-create-option" id="createTextPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-font"></i>
+        </div>
+        <div class="glb-create-option-text">Publicação de texto</div>
+      </div>
+      <div class="glb-create-option" id="createPhotoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-image"></i>
+        </div>
+        <div class="glb-create-option-text">Foto</div>
+      </div>
+      <div class="glb-create-option" id="createVideoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="glb-create-option-text">Vídeo</div>
+      </div>
+      <div class="glb-create-option-cancel" id="cancelCreatePost">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Rodapé de Navegação -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item" data-page="home"><div class="glb-nav-icon"><i class="fas fa-house"></i></div><div class="glb-nav-label">Início</div></div>
+    <div class="glb-nav-item" data-page="family"><div class="glb-nav-icon"><i class="fas fa-users"></i></div><div class="glb-nav-label">Pais e Filhos</div></div>
+    <div class="glb-nav-item" data-page="legal"><div class="glb-nav-icon"><i class="fas fa-scale-balanced"></i></div><div class="glb-nav-label">Linha Jurídica</div></div>
+    <div class="glb-nav-item" data-page="messages"><div class="glb-nav-icon"><i class="fas fa-comment-dots"></i></div><div class="glb-nav-label">Mensagens</div></div>
+    <div class="glb-nav-item" data-page="support"><div class="glb-nav-icon"><i class="fas fa-network-wired"></i></div><div class="glb-nav-label">Rede de Apoio</div></div>
+  </nav>
+  
+  <!-- Scripts -->
+  <script src="apiService.js" type="module"></script>
+  <script src="Comments.js" type="module"></script>
+  <script src="Global.js" type="module"></script>
+  <script src="navegacao.js"></script> 
+    <script src="components/modal/modal.js" type="module"></script>
+  <script src="modalHandlers.js" type="module"></script>
+  <script src="perfil.js" type="module"></script>
+
+</body>
+</html>
+

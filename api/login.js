@@ -1,65 +1,140 @@
-// Arquivo: /api/login.js (Conteúdo correto para a Vercel)
+// Arquivo: netlify/functions/login.js
+// VERSÃO COMPLETA E ATUALIZADA PARA REDIRECIONAMENTO INTELIGENTE
 
-import { Pool } from 'pg';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const { Pool } = require('pg');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-// A estrutura que a Vercel entende: export default function...
-export default async function handler(req, res) {
-  
-  // Verifica o método da requisição
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Método não permitido. Use POST.' });
-  }
+exports.handler = async (event, context) => {
+    // Headers CORS para permitir requisições do frontend
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json'
+    };
 
-  // Pega os dados direto do req.body
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ success: false, message: 'Email e senha são obrigatórios.' });
-  }
-
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM users WHERE email = $1', [email]);
-    client.release();
-
-    const user = result.rows[0];
-
-    if (!user) {
-      return res.status(401).json({ success: false, message: 'Email ou senha inválidos.' });
+    // Responder a requisições OPTIONS (preflight)
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ message: 'CORS preflight' })
+        };
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password_hash);
-
-    if (!passwordMatch) {
-      return res.status(401).json({ success: false, message: 'Email ou senha inválidos.' });
+    // Verificar se é método POST
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ 
+                success: false, 
+                message: 'Método não permitido. Use POST.' 
+            })
+        };
     }
 
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    let requestData;
+    try {
+        requestData = JSON.parse(event.body);
+    } catch (error) {
+        return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({ 
+                success: false, 
+                message: 'Dados inválidos. Verifique o formato JSON.' 
+            })
+        };
+    }
 
-    delete user.password_hash;
+    const { email, password } = requestData;
 
-    // Envia a resposta usando o objeto 'res'
-    return res.status(200).json({
-      success: true,
-      message: 'Login realizado com sucesso!',
-      token,
-      user
+    // Validar campos obrigatórios
+    if (!email || !password) {
+        return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({ 
+                success: false, 
+                message: 'Email e senha são obrigatórios.' 
+            })
+        };
+    }
+
+    const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
     });
 
-  } catch (error) {
-    console.error('ERRO NA API DE LOGIN:', error);
-    // Envia o erro usando o objeto 'res'
-    return res.status(500).json({ success: false, message: 'Erro interno do servidor.' });
-  }
-}
+    try {
+        const client = await pool.connect();
+        
+        // ✅ ALTERAÇÃO PRINCIPAL: Buscamos todos os campos necessários do usuário, incluindo 'is_profile_complete'.
+        const result = await client.query(
+            'SELECT * FROM users WHERE email = $1',
+            [email]
+        );
+        client.release();
 
+        const user = result.rows[0];
+
+        if (!user) {
+            return {
+                statusCode: 401,
+                headers,
+                body: JSON.stringify({ 
+                    success: false, 
+                    message: 'Email ou senha incorretos.' 
+                })
+            };
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+        if (!passwordMatch) {
+            return {
+                statusCode: 401,
+                headers,
+                body: JSON.stringify({ 
+                    success: false, 
+                    message: 'Email ou senha incorretos.' 
+                })
+            };
+        }
+
+        // Gera o token de autenticação
+        const token = jwt.sign(
+            { userId: user.id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' } // Token expira em 1 hora
+        );
+
+        // ✅ IMPORTANTE: Removemos o hash da senha do objeto antes de enviá-lo ao frontend.
+        delete user.password_hash;
+
+        // Retorna sucesso, o token e o objeto 'user' completo para o frontend.
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ 
+                success: true,
+                message: 'Login realizado com sucesso!', 
+                token, 
+                user // O objeto 'user' agora contém a flag 'is_profile_complete'
+            })
+        };
+
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ 
+                success: false, 
+                message: 'Erro interno do servidor. Tente novamente mais tarde.' 
+            })
+        };
+    }
+};

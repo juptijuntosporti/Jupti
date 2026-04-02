@@ -1,0 +1,1646 @@
+/* ================================================
+   📌 CSS — Perfil do Filho (chp-xxx)
+   -----------------------------------------------
+   Descrição:
+   - Estilos específicos para a tela de perfil do filho.
+   - Layout baseado no rascunho, sem foto de capa.
+   - Prefixo: chp- (child profile)
+   ================================================ */
+
+/* --- Layout Base --- */
+body {
+  background-color: #f0f2f5;
+}
+
+.glb-container {
+  padding-top: 60px; /* Altura do cabeçalho */
+  padding-bottom: 60px; /* Altura do rodapé */
+}
+
+/* --- Seção Principal do Perfil --- */
+.chp-profile-section {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
+  padding: 40px 20px 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e4e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================================
+   📌 AJUSTE: Avatar do Perfil do Filho (Tamanho Aumentado com Especificidade)
+   ================================================ */
+
+/* 
+  Usamos '.chp-profile-section .chp-profile-avatar' para tornar esta regra
+  mais específica e garantir que ela sobrescreva qualquer outra.
+  A palavra-chave '!important' é uma "arma nuclear" para forçar a prioridade.
+*/
+.chp-profile-section .chp-profile-avatar {
+  width: 180px !important;   /* ✅ AUMENTADO e com !important */
+  height: 180px !important;  /* ✅ AUMENTADO e com !important */
+  
+  /* As outras propriedades continuam as mesmas */
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(15, 76, 92, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+
+.chp-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chp-profile-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f4c5c;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.chp-profile-age {
+  font-size: 18px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* --- Navegação por Abas --- */
+.chp-tabs-navigation {
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 60px; /* Altura do cabeçalho */
+  z-index: 900;
+}
+
+.chp-tab-item {
+  flex: 1;
+  padding: 15px 8px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 70px;
+}
+
+.chp-tab-item i {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.chp-tab-item span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.chp-tab-item:hover {
+  background-color: #f8f9fa;
+  color: #0f4c5c;
+}
+
+.chp-tab-item.active {
+  color: #0f4c5c;
+  border-bottom-color: #0f4c5c;
+  background-color: #f8fafb;
+}
+
+/* --- Conteúdo das Abas --- */
+.chp-tab-content-wrapper {
+  padding: 20px 15px;
+}
+
+.chp-tab-content {
+  display: none;
+}
+
+.chp-tab-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Linha do Tempo --- */
+.chp-timeline-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Momentos JUPTI --- */
+.chp-moments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.chp-moment-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chp-moment-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chp-moment-preview {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chp-moment-count {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.chp-moment-info {
+  flex: 1;
+}
+
+.chp-moment-date {
+  font-size: 14px;
+  color: #0f4c5c;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.chp-moment-description {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* --- Álbum Físico --- */
+.chp-album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.chp-album-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chp-album-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chp-album-photo {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 32px;
+}
+
+.chp-album-info {
+  padding: 12px;
+}
+
+.chp-album-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.chp-album-date {
+  font-size: 12px;
+  color: #666;
+}
+
+/* --- Documentos --- */
+.chp-documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chp-document-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chp-document-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chp-document-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.chp-document-info {
+  flex: 1;
+}
+
+.chp-document-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.chp-document-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.chp-document-action {
+  color: #0f4c5c;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.chp-document-action:hover {
+  background-color: #f0f2f5;
+}
+
+/* --- Botão Flutuante (FAB) --- */
+.chp-fab-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(15, 76, 92, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.chp-fab-button:hover {
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 6px 20px rgba(15, 76, 92, 0.5);
+}
+
+/* --- Estados Vazios (quando não há conteúdo) --- */
+.chp-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.chp-empty-icon {
+  font-size: 48px;
+  color: #0f4c5c;
+  opacity: 0.3;
+  margin-bottom: 20px;
+}
+
+.chp-empty-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.chp-empty-description {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chp-empty-button {
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(15, 76, 92, 0.3);
+}
+
+.chp-empty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 76, 92, 0.4);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 480px) {
+  .chp-profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .chp-profile-name {
+    font-size: 24px;
+  }
+  
+  .chp-tab-item span {
+    font-size: 10px;
+  }
+  
+  .chp-album-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+
+/* --- Linha do Tempo (usa estilos globais dos posts) --- */
+.chp-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ================================================
+   📌 CSS — Álbum Físico
+   -----------------------------------------------
+   Descrição:
+   - Estilos para a funcionalidade de Álbum Físico
+   - Seleção de fotos pelos pais e sistema automático
+   ================================================ */
+
+/* Container principal do álbum */
+.chp-album-container {
+  padding: 20px;
+  background: #f8fafb;
+  min-height: 100vh;
+}
+
+/* Cabeçalho do álbum */
+.chp-album-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.chp-album-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f4c5c;
+  margin-bottom: 8px;
+}
+
+.chp-album-title i {
+  font-size: 28px;
+  color: #4ecdc4;
+}
+
+.chp-album-subtitle {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Seções de seleção */
+.chp-selection-section {
+  margin-bottom: 40px;
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.chp-section-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.chp-section-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.chp-section-header p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Grid de fotos */
+.chp-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Slots de fotos */
+.chp-photo-slot {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.chp-photo-slot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Placeholder para fotos */
+.chp-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+  color: #999;
+  font-size: 32px;
+  transition: all 0.3s ease;
+}
+
+/* Slots selecionados pelo sistema */
+.chp-photo-slot.system-selected .chp-photo-placeholder {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+  color: white;
+}
+
+.chp-photo-slot.system-selected:hover .chp-photo-placeholder {
+  background: linear-gradient(135deg, #ffb347 0%, #ffa500 100%);
+}
+
+/* Slots dos pais */
+.chp-photo-slot.parent-slot .chp-photo-placeholder {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  color: white;
+}
+
+.chp-photo-slot.parent-slot:hover .chp-photo-placeholder {
+  background: linear-gradient(135deg, #44a08d 0%, #3d8b7a 100%);
+}
+
+/* Badge das fotos */
+.chp-photo-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Label dos slots */
+.chp-slot-label {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Seleção dos pais */
+.chp-parent-selection {
+  margin-bottom: 30px;
+}
+
+.chp-parent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.chp-parent-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.chp-parent-info i {
+  font-size: 20px;
+  color: #4ecdc4;
+}
+
+/* Status da seleção */
+.chp-selection-status {
+  font-size: 14px;
+}
+
+.status-waiting {
+  color: #ffa500;
+  font-weight: 500;
+}
+
+.status-completed {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #666;
+  font-weight: 500;
+}
+
+/* Botão de seleção */
+.chp-select-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chp-select-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 76, 92, 0.4);
+}
+
+.chp-select-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Footer do álbum */
+.chp-album-footer {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.chp-progress-info {
+  margin-bottom: 20px;
+}
+
+.chp-progress-text {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.chp-progress-bar {
+  height: 8px;
+  background: #f0f2f5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.chp-progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.chp-deadline-info {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.chp-deadline-info i {
+  color: #ffa500;
+}
+
+/* ================================================
+   📌 CSS — Modal de Seleção de Fotos
+   ================================================ */
+
+.chp-photo-selection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.chp-photo-selection-modal.active {
+  display: flex;
+}
+
+.chp-modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chp-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.chp-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.chp-modal-title i {
+  color: #4ecdc4;
+}
+
+.chp-modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chp-modal-close:hover {
+  background: #e8eaed;
+}
+
+.chp-selection-counter {
+  padding: 15px 25px;
+  text-align: center;
+  background: #f8fafb;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f4c5c;
+}
+
+.chp-photo-gallery {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.chp-gallery-photo {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.chp-gallery-photo:hover {
+  transform: scale(1.05);
+}
+
+.chp-gallery-photo.selected {
+  border-color: #4ecdc4;
+  transform: scale(1.05);
+}
+
+.chp-gallery-photo.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chp-gallery-photo.disabled:hover {
+  transform: none;
+}
+
+.chp-gallery-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chp-photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chp-gallery-photo.disabled .chp-photo-overlay {
+  opacity: 1;
+}
+
+.chp-selection-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: #4ecdc4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chp-gallery-photo.selected .chp-selection-check {
+  opacity: 1;
+}
+
+.chp-modal-footer {
+  padding: 20px 25px;
+  border-top: 1px solid #f0f2f5;
+}
+
+.chp-confirm-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #0f4c5c 0%, #2e7d8f 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chp-confirm-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 76, 92, 0.4);
+}
+
+.chp-confirm-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .chp-photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .chp-photo-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  
+  .chp-album-container {
+    padding: 15px;
+  }
+  
+  .chp-selection-section {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chp-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .chp-photo-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  
+  .chp-album-title {
+    font-size: 20px;
+  }
+  
+  .chp-section-header h3 {
+    font-size: 18px;
+  }
+}
+
+
+/* ================================================
+   📄 MODAL DE UPLOAD DE DOCUMENTOS
+   ================================================ */
+
+/* Modal Base */
+.chp-document-upload-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.chp-document-upload-modal.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chp-document-upload-modal .chp-modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.chp-document-upload-modal.active .chp-modal-content {
+  transform: scale(1);
+}
+
+/* Header do Modal */
+.chp-document-upload-modal .chp-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e8eaed;
+}
+
+.chp-document-upload-modal .chp-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f4c5c;
+}
+
+.chp-document-upload-modal .chp-modal-title i {
+  font-size: 24px;
+  color: #4ecdc4;
+}
+
+.chp-document-upload-modal .chp-modal-close {
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.chp-document-upload-modal .chp-modal-close:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.chp-document-upload-modal .chp-modal-close i {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Formulário */
+.chp-document-form {
+  padding: 24px;
+}
+
+.chp-form-group {
+  margin-bottom: 24px;
+}
+
+.chp-form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.chp-form-label i {
+  font-size: 16px;
+  color: #4ecdc4;
+}
+
+.chp-form-input,
+.chp-form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8eaed;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.chp-form-input:focus,
+.chp-form-select:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+.chp-form-input::placeholder {
+  color: #999;
+}
+
+/* Área de Upload de Arquivo */
+.chp-file-upload-area {
+  border: 2px dashed #d0d7de;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f8fafb;
+}
+
+.chp-file-upload-area:hover {
+  border-color: #4ecdc4;
+  background-color: #f0fffe;
+}
+
+.chp-file-upload-area.dragover {
+  border-color: #4ecdc4;
+  background-color: #e6fffd;
+  transform: scale(1.02);
+}
+
+.chp-file-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.chp-file-upload-content i {
+  font-size: 48px;
+  color: #4ecdc4;
+  margin-bottom: 8px;
+}
+
+.chp-upload-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.chp-upload-hint {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Arquivo Selecionado */
+.chp-file-selected {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: #e6fffd;
+  border: 2px solid #4ecdc4;
+  border-radius: 8px;
+}
+
+.chp-file-selected i {
+  font-size: 24px;
+  color: #4ecdc4;
+}
+
+.chp-file-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  word-break: break-all;
+}
+
+.chp-remove-file {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.chp-remove-file:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.chp-remove-file i {
+  font-size: 14px;
+  color: #dc3545;
+}
+
+/* Footer do Modal */
+.chp-modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid #e8eaed;
+  margin-top: 24px;
+}
+
+.chp-cancel-button,
+.chp-save-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chp-cancel-button {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.chp-cancel-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.chp-save-button {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+.chp-save-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+.chp-save-button:disabled {
+  background: #ccc;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loading State */
+.chp-upload-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-radius: 16px;
+}
+
+.chp-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e8eaed;
+  border-top: 4px solid #4ecdc4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chp-upload-loading span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .chp-document-upload-modal .chp-modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .chp-document-form {
+    padding: 20px;
+  }
+  
+  .chp-modal-footer {
+    flex-direction: column;
+  }
+  
+  .chp-cancel-button,
+  .chp-save-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .chp-file-upload-area {
+    padding: 20px;
+  }
+  
+  .chp-file-upload-content i {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chp-document-upload-modal .chp-modal-header {
+    padding: 16px 20px;
+  }
+  
+  .chp-document-upload-modal .chp-modal-title {
+    font-size: 18px;
+  }
+  
+  .chp-document-form {
+    padding: 16px;
+  }
+  
+  .chp-form-group {
+    margin-bottom: 20px;
+  }
+}
+
+
+/* ================================================
+   📋 CAMPOS DE RADIO BUTTONS (FINALIDADE E PRIVACIDADE)
+   ================================================ */
+
+/* Grupo de Radio Buttons */
+.chp-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chp-radio-option {
+  position: relative;
+}
+
+.chp-radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.chp-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px 16px;
+  border: 2px solid #e8eaed;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  color: #333;
+  user-select: none;
+}
+
+.chp-radio-label:hover {
+  border-color: #4ecdc4;
+  background-color: #f0fffe;
+}
+
+.chp-radio-option input[type="radio"]:checked + .chp-radio-label {
+  border-color: #4ecdc4;
+  background-color: #e6fffd;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+.chp-radio-option input[type="radio"]:focus + .chp-radio-label {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+}
+
+/* Indicador Visual do Radio Button */
+.chp-radio-indicator {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d0d7de;
+  border-radius: 50%;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.chp-radio-option input[type="radio"]:checked + .chp-radio-label .chp-radio-indicator {
+  border-color: #4ecdc4;
+  background-color: #4ecdc4;
+}
+
+.chp-radio-option input[type="radio"]:checked + .chp-radio-label .chp-radio-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.chp-radio-text {
+  font-weight: 500;
+  color: #333;
+}
+
+.chp-radio-option input[type="radio"]:checked + .chp-radio-label .chp-radio-text {
+  color: #0f4c5c;
+  font-weight: 600;
+}
+
+/* ================================================
+   🔒 RENDERIZAÇÃO CONDICIONAL - PRIVACIDADE
+   ================================================ */
+
+/* Grupo de Privacidade - Inicialmente Visível (para "Apenas Arquivar") */
+.chp-privacy-group {
+  opacity: 1;
+  max-height: 200px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+/* Estado Oculto - Quando "Gerar uma Ação" está selecionado */
+.chp-privacy-group.hidden {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Animação de Entrada */
+.chp-privacy-group.entering {
+  animation: slideInDown 0.3s ease forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+  }
+}
+
+/* Animação de Saída */
+.chp-privacy-group.leaving {
+  animation: slideOutUp 0.3s ease forwards;
+}
+
+@keyframes slideOutUp {
+  from {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* ================================================
+   📱 RESPONSIVIDADE PARA RADIO BUTTONS
+   ================================================ */
+
+@media (max-width: 768px) {
+  .chp-radio-label {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+  
+  .chp-radio-indicator {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .chp-radio-option input[type="radio"]:checked + .chp-radio-label .chp-radio-indicator::after {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chp-radio-group {
+    gap: 10px;
+  }
+  
+  .chp-radio-label {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .chp-radio-indicator {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .chp-radio-option input[type="radio"]:checked + .chp-radio-label .chp-radio-indicator::after {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* ================================================
+   🎨 ESTADOS ESPECIAIS E FEEDBACK VISUAL
+   ================================================ */
+
+/* Estado Desabilitado */
+.chp-radio-option input[type="radio"]:disabled + .chp-radio-label {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}
+
+.chp-radio-option input[type="radio"]:disabled + .chp-radio-label .chp-radio-indicator {
+  background-color: #e8eaed;
+  border-color: #d0d7de;
+}
+
+/* Efeito de Pulsação para Campos Obrigatórios */
+.chp-form-group.required .chp-radio-label {
+  position: relative;
+}
+
+.chp-form-group.required .chp-radio-label::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.chp-form-group.required.error .chp-radio-label::before {
+  border-color: #dc3545;
+  animation: pulse-error 1s ease-in-out;
+}
+
+@keyframes pulse-error {
+  0%, 100% { 
+    border-color: #dc3545; 
+    opacity: 1; 
+  }
+  50% { 
+    border-color: rgba(220, 53, 69, 0.3); 
+    opacity: 0.7; 
+  }
+}
+
+/* Indicador de Campo Obrigatório */
+.chp-form-label i.required::after {
+  content: ' *';
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Tooltip para Opções de Privacidade */
+.chp-radio-text[data-tooltip] {
+  position: relative;
+}
+
+.chp-radio-text[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 5px;
+}
+
+.chp-radio-text[data-tooltip]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #333;
+  z-index: 1000;
+}
+/* ================================================
+   📌 AJUSTE: Botão de Calendário Flutuante
+   ================================================ */
+
+/* 1. Torna a seção do perfil uma referência para o posicionamento */
+.chp-profile-section {
+  position: relative; /* Essencial para o posicionamento absoluto do botão */
+}
+
+/* 2. Estiliza o novo botão do calendário */
+.chp-calendar-button {
+  position: absolute; /* Permite que ele flutue sobre a seção */
+  top: 15px;          /* 15px de distância do topo */
+  left: 15px;         /* 15px de distância da esquerda */
+  
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semitransparente */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px); /* Efeito de vidro fosco (funciona em navegadores modernos) */
+  transition: all 0.2s ease-in-out;
+  z-index: 10; /* Garante que ele fique acima de outros elementos */
+}
+
+/* 3. Estiliza o ícone dentro do botão */
+.chp-calendar-button i {
+  font-size: 18px;
+  color: #0f4c5c; /* Cor principal do app */
+}
+
+/* 4. Adiciona um efeito ao passar o mouse ou tocar */
+.chp-calendar-button:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

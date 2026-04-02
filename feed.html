@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feed - JUPTI</title>
+  <link rel="stylesheet" href="style-v3.css" />
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="Compartilhar.css"/>
+   <link rel="stylesheet" href="notifications.css"/>
+    <link rel="stylesheet" href="components/modal/modal.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="glb-app-header" id="glb-appHeader">
+    <div class="glb-header-left">
+      <div class="glb-profile-icon" id="userProfileIcon">
+        
+       </div>
+       <!-- logo jupti Feed -->
+        <div class="Feed-jupti-logo">
+          <span class="Feed-logo-text">
+            JUPT<span class="Feed-heart-i">I</span>
+          </span>
+          <div class="Feed-logo-subtitle">Juntos por todos</div>
+        </div>
+    </div>
+    <div class="glb-header-right">
+      <div class="glb-header-icon" id="addPostBtn" aria-label="Criar postagem">
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="glb-header-icon" id="searchBtn" aria-label="Pesquisar">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="glb-header-icon" id="notificationsBtn" aria-label="Notificações">
+        <i class="fas fa-bell"></i>
+        <span class="glb-notification-badge" style="display: none;"></span>
+      </div>
+    </div>
+  </header>
+<!-- feed.html -->
+
+<!-- ✅ NOVO: Modal de Pesquisa (estilo "comentários") -->
+<div class="glb-search-modal" id="searchModal">
+  <div class="glb-search-content">
+    
+    <!-- Cabeçalho do Modal de Busca -->
+    <div class="glb-search-header">
+      <div class="glb-search-input-container">
+                <input type="text" class="glb-search-input" placeholder="Pesquisar usuários..." id="searchInput">
+        <i class="fas fa-search glb-search-icon"></i>
+
+      </div>
+      <div class="glb-search-cancel" id="searchCancelBtn">Cancelar</div>
+    </div>
+    
+    <!-- Corpo do Modal (onde os resultados aparecerão) -->
+    <div class="glb-search-body" id="searchResultsContainer">
+      <!-- O estado inicial (ícone e texto) será adicionado aqui pelo JS -->
+    </div>
+
+  </div>
+</div>
+
+  
+<!-- ====================================================== -->
+<!-- ✨ PAINEL DE NOTIFICAÇÕES (VERSÃO ATUALIZADA) ✨ -->
+<!-- ====================================================== -->
+<div class="glb-notifications-overlay" id="glb-notificationsOverlay">
+  <div class="glb-notifications-panel">
+    <div class="glb-notifications-header">
+      <div class="glb-notifications-back" id="notificationsBackBtn">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glb-notifications-title">Notificações</div>
+    </div>
+    <ul class="glb-notifications-list" id="notificationsList">
+      <!-- O JavaScript irá preencher esta lista dinamicamente -->
+      <!-- Exemplo de como um item agrupado ficará: -->
+      <li class="glb-notification-item unread" data-post-id="123" data-type="like">
+        <div class="glb-notification-avatar" data-user-id="uuid-fabio">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar do usuário">
+        </div>
+        <div class="glb-notification-content">
+          <div class="glb-notification-text">
+            <strong data-user-id="uuid-fabio">Fabio Silva</strong> e 
+            <strong class="others-link" data-actors-key="actors-1">outras 10 pessoas</strong> 
+            se conectaram com seu registro.
+          </div>
+          <div class="glb-notification-time">2h</div>
+        </div>
+        <div class="glb-notification-media-preview">
+          <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg" alt="Preview do post">
+        </div>
+      </li>
+      <!-- Fim do exemplo -->
+    </ul>
+  </div>
+</div>
+           
+
+
+  <!-- Container Principal -->
+  <div class="glb-container">
+    <div id="postsContainer">
+      <!-- Posts serão carregados aqui via JS -->
+    </div>
+    <div class="glb-loading-indicator" id="glb-loadingIndicator" style="display: none;">Carregando mais posts...</div>
+  </div>
+  
+
+  <!-- 1. MODAL DE OPÇÕES PARA VISITANTES -->
+  <div class="glb-options-modal" id="glb-postOptionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="interest"><i class="fas fa-heart"></i> <span>Tenho interesse</span></div>
+      <div class="glb-option-item" data-action="hide"><i class="fas fa-eye-slash"></i> <span>Não quero mais ver</span></div>
+      <div class="glb-option-item" data-action="report"><i class="fas fa-flag"></i> <span>Denunciar</span></div>
+      <div class="glb-option-item" data-action="block"><i class="fas fa-user-slash"></i> <span>Bloquear perfil</span></div>
+      <div class="glb-option-item cancel" data-action="cancel"><i class="fas fa-times"></i> <span>Cancelar</span></div>
+    </div>
+  </div>
+  
+  <!-- 2. MODAL DE OPÇÕES PARA O DONO DO POST -->
+  <div class="glb-options-modal" id="glb-profileOptionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="edit-post"><i class="fas fa-edit"></i> <span>Editar post</span></div>
+      <div class="glb-option-item" data-action="delete-post"><i class="fas fa-trash"></i> <span>Excluir post</span></div>
+      <div class="glb-option-item" data-action="privacy-settings"><i class="fas fa-lock"></i> <span>Configurações de privacidade</span></div>
+      <div class="glb-option-item cancel" data-action="cancel"><i class="fas fa-times"></i> <span>Cancelar</span></div>
+    </div>
+  </div>
+
+
+
+  
+  <!-- Modal de Criação de Post -->
+  <div class="glb-create-post-modal" id="glb-createPostModal">
+    <div class="glb-create-post-options">
+      <div class="glb-create-post-title">Criar publicação</div>
+      <div class="glb-create-option" id="createTextPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-font"></i>
+        </div>
+        <div class="glb-create-option-text">Publicação de texto</div>
+      </div>
+      <div class="glb-create-option" id="createPhotoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-image"></i>
+        </div>
+        <div class="glb-create-option-text">Foto</div>
+      </div>
+      <div class="glb-create-option" id="createVideoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="glb-create-option-text">Vídeo</div>
+      </div>
+      <div class="glb-create-option-cancel" id="cancelCreatePost">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Modal de Comentários -->
+  <div class="glb-comments-modal" id="commentsModal">
+    <div class="glb-comments-content" id="commentsModalContent">
+      <!-- Cabeçalho do Modal -->
+      <div class="glb-comments-header">
+        <div class="glb-comments-back" id="commentsBackBtn">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="glb-comments-title">Comentários</div>
+      </div>
+      <!-- Lista de Comentários -->
+      <div class="glb-comments-list" id="commentsList">
+        <!-- Comentários serão carregados aqui via JS -->
+      </div>
+      <!-- Área de Entrada de Novo Comentário -->
+      <div class="glb-comments-input-section">
+        <div class="glb-comments-user-avatar">
+          <!-- Avatar será preenchido dinamicamente pelo JS com foto ou inicial -->
+        </div>
+        <div class="glb-comments-input-container">
+          <textarea 
+            class="glb-comments-input" 
+            id="commentsInput" 
+            placeholder="Adicione um comentário..."
+            rows="1"
+          ></textarea>
+          <button class="glb-comments-send-btn" id="commentsSendBtn" disabled>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ====================================================== -->
+<!-- ✨ NOVO: MODAL DE INTERAÇÕES (OUTRAS PESSOAS) ✨ -->
+<!-- ====================================================== -->
+<div class="interactions-modal-overlay" id="interactionsModal">
+  <div class="interactions-modal-pane">
+    <div class="interactions-modal-header">
+      <div class="interactions-modal-title">Pessoas que interagiram</div>
+      <div class="interactions-modal-close" id="closeInteractionsModal">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    <div class="interactions-modal-content" id="interactionsList">
+      <!-- O JavaScript irá preencher esta lista de usuários -->
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- ✨ MODAL DE COMPARTILHAMENTO (Versão que funcionou) ✨ -->
+<!-- ====================================================== -->
+<div class="com-modal-overlay" id="shareModal">
+  <div class="com-modal-pane">
+    <!-- Cabeçalho do Modal -->
+    <div class="com-header">
+      <div class="com-title">Compartilhar</div>
+      <div class="com-close" id="closeShareModal">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+
+    <!-- Opções de Compartilhamento -->
+    <div class="com-options-grid">
+      <!-- Copiar Link -->
+      <div class="com-option" id="shareCopyLink">
+        <div class="com-icon-wrapper copy">
+          <i class="fas fa-link"></i>
+        </div>
+        <div class="com-label">Copiar Link</div>
+      </div>
+      <!-- WhatsApp -->
+      <div class="com-option" id="shareWhatsApp">
+        <div class="com-icon-wrapper whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="com-label">WhatsApp</div>
+      </div>
+      <!-- Telegram -->
+      <div class="com-option" id="shareTelegram">
+        <div class="com-icon-wrapper telegram">
+          <i class="fab fa-telegram-plane"></i>
+        </div>
+        <div class="com-label">Telegram</div>
+      </div>
+      <!-- Mensagem JUPTI -->
+      <div class="com-option" id="shareJupti">
+        <div class="com-icon-wrapper jupti">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <div class="com-label">Mensagem JUPTI</div>
+      </div>
+    </div>
+
+    <!-- Link para Copiar -->
+    <div class="com-link-container">
+      <input type="text" id="shareLinkInput" class="com-link-input" readonly>
+      <button class="com-copy-btn" id="shareCopyBtn">Copiar</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Rodapé Fixo com ícones Font Awesome -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item active" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon">
+        <i class="fas fa-house"></i>
+      </div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon">
+        <i class="fas fa-scale-balanced"></i>
+      </div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="support" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+   </nav>
+
+  <!-- Bloco de Scripts --->
+
+<script src="Feed.js" type="module"></script>
+<script src="navegacao.js"></script>
+
+
+</body>
+</html>

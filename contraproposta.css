@@ -1,0 +1,163 @@
+/* ================================================
+   📌 CSS — Responder Contraproposta (VERSÃO COMPLETA)
+   ================================================ */
+
+:root {
+    --cor-primaria: #0f4c5c;
+    --cor-primaria-hover: #0a333d;
+    --cor-secundaria: #1abc9c;
+    --cor-fundo: #f8f9fa;
+    --cor-card: #ffffff;
+    --cor-texto: #2c3e50;
+    --cor-texto-leve: #7f8c8d;
+    --cor-borda: #ecf0f1;
+    --cor-sucesso: #27ae60;
+    --cor-aviso: #f39c12;
+    --cor-erro: #e74c3c;
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--cor-texto);
+}
+
+/* ===== CABEÇALHO ===== */
+.cp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: var(--cor-card); padding: 16px;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: var(--sombra); border-bottom: 1px solid var(--cor-borda);
+}
+.cp-header-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; cursor: pointer; flex: 1; }
+.cp-back-icon { font-size: 1.5rem; color: var(--cor-primaria); flex-shrink: 0; }
+.cp-header-content { display: flex; flex-direction: column; gap: 4px; }
+.cp-header-title { font-size: 1.1rem; font-weight: 600; color: var(--cor-texto); margin: 0; line-height: 1.3; }
+.cp-header-subtitle { font-size: 0.85rem; color: var(--cor-texto-leve); margin: 0; }
+.cp-status-badge {
+    display: flex; align-items: center; gap: 6px;
+    background-color: #fff3cd; color: #856404;
+    padding: 8px 12px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 500; flex-shrink: 0; white-space: nowrap;
+}
+.cp-status-badge.accepted { background-color: #d4edda; color: #155724; }
+.cp-status-badge.rejected { background-color: #f8d7da; color: #721c24; }
+
+/* ===== CONTAINER PRINCIPAL E INTRODUÇÃO ===== */
+.cp-container { max-width: 100%; padding: 20px; padding-bottom: 120px; }
+.cp-intro-box {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: linear-gradient(135deg, rgba(15, 76, 92, 0.05) 0%, rgba(26, 188, 156, 0.05) 100%);
+    padding: 16px; border-radius: 12px; margin-bottom: 24px;
+    border-left: 4px solid var(--cor-primaria);
+}
+.cp-intro-box i { font-size: 1.2rem; color: var(--cor-primaria); flex-shrink: 0; margin-top: 2px; }
+.cp-intro-box p { font-size: 0.95rem; color: var(--cor-texto-leve); line-height: 1.5; margin: 0; }
+
+/* ===== CARDS DE COMPROMISSO ===== */
+.cp-commitments-container { display: flex; flex-direction: column; gap: 20px; }
+.cp-commitment-card {
+    background-color: var(--cor-card); border-radius: 16px;
+    box-shadow: var(--sombra); padding: 20px;
+    border: 2px solid transparent; transition: all 0.3s ease;
+}
+.cp-commitment-card.accepted { border-color: var(--cor-sucesso); background-color: #f6fff9; }
+.cp-commitment-card.suggested { border-color: var(--cor-aviso); background-color: #fffaf2; }
+
+.cp-card-header {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 16px; margin-bottom: 16px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+.cp-card-icon {
+    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, #0a333d 100%);
+    color: white; border-radius: 12px; font-size: 1.5rem; flex-shrink: 0;
+}
+.cp-card-title { font-size: 1.2rem; font-weight: 600; color: var(--cor-texto); margin: 0; }
+
+.cp-card-body { display: flex; flex-direction: column; gap: 12px; }
+.cp-detail-item { display: flex; flex-direction: column; gap: 2px; }
+.cp-detail-label { font-size: 0.8rem; color: var(--cor-texto-leve); font-weight: 500; text-transform: uppercase; }
+.cp-detail-value { font-size: 1rem; color: var(--cor-texto); font-weight: 500; }
+.cp-detail-observation {
+    margin-top: 8px; padding-top: 8px; border-top: 1px dashed #ddd;
+    font-size: 0.9rem; color: var(--cor-primaria); font-style: italic; line-height: 1.5;
+}
+
+.cp-card-actions { display: flex; gap: 10px; margin-top: 20px; }
+.cp-action-btn {
+    flex: 1; padding: 10px; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    border: 1px solid;
+}
+.cp-accept-btn { border-color: var(--cor-sucesso); background: #e8f5e9; color: var(--cor-sucesso); }
+.cp-accept-btn:hover:not(:disabled) { background: #c8e6c9; }
+.cp-accept-btn:disabled { background: var(--cor-sucesso); color: white; cursor: not-allowed; }
+.cp-keep-btn { border-color: #999; background: #f0f0f0; color: #333; }
+.cp-keep-btn:hover:not(:disabled) { background: #e0e0e0; }
+.cp-keep-btn:disabled { background: #999; color: white; cursor: not-allowed; }
+
+/* ===== BOTÃO DE AÇÃO FINAL (RODAPÉ) ===== */
+.cp-action-buttons {
+    display: flex; flex-direction: column; gap: 12px;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    padding: 16px; background-color: var(--cor-card);
+    border-top: 1px solid var(--cor-borda); box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+.cp-btn {
+    padding: 14px 20px; border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.3s ease; text-decoration: none;
+}
+.cp-btn-primary { background-color: var(--cor-sucesso); color: white; }
+.cp-btn-primary:hover:not(:disabled) { background-color: #229954; box-shadow: var(--sombra-hover); transform: translateY(-2px); }
+.cp-btn-primary:disabled { background-color: #ccc; color: #666; cursor: not-allowed; opacity: 0.6; }
+
+/* ===== MODAIS ===== */
+.cp-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; animation: fadeIn 0.3s ease; }
+.cp-modal.active { display: flex; align-items: flex-end; }
+.cp-modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); cursor: pointer; }
+.cp-modal-content {
+    position: relative; background-color: var(--cor-card);
+    border-radius: 16px 16px 0 0; width: 100%; max-height: 85vh;
+    overflow-y: auto; box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease; display: flex; flex-direction: column;
+}
+.cp-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--cor-borda); }
+.cp-modal-header h2 { font-size: 1.2rem; font-weight: 600; color: var(--cor-texto); margin: 0; }
+.cp-modal-close { background: none; border: none; font-size: 1.5rem; color: var(--cor-texto-leve); cursor: pointer; }
+.cp-modal-body { padding: 20px; flex: 1; overflow-y: auto; }
+.cp-modal-footer { display: flex; gap: 12px; padding: 20px; border-top: 1px solid var(--cor-borda); background-color: var(--cor-fundo); }
+.cp-modal-btn { flex: 1; padding: 12px 16px; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+.cp-modal-btn-cancel { background-color: var(--cor-borda); color: var(--cor-texto); }
+.cp-modal-btn-submit { background-color: var(--cor-primaria); color: white; }
+
+/* ===== PLACEHOLDER DE CARREGAMENTO ===== */
+.cp-loading-placeholder { text-align: center; padding: 40px 20px; color: var(--cor-texto-leve); }
+.cp-spinner {
+    width: 40px; height: 40px; border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--cor-primaria); border-radius: 50%;
+    animation: spin 1s linear infinite; margin: 0 auto 16px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ===== ANIMAÇÕES E RESPONSIVIDADE ===== */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@media (min-width: 768px) {
+    .cp-container { max-width: 700px; margin: 0 auto; }
+    .cp-action-buttons { max-width: 700px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); }
+    .cp-modal.active { align-items: center; justify-content: center; }
+    .cp-modal-content { max-width: 500px; border-radius: 16px; max-height: 80vh; }
+}

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil do Filho - JUPTI</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="perfil_filho.css" />
+  <link rel="stylesheet" href="Compartilhar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho Padrão -->
+  <header class="glb-app-header">
+    <div class="glb-header-left">
+      <div class="glb-back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glb-header-title" id="childProfileNameHeader">Perfil</div>
+    </div>
+    <div class="glb-header-right">
+
+      <div class="glb-header-icon" id="shareProfileIcon">
+        <i class="fas fa-share-alt"></i>
+      </div>
+      <div class="glb-header-icon" id="profileMenuIcon">
+        <i class="fas fa-ellipsis-v"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="glb-container">
+    <!-- Seção do Perfil do Filho -->
+    <div class="chp-profile-section">
+          <div class="chp-calendar-button" id="calendarButton">
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+      <div class="chp-profile-avatar">
+        <img src="" alt="Foto do Perfil do Filho" id="childAvatar" style="display: none;">
+      </div>
+      <div class="chp-profile-name" id="childName">Carregando...</div>
+      <div class="chp-profile-age" id="childAge">...</div>
+    </div>
+
+    <!-- Navegação por Abas -->
+    <div class="chp-tabs-navigation">
+      <div class="chp-tab-item active" data-tab="timeline">
+        <i class="fas fa-stream"></i>
+        <span>Linha do Tempo</span>
+      </div>
+      <div class="chp-tab-item" data-tab="moments">
+        <i class="fas fa-star"></i>
+        <span>Momento JUPTI</span>
+      </div>
+      <div class="chp-tab-item" data-tab="album">
+        <i class="fas fa-images"></i>
+        <span>Álbum Físico</span>
+      </div>
+      <div class="chp-tab-item" data-tab="documents">
+        <i class="fas fa-folder-open"></i>
+        <span>Documentos</span>
+      </div>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div class="chp-tab-content-wrapper">
+      <!-- Aba Linha do Tempo -->
+      <div class="chp-tab-content active" id="timeline">
+        <div class="chp-timeline-content" id="timelinePostsContainer">
+          <!-- Posts da linha do tempo serão carregados aqui dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Aba Momento JUPTI -->
+      <div class="chp-tab-content" id="moments">
+        <div class="chp-moments-grid">
+          <div class="chp-moment-item">
+            <div class="chp-moment-preview">
+              <i class="fas fa-birthday-cake"></i>
+              <div class="chp-moment-count">3 fotos</div>
+            </div>
+            <div class="chp-moment-info">
+              <div class="chp-moment-date">20 de Dezembro</div>
+              <div class="chp-moment-description">Aniversário de 2 anos</div>
+            </div>
+          </div>
+          
+          <div class="chp-moment-item">
+            <div class="chp-moment-preview">
+              <i class="fas fa-baby"></i>
+              <div class="chp-moment-count">5 fotos</div>
+            </div>
+            <div class="chp-moment-info">
+              <div class="chp-moment-date">15 de Dezembro</div>
+              <div class="chp-moment-description">Primeiros passos</div>
+            </div>
+          </div>
+          
+          <div class="chp-moment-item">
+            <div class="chp-moment-preview">
+              <i class="fas fa-tree"></i>
+              <div class="chp-moment-count">7 fotos</div>
+            </div>
+            <div class="chp-moment-info">
+              <div class="chp-moment-date">10 de Dezembro</div>
+              <div class="chp-moment-description">Passeio no parque</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aba Álbum Físico -->
+      <div class="chp-tab-content" id="album">
+        <div class="chp-album-container">
+          <!-- Cabeçalho do Álbum -->
+          <div class="chp-album-header">
+            <div class="chp-album-title">
+              <i class="fas fa-book"></i>
+              <span>Álbum Físico - Dezembro 2024</span>
+            </div>
+            <div class="chp-album-subtitle">
+              Selecione as 9 fotos que serão impressas e enviadas para você
+            </div>
+          </div>
+
+          <!-- Seção 1: Seleção Automática do JUPTI -->
+          <div class="chp-selection-section">
+            <div class="chp-section-header">
+              <h3>🏆 Seleção Automática do JUPTI</h3>
+              <p>As 3 fotos mais populares do mês</p>
+            </div>
+            <div class="chp-photo-grid" id="systemSelection">
+              <div class="chp-photo-slot system-selected">
+                <div class="chp-photo-placeholder">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="chp-photo-badge">Mais Popular</div>
+              </div>
+              <div class="chp-photo-slot system-selected">
+                <div class="chp-photo-placeholder">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="chp-photo-badge">Mais Popular</div>
+              </div>
+              <div class="chp-photo-slot system-selected">
+                <div class="chp-photo-placeholder">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="chp-photo-badge">Mais Popular</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seção 2: Escolhas dos Pais -->
+          <div class="chp-selection-section">
+            <div class="chp-section-header">
+              <h3>👨‍👩‍👧‍👦 As Escolhas dos Pais</h3>
+              <p>Cada pai escolhe suas 3 fotos favoritas</p>
+            </div>
+
+            <!-- Fileira da Mãe -->
+            <div class="chp-parent-selection">
+              <div class="chp-parent-header">
+                <div class="chp-parent-info">
+                  <i class="fas fa-female"></i>
+                  <span>Escolhas da Mamãe</span>
+                </div>
+                <div class="chp-selection-status" id="momStatus">
+                  <span class="status-waiting">Aguardando seleção</span>
+                </div>
+              </div>
+              <div class="chp-photo-grid" id="momSelection">
+                <div class="chp-photo-slot parent-slot" data-parent="mom" data-slot="1">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 1</div>
+                </div>
+                <div class="chp-photo-slot parent-slot" data-parent="mom" data-slot="2">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 2</div>
+                </div>
+                <div class="chp-photo-slot parent-slot" data-parent="mom" data-slot="3">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 3</div>
+                </div>
+              </div>
+              <button class="chp-select-button" id="momSelectButton" style="display: none;">
+                <i class="fas fa-images"></i>
+                Escolher minhas 3 fotos
+              </button>
+            </div>
+
+            <!-- Fileira do Pai -->
+            <div class="chp-parent-selection">
+              <div class="chp-parent-header">
+                <div class="chp-parent-info">
+                  <i class="fas fa-male"></i>
+                  <span>Escolhas do Papai</span>
+                </div>
+                <div class="chp-selection-status" id="dadStatus">
+                  <span class="status-waiting">Aguardando seleção</span>
+                </div>
+              </div>
+              <div class="chp-photo-grid" id="dadSelection">
+                <div class="chp-photo-slot parent-slot" data-parent="dad" data-slot="1">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 1</div>
+                </div>
+                <div class="chp-photo-slot parent-slot" data-parent="dad" data-slot="2">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 2</div>
+                </div>
+                <div class="chp-photo-slot parent-slot" data-parent="dad" data-slot="3">
+                  <div class="chp-photo-placeholder">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                  <div class="chp-slot-label">Foto 3</div>
+                </div>
+              </div>
+              <button class="chp-select-button" id="dadSelectButton">
+                <i class="fas fa-images"></i>
+                Escolher minhas 3 fotos
+              </button>
+            </div>
+          </div>
+
+          <!-- Status Final -->
+          <div class="chp-album-footer">
+            <div class="chp-progress-info">
+              <div class="chp-progress-text">
+                <span id="selectedCount">3</span> de 9 fotos selecionadas
+              </div>
+              <div class="chp-progress-bar">
+                <div class="chp-progress-fill" style="width: 33%"></div>
+              </div>
+            </div>
+            <div class="chp-deadline-info">
+              <i class="fas fa-clock"></i>
+              <span>Prazo para seleção: 25 de Dezembro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aba Documentos -->
+      <div class="chp-tab-content" id="documents">
+        <div class="chp-documents-list">
+          <div class="chp-document-item">
+            <div class="chp-document-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="chp-document-info">
+              <div class="chp-document-title">Certidão de Nascimento</div>
+              <div class="chp-document-date">Adicionado em 15/01/2024</div>
+            </div>
+            <div class="chp-document-action">
+              <i class="fas fa-download"></i>
+            </div>
+          </div>
+          
+          <div class="chp-document-item">
+            <div class="chp-document-icon">
+              <i class="fas fa-file-medical"></i>
+            </div>
+            <div class="chp-document-info">
+              <div class="chp-document-title">Cartão de Vacina</div>
+              <div class="chp-document-date">Adicionado em 10/01/2024</div>
+            </div>
+            <div class="chp-document-action">
+              <i class="fas fa-download"></i>
+            </div>
+          </div>
+          
+          <div class="chp-document-item">
+            <div class="chp-document-icon">
+              <i class="fas fa-file-image"></i>
+            </div>
+            <div class="chp-document-info">
+              <div class="chp-document-title">Foto 3x4</div>
+              <div class="chp-document-date">Adicionado em 05/01/2024</div>
+            </div>
+            <div class="chp-document-action">
+              <i class="fas fa-download"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão Flutuante (FAB) -->
+  <div class="chp-fab-button" id="fabButton">
+    <i class="fas fa-plus"></i>
+  </div>
+
+  <!-- Rodapé Fixo -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon"><i class="fas fa-house"></i></div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    <div class="glb-nav-item active" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon"><i class="fas fa-users"></i></div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon"><i class="fas fa-scale-balanced"></i></div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    <div class="glb-nav-item" data-page="support" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon"><i class="fas fa-network-wired"></i></div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+  </nav>
+
+  <!-- Modal de Comentários -->
+  <div class="glb-comments-modal" id="commentsModal">
+    <div class="glb-comments-content" id="commentsModalContent">
+      <div class="glb-comments-header">
+        <div class="glb-comments-back" id="commentsBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="glb-comments-title">Comentários</div>
+      </div>
+      <div class="glb-comments-list" id="commentsList">
+        <!-- Comentários serão carregados aqui -->
+      </div>
+      <div class="glb-comments-input-section">
+        <div class="glb-comments-user-avatar">
+          <!-- Avatar será preenchido dinamicamente pelo JS com foto ou inicial -->
+        </div>
+        <div class="glb-comments-input-container">
+          <textarea class="glb-comments-input" id="commentsInput" placeholder="Escreva um comentário..." rows="1"></textarea>
+          <button class="glb-comments-send-btn" id="commentsSendBtn" disabled>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Compartilhamento -->
+  <div class="com-modal-overlay" id="shareModal">
+    <div class="com-modal-pane">
+      <div class="com-header">
+        <div class="com-title">Compartilhar</div>
+        <div class="com-close" id="closeShareModal">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="com-options-grid">
+        <div class="com-option" id="shareCopyLink">
+          <div class="com-icon-wrapper copy">
+            <i class="fas fa-copy"></i>
+          </div>
+          <div class="com-label">Copiar Link</div>
+        </div>
+        <div class="com-option" id="shareWhatsApp">
+          <div class="com-icon-wrapper whatsapp">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="com-label">WhatsApp</div>
+        </div>
+        <div class="com-option" id="shareTelegram">
+          <div class="com-icon-wrapper telegram">
+            <i class="fab fa-telegram-plane"></i>
+          </div>
+          <div class="com-label">Telegram</div>
+        </div>
+        <div class="com-option" id="shareJupti">
+          <div class="com-icon-wrapper jupti">
+            <i class="fas fa-comment-dots"></i>
+          </div>
+          <div class="com-label">JUPTI</div>
+        </div>
+      </div>
+      <div class="com-link-container">
+        <input type="text" class="com-link-input" id="shareLinkInput" readonly>
+        <button class="com-copy-btn" id="shareCopyBtn">Copiar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Opções do Post -->
+  <div class="glb-options-modal" id="glb-postOptionsModal">
+    <div class="glb-options-content">
+      <div class="glb-option-item" data-action="edit-post">
+        <i class="fas fa-edit"></i>
+        <span>Editar post</span>
+      </div>
+      <div class="glb-option-item" data-action="delete-post">
+        <i class="fas fa-trash"></i>
+        <span>Excluir post</span>
+      </div>
+      <div class="glb-option-item" data-action="privacy-settings">
+        <i class="fas fa-lock"></i>
+        <span>Configurações de privacidade</span>
+      </div>
+      <div class="glb-option-item" data-action="archive-post">
+        <i class="fas fa-archive"></i>
+        <span>Arquivar post</span>
+      </div>
+      <div class="glb-option-item cancel">Cancelar</div>
+    </div>
+  </div>
+  
+    <!-- Modal de Criação de Post -->
+  <div class="glb-create-post-modal" id="glb-createPostModal">
+    <div class="glb-create-post-options">
+      <div class="glb-create-post-title">Criar publicação</div>
+      <div class="glb-create-option" id="createTextPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-font"></i>
+        </div>
+        <div class="glb-create-option-text">Publicação de texto</div>
+      </div>
+      <div class="glb-create-option" id="createPhotoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-image"></i>
+        </div>
+        <div class="glb-create-option-text">Foto</div>
+      </div>
+      <div class="glb-create-option" id="createVideoPost">
+        <div class="glb-create-option-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="glb-create-option-text">Vídeo</div>
+      </div>
+      <div class="glb-create-option-cancel" id="cancelCreatePost">Cancelar</div>
+    </div>
+  </div>
+
+  <!-- Modal de Upload de Documentos -->
+  <div class="chp-document-upload-modal" id="documentUploadModal">
+    <div class="chp-modal-content">
+      <div class="chp-modal-header">
+        <div class="chp-modal-title">
+          <i class="fas fa-file-upload"></i>
+          <span>Adicionar Documento</span>
+        </div>
+        <div class="chp-modal-close" id="closeDocumentModal">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      
+      <form class="chp-document-form" id="documentForm">
+        <!-- Campo de Upload de Arquivo -->
+        <div class="chp-form-group">
+          <label class="chp-form-label">
+            <i class="fas fa-paperclip"></i>
+            Anexar Arquivo *
+          </label>
+          <div class="chp-file-upload-area" id="fileUploadArea">
+            <input type="file" id="documentFile" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+            <div class="chp-file-upload-content" id="fileUploadContent">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <span class="chp-upload-text">Clique para selecionar arquivo</span>
+              <span class="chp-upload-hint">PDF, JPG ou PNG (máx. 10MB)</span>
+            </div>
+            <div class="chp-file-selected" id="fileSelected" style="display: none;">
+              <i class="fas fa-file"></i>
+              <span class="chp-file-name" id="fileName"></span>
+              <button type="button" class="chp-remove-file" id="removeFile">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo Título -->
+        <div class="chp-form-group">
+          <label for="documentTitle" class="chp-form-label">
+            <i class="fas fa-heading"></i>
+            Título do Documento *
+          </label>
+          <input 
+            type="text" 
+            id="documentTitle" 
+            class="chp-form-input" 
+            placeholder="Ex: Certidão de Nascimento"
+            maxlength="100"
+            required
+          >
+        </div>
+
+        <!-- Campo Data -->
+        <div class="chp-form-group">
+          <label for="documentDate" class="chp-form-label">
+            <i class="fas fa-calendar-alt"></i>
+            Data do Documento *
+          </label>
+          <input 
+            type="date" 
+            id="documentDate" 
+            class="chp-form-input" 
+            required
+          >
+        </div>
+
+        <!-- Campo Categoria -->
+        <div class="chp-form-group">
+          <label for="documentCategory" class="chp-form-label">
+            <i class="fas fa-tags"></i>
+            Categoria *
+          </label>
+          <select id="documentCategory" class="chp-form-select" required>
+            <option value="">Selecione uma categoria</option>
+            <option value="saude">Saúde</option>
+            <option value="educacao">Educação</option>
+            <option value="civis">Civis</option>
+            <option value="juridicos">Jurídicos</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+
+        <!-- Campo Finalidade -->
+        <div class="chp-form-group">
+          <label class="chp-form-label">
+            <i class="fas fa-bullseye"></i>
+            Qual é o objetivo deste documento? *
+          </label>
+          <div class="chp-radio-group">
+            <div class="chp-radio-option">
+              <input 
+                type="radio" 
+                id="purposeArchive" 
+                name="documentPurpose" 
+                value="ARCHIVE" 
+                checked
+                required
+              >
+              <label for="purposeArchive" class="chp-radio-label">
+                <span class="chp-radio-indicator"></span>
+                <span class="chp-radio-text">Apenas Arquivar</span>
+              </label>
+            </div>
+            <div class="chp-radio-option">
+              <input 
+                type="radio" 
+                id="purposeAction" 
+                name="documentPurpose" 
+                value="ACTION"
+                required
+              >
+              <label for="purposeAction" class="chp-radio-label">
+                <span class="chp-radio-indicator"></span>
+                <span class="chp-radio-text">Gerar uma Ação</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo Nível de Privacidade (condicional) -->
+        <div class="chp-form-group chp-privacy-group" id="privacyGroup">
+          <label class="chp-form-label">
+            <i class="fas fa-shield-alt"></i>
+            Nível de Privacidade *
+          </label>
+          <div class="chp-radio-group">
+            <div class="chp-radio-option">
+              <input 
+                type="radio" 
+                id="privacyDirect" 
+                name="documentPrivacy" 
+                value="DIRECT_ACCESS" 
+                checked
+              >
+              <label for="privacyDirect" class="chp-radio-label">
+                <span class="chp-radio-indicator"></span>
+                <span class="chp-radio-text">Acesso Direto</span>
+              </label>
+            </div>
+            <div class="chp-radio-option">
+              <input 
+                type="radio" 
+                id="privacyRequest" 
+                name="documentPrivacy" 
+                value="ON_REQUEST"
+              >
+              <label for="privacyRequest" class="chp-radio-label">
+                <span class="chp-radio-indicator"></span>
+                <span class="chp-radio-text">Acesso Mediante Solicitação</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="chp-modal-footer">
+          <button type="button" class="chp-cancel-button" id="cancelDocument">
+            Cancelar
+          </button>
+          <button type="submit" class="chp-save-button" id="saveDocument" disabled>
+            <i class="fas fa-save"></i>
+            Salvar Documento
+          </button>
+        </div>
+      </form>
+
+      <!-- Loading State -->
+      <div class="chp-upload-loading" id="uploadLoading" style="display: none;">
+        <div class="chp-loading-spinner"></div>
+        <span>Salvando documento...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="global.js"></script>
+  <script type="module" src="comments.js"></script>
+    <script type="module" src="postcore.js"></script>
+  <script src="navegacao.js"></script>
+<script type="module" src="perfil_filho.js"></script>
+</body>
+</html>
+
+  <!-- Modal de Seleção de Fotos -->
+  <div class="chp-photo-selection-modal" id="photoSelectionModal">
+    <div class="chp-modal-content">
+      <div class="chp-modal-header">
+        <div class="chp-modal-title">
+          <i class="fas fa-images"></i>
+          <span>Escolha suas 3 fotos</span>
+        </div>
+        <div class="chp-modal-close" id="closePhotoModal">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      
+      <div class="chp-selection-counter">
+        <span id="selectionCounter">0/3 selecionadas</span>
+      </div>
+      
+      <div class="chp-photo-gallery" id="photoGallery">
+        <!-- Fotos serão carregadas dinamicamente aqui -->
+      </div>
+      
+      <div class="chp-modal-footer">
+        <button class="chp-confirm-button" id="confirmSelection" disabled>
+          <i class="fas fa-check"></i>
+          Confirmar minhas 3 escolhas
+        </button>
+      </div>
+    </div>
+  </div>

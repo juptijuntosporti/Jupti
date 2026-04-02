@@ -1,0 +1,170 @@
+/**
+ * ============================================================
+ * 💅 JUPTI - Estilos da Tela de Verificação (verificar_filho.css)
+ * ============================================================
+ */
+
+body {
+    background-color: #f0f2f5;
+}
+
+.verify-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Estado de Carregamento --- */
+.loading-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #666;
+}
+.loading-state i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #0f4c5c;
+}
+
+/* --- Cabeçalho do Perfil --- */
+.profile-header {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    background-color: #0f4c5c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.profile-details {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.profile-guardian {
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #f0f2f5;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.profile-guardian i {
+    margin-right: 8px;
+    color: #0f4c5c;
+}
+.profile-guardian span {
+    font-weight: 600;
+}
+
+/* --- Seção da Galeria --- */
+.gallery-section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.photo-item, .photo-placeholder {
+    width: 100%;
+    padding-bottom: 100%; /* Para criar um quadrado perfeito */
+    position: relative;
+    background-color: #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.photo-item img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.photo-placeholder i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: #ced4da;
+}
+
+/* --- Botões de Ação --- */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-button.primary {
+    background-color: #0f4c5c;
+    color: white;
+}
+.action-button.primary:hover {
+    background-color: #0a3d4a;
+}
+
+.action-button.secondary {
+    background-color: transparent;
+    color: #0f4c5c;
+    border: 2px solid #0f4c5c;
+}
+.action-button.secondary:hover {
+    background-color: #e8f4f8;
+}

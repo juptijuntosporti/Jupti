@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Novo Post - JUPTI</title>
+  <link rel="stylesheet" href="style-v3.css" />
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      background-color: #fff;
+    }
+
+    .edit-post-container {
+      padding-top: 60px;
+      padding-bottom: 20px;
+      min-height: 100vh;
+    }
+
+    /* Header customizado */
+    .edit-post-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background-color: #fff;
+      z-index: 1000;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      height: 60px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .edit-post-header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .edit-post-back-btn {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #000;
+      font-size: 20px;
+    }
+
+    .edit-post-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .edit-post-publish-btn {
+      background: linear-gradient(135deg, #679099 0%, #0f4c5c 100%);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .edit-post-publish-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .edit-post-publish-btn:active:not(:disabled) {
+      opacity: 0.8;
+    }
+
+    /* Área de mídia */
+    .edit-post-media-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #f5f5f5;
+    }
+
+    .edit-post-media-container img,
+    .edit-post-media-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Área de texto */
+    .edit-post-content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .edit-post-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .edit-post-user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: #eee;
+      overflow: hidden;
+    }
+
+    .edit-post-user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .edit-post-user-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .edit-post-caption-area {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .edit-post-caption {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .edit-post-caption:focus {
+      border-color: #0f4c5c;
+    }
+
+    .edit-post-caption::placeholder {
+      color: #999;
+    }
+
+    /* Opções adicionais */
+    .edit-post-options {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+
+    .edit-post-option-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #f5f5f5;
+      cursor: pointer;
+    }
+
+    .edit-post-option-item:last-child {
+      border-bottom: none;
+    }
+
+    .edit-post-option-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .edit-post-option-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f4c5c;
+      font-size: 16px;
+    }
+
+    .edit-post-option-text {
+      font-size: 15px;
+      color: #000;
+    }
+
+    .edit-post-option-value {
+      font-size: 14px;
+      color: #999;
+    }
+
+    /* Loading overlay */
+    .edit-post-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .edit-post-loading.active {
+      display: flex;
+    }
+
+    .edit-post-loading-content {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .edit-post-loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #0f4c5c;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .edit-post-loading-text {
+      font-size: 15px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="edit-post-header">
+    <div class="edit-post-header-left">
+      <div class="edit-post-back-btn" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="edit-post-title">Novo Registro</div>
+    </div>
+    <button class="edit-post-publish-btn" id="publishBtn">Registrar</button>
+  </header>
+
+  <!-- Container principal -->
+  <div class="edit-post-container">
+    
+    <!-- Área de mídia -->
+    <div class="edit-post-media-container" id="mediaContainer">
+      <!-- Mídia será inserida aqui via JavaScript -->
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="edit-post-content">
+      
+      <!-- Info do usuário -->
+      <div class="edit-post-user-info">
+        <div class="edit-post-user-avatar" id="userAvatar">
+          <img src="Perfil_fabio.png" alt="Seu perfil">
+        </div>
+        <div class="edit-post-user-name" id="userName">Carregando...</div>
+      </div>
+
+      <!-- Área de legenda -->
+      <div class="edit-post-caption-area">
+        <textarea 
+          class="edit-post-caption" 
+          id="captionInput" 
+          placeholder="Escreva uma legenda..."
+          maxlength="2200"
+        ></textarea>
+      </div>
+
+      <!-- Opções adicionais -->
+      <div class="edit-post-options">
+        
+        <div class="edit-post-option-item" id="locationOption">
+          <div class="edit-post-option-left">
+            <div class="edit-post-option-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="edit-post-option-text">Adicionar localização</div>
+          </div>
+          <div class="edit-post-option-value" id="locationValue">Nenhuma</div>
+        </div>
+
+        <div class="edit-post-option-item" id="privacyOption">
+          <div class="edit-post-option-left">
+            <div class="edit-post-option-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="edit-post-option-text">Privacidade</div>
+          </div>
+          <div class="edit-post-option-value" id="privacyValue">Público</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="edit-post-loading" id="loadingOverlay">
+    <div class="edit-post-loading-content">
+      <div class="edit-post-loading-spinner"></div>
+      <div class="edit-post-loading-text">Publicando...</div>
+    </div>
+  </div>
+
+  <script src="apiService.js" type="module"></script>
+  <script src="editar_post.js" type="module"></script>
+
+</body>
+</html>
+

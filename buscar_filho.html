@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buscar Perfil do Filho - JUPTI</title>
+  
+  <!-- Estilos Globais e da Página -->
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="style-v3.css" /> 
+  <link rel="stylesheet" href="buscar_filho.css"/>
+  <!-- Reutiliza estilos existentes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+</head>
+<body>
+
+  <!-- Cabeçalho Padrão -->
+  <header class="glbs-app-header">
+    <div class="glbs-header-left">
+      <div class="glbs-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glbs-header-title">Encontrar Perfil</div>
+    </div>
+  </header>
+
+  <!-- Conteúdo da Página de Busca -->
+  <div class="search-container">
+    <h2 class="search-title">Busque por seu Filho</h2>
+    <p class="search-instruction">
+      Antes de criar um novo perfil, vamos garantir que ele já não tenha uma jornada iniciada. Use um dos campos abaixo para buscar.
+    </p>
+    
+    <!-- Formulário de Busca -->
+    <div id="searchForm">
+      <div class="form-group">
+        <label for="childName">Nome Completo do Filho</label>
+        <input type="text" id="childName" name="childName" placeholder="Digite o nome completo">
+      </div>
+      
+      <div class="form-group">
+        <label for="childCPF">CPF do Filho (Opcional)</label>
+        <input type="text" id="childCPF" name="childCPF" placeholder="000.000.000-00">
+      </div>
+      
+      <div class="form-group">
+        <label for="childCertidao">Nº da Certidão de Nascimento (Opcional)</label>
+        <input type="text" id="childCertidao" name="childCertidao" placeholder="Digite o número da matrícula">
+      </div>
+
+      <div class="form-group">
+        <label for="otherParentPhone">Telefone do Outro Genitor (Opcional)</label>
+        <input type="text" id="otherParentPhone" name="otherParentPhone" placeholder="(00) 00000-0000">
+      </div>
+
+      <button class="action-button btn-primary" id="searchButton" style="margin-top: 20px;">
+        <i class="fas fa-search"></i> Buscar
+      </button>
+    </div>
+
+    <!-- Área de Resultados -->
+    <div class="search-results-container" id="searchResults">
+      <!-- Os resultados da busca ou mensagens aparecerão aqui -->
+    </div>
+
+    <!-- Botões de Ação Condicionais -->
+    <div id="actionButtonsContainer" style="margin-top: 20px;">
+      <button class="action-button btn-primary" id="createAnywayButton" style="display: none;">
+        Nenhum resultado. Criar novo perfil
+      </button>
+      <button class="action-button btn-secondary" id="inviteParentButton" style="display: none;">
+        Convidar o outro genitor para o JUPTI
+      </button>
+    </div>
+  </div>
+
+  <!-- Script da Página -->
+  <script src="buscar_filho.js" type="module"></script>
+</body>
+</html>
