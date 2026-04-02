@@ -1,76 +1,51 @@
-// Arquivo: netlify/functions/login.js
-// VERSÃO COMPLETA E ATUALIZADA PARA REDIRECIONAMENTO INTELIGENTE
+// Arquivo: api/login.js
+// VERSÃO CORRIGIDA PARA VERCEL
 
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-exports.handler = async (event, context) => {
+// A Vercel espera uma função exportada como padrão (export default)
+export default async function handler(request, response) {
     // Headers CORS para permitir requisições do frontend
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Content-Type': 'application/json'
-    };
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
     // Responder a requisições OPTIONS (preflight)
-    if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ message: 'CORS preflight' })
-        };
+    if (request.method === 'OPTIONS') {
+        return response.status(200).json({ message: 'CORS preflight' });
     }
 
     // Verificar se é método POST
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            headers,
-            body: JSON.stringify({ 
-                success: false, 
-                message: 'Método não permitido. Use POST.' 
-            })
-        };
+    if (request.method !== 'POST') {
+        return response.status(405).json({ 
+            success: false, 
+            message: 'Método não permitido. Use POST.' 
+        });
     }
 
-    let requestData;
-    try {
-        requestData = JSON.parse(event.body);
-    } catch (error) {
-        return {
-            statusCode: 400,
-            headers,
-            body: JSON.stringify({ 
-                success: false, 
-                message: 'Dados inválidos. Verifique o formato JSON.' 
-            })
-        };
-    }
-
-    const { email, password } = requestData;
+    // Na Vercel, os dados do corpo já vêm parseados se o header estiver correto
+    const { email, password } = request.body;
 
     // Validar campos obrigatórios
     if (!email || !password) {
-        return {
-            statusCode: 400,
-            headers,
-            body: JSON.stringify({ 
-                success: false, 
-                message: 'Email e senha são obrigatórios.' 
-            })
-        };
+        return response.status(400).json({ 
+            success: false, 
+            message: 'Email e senha são obrigatórios.' 
+        });
     }
 
     const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false // Adicionado para compatibilidade com alguns provedores de DBaaS como Neon/Heroku
+        }
     });
 
     try {
         const client = await pool.connect();
         
-        // ✅ ALTERAÇÃO PRINCIPAL: Buscamos todos os campos necessários do usuário, incluindo 'is_profile_complete'.
         const result = await client.query(
             'SELECT * FROM users WHERE email = $1',
             [email]
@@ -80,61 +55,43 @@ exports.handler = async (event, context) => {
         const user = result.rows[0];
 
         if (!user) {
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ 
-                    success: false, 
-                    message: 'Email ou senha incorretos.' 
-                })
-            };
+            return response.status(401).json({ 
+                success: false, 
+                message: 'Email ou senha incorretos.' 
+            });
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!passwordMatch) {
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ 
-                    success: false, 
-                    message: 'Email ou senha incorretos.' 
-                })
-            };
+            return response.status(401).json({ 
+                success: false, 
+                message: 'Email ou senha incorretos.' 
+            });
         }
 
-        // Gera o token de autenticação
         const token = jwt.sign(
             { userId: user.id, email: user.email },
             process.env.JWT_SECRET,
-            { expiresIn: '1h' } // Token expira em 1 hora
+            { expiresIn: '1h' }
         );
 
-        // ✅ IMPORTANTE: Removemos o hash da senha do objeto antes de enviá-lo ao frontend.
         delete user.password_hash;
 
-        // Retorna sucesso, o token e o objeto 'user' completo para o frontend.
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ 
-                success: true,
-                message: 'Login realizado com sucesso!', 
-                token, 
-                user // O objeto 'user' agora contém a flag 'is_profile_complete'
-            })
-        };
+        // Retorna a resposta de sucesso usando o objeto 'response'
+        return response.status(200).json({ 
+            success: true,
+            message: 'Login realizado com sucesso!', 
+            token, 
+            user 
+        });
 
     } catch (error) {
         console.error('Erro ao fazer login:', error);
         
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ 
-                success: false, 
-                message: 'Erro interno do servidor. Tente novamente mais tarde.' 
-            })
-        };
+        return response.status(500).json({ 
+            success: false, 
+            message: 'Erro interno do servidor. Tente novamente mais tarde.' 
+        });
     }
-};
+}
