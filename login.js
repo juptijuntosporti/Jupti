@@ -1,79 +1,92 @@
-// Arquivo: login.js (Frontend)
-// VERSÃO COMPLETA E ATUALIZADA COM REDIRECIONAMENTO INTELIGENTE
+// Importações continuam as mesmas, mas usando 'import' em vez de 'require' (padrão ES Modules)
+import { Pool } from 'pg';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("loginForm");
-    const emailInput = document.getElementById("email");
-    const senhaInput = document.getElementById("senha");
-    const submitButton = form.querySelector("button[type='submit']");
+// ✅ MUDANÇA 1: Usar 'export default' e os parâmetros (req, res)
+export default async function handler(req, res) {
+    
+    // O tratamento de CORS na Vercel geralmente é feito em um arquivo vercel.json
+    // mas para simplificar, podemos adicionar os headers na resposta.
 
-    /**
-     * Envia as credenciais para a API de login e retorna a resposta.
-     * @param {string} email - O email do usuário.
-     * @param {string} senha - A senha do usuário.
-     * @returns {Promise<object>} - Retorna uma promessa que resolve com o objeto { token, user }.
-     */
-    async function autenticarUsuario(email, senha) {
-        const response = await fetch("/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: email, password: senha }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success) {
-            // Lança um erro com a mensagem do servidor ou uma mensagem padrão.
-            throw new Error(data.message || `Erro ${response.status}: Falha na comunicação com o servidor`);
-        }
-
-        // Retorna o objeto com 'token' e 'user' que o backend envia.
-        return {
-            token: data.token,
-            user: data.user
-        };
+    // ✅ MUDANÇA 2: Verificar o método usando req.method
+    if (req.method === 'OPTIONS') {
+        return res.status(200).json({ message: 'CORS preflight' });
     }
 
-    // --- EVENTO DE SUBMISSÃO DO FORMULÁRIO ---
-    form.addEventListener("submit", async function(event) {
-        event.preventDefault();
+    if (req.method !== 'POST') {
+        return res.status(405).json({ 
+            success: false, 
+            message: 'Método não permitido. Use POST.' 
+        });
+    }
 
-        const originalButtonText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.textContent = "Entrando...";
+    // ✅ MUDANÇA 3: Os dados vêm diretamente de req.body, não precisa de JSON.parse
+    const { email, password } = req.body;
 
-        const email = emailInput.value;
-        const senha = senhaInput.value;
+    // Validação continua igual
+    if (!email || !password) {
+        return res.status(400).json({ 
+            success: false, 
+            message: 'Email e senha são obrigatórios.' 
+        });
+    }
 
-        try {
-            // Chama a função de autenticação e desestrutura o resultado.
-            const { token, user } = await autenticarUsuario(email, senha);
-            
-            // Salva o TOKEN no localStorage para ser usado em outras páginas.
-            localStorage.setItem("authTokenJUPTI", token);
-
-            // ✅✅✅ LÓGICA DE REDIRECIONAMENTO INTELIGENTE ✅✅✅
-            
-            // Verifica a flag 'is_profile_complete' que veio do backend.
-            if (user.is_profile_complete) {
-                // Se o perfil está completo, vai direto para o feed.
-                alert("Bem-vindo(a) de volta, " + user.full_name.split(' ')[0] + "!");
-                window.location.href = "feed.html";
-            } else {
-                // Se o perfil não está completo, inicia o fluxo de configuração.
-                alert("Login bem-sucedido! Agora, vamos completar seu perfil.");
-                window.location.href = "selecao_perfil.html";
-            }
-
-        } catch (error) {
-            // Em caso de erro no login (senha errada, usuário não existe, etc.)
-            alert("Falha no login: " + error.message);
-            
-            // Restaura o botão para permitir uma nova tentativa.
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-        }
+    const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
     });
-});
+
+    try {
+        // A lógica do banco de dados permanece IDÊNTICA
+        const client = await pool.connect();
+        const result = await client.query(
+            'SELECT * FROM users WHERE email = $1',
+            [email]
+        );
+        client.release();
+
+        const user = result.rows[0];
+
+        if (!user) {
+            // ✅ MUDANÇA 4: Usar res.status().json() para enviar a resposta
+            return res.status(401).json({ 
+                success: false, 
+                message: 'Email ou senha incorretos.' 
+            });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+        if (!passwordMatch) {
+            return res.status(401).json({ 
+                success: false, 
+                message: 'Email ou senha incorretos.' 
+            });
+        }
+
+        const token = jwt.sign(
+            { userId: user.id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        delete user.password_hash;
+
+        // ✅ MUDANÇA 5: Enviar a resposta final de sucesso
+        return res.status(200).json({ 
+            success: true,
+            message: 'Login realizado com sucesso!', 
+            token, 
+            user
+        });
+
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        
+        // ✅ MUDANÇA 6: Enviar a resposta de erro 500
+        return res.status(500).json({ 
+            success: false, 
+            message: 'Erro interno do servidor. Tente novamente mais tarde.' 
+        });
+    }
+};
