@@ -1,0 +1,93 @@
+/* ================================================
+   📌 CSS — Configurações do Filho (cfg-xxx)
+   ================================================ */
+
+/* --- Layout Base --- */
+body {
+  background-color: #f0f2f5; /* Fundo cinza claro para contraste */
+}
+
+.glb-container {
+  padding-top: 60px; /* Altura do cabeçalho */
+}
+
+/* --- Lista de Configurações --- */
+.cfg-settings-list {
+  padding: 10px 0;
+  background-color: #ffffff;
+}
+
+/* --- Título da Categoria --- */
+.cfg-category-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  padding: 20px 20px 10px 20px;
+  background-color: #f0f2f5;
+}
+
+/* --- Item de Configuração --- */
+.cfg-setting-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none; /* Remove sublinhado do link */
+  color: inherit; /* Herda a cor do texto padrão */
+}
+
+.cfg-setting-item:hover {
+  background-color: #f8f9fa; /* Efeito suave ao passar o mouse */
+}
+
+.cfg-setting-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0f4c5c; /* Cor primária */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.cfg-setting-icon i {
+  font-size: 18px;
+  color: white;
+}
+
+.cfg-setting-content {
+  flex: 1;
+}
+
+.cfg-setting-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.cfg-setting-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.cfg-setting-arrow {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* --- Estilo para Itens de Perigo (Excluir) --- */
+.cfg-setting-item.danger .cfg-setting-icon {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.cfg-setting-item.danger .cfg-setting-title {
+  color: #dc3545;
+}

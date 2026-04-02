@@ -1,0 +1,1573 @@
+/* =============================================================
+   JUPTI - CSS GLOBAL
+   Contém estilos reutilizáveis e padrões visuais universais.
+   Inclui: rodapé fixo, botões de navegação, ícones padrão,
+   cores base, espaçamentos e classes auxiliares.
+   Deve ser importado em TODAS as telas que usam layout padrão.
+   ============================================================= */
+
+/* --- 1. Estilos Base e Reset --- */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+/* Classe para bloquear scroll quando modais/painéis estão abertos */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.glb-container { /* Seu container principal */
+  padding: 0;
+  max-width: 100%;
+  padding-top: 50px; /* Ajuste para a altura do cabeçalho */
+  padding-bottom: 70px; /* Altura do menu inferior */
+}
+
+/* --- 2. Componentes de Layout Globais --- */
+
+/* 2.1. Cabeçalho Principal (Reutilizável em várias telas,que inclui Feed) */
+.glb-app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  height: 50px;
+  border-bottom: 1px solid #eee;
+}
+
+.glb-app-header.hidden {
+  transform: translateY(-100%);
+}
+
+.glb-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.glb-profile-icon { /* Ícone de perfil no cabeçalho */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eee;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.glb-profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glb-header-right {
+  display: flex;
+  gap: 20px;
+}
+
+.glb-header-icon { /* Ícones genéricos do cabeçalho (plus, search, bell) */
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.glb-header-icon i {
+  font-size: 18px;
+}
+
+.glb-notification-badge { /* Badge de notificação */
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff3b30;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+  /*  Estilos do cabeçalho secundário*/
+    .glbs-app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background-color: #fff;
+      z-index: 1000;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      height: 50px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .glbs-header-left {
+      display: flex;
+      align-items: center;
+    }
+    
+    .glbs-back-button {
+      font-size: 24px;
+      color: #666;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+    
+    .glbs-header-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .glbs-header-right {
+      display: flex;
+      align-items: center;
+    }
+    
+    .glbs-header-menu {
+      font-size: 20px;
+      color: #666;
+      cursor: pointer;
+    }
+    
+        .glbs-header-icon {
+      font-size: 20px;
+      color: #666;
+      cursor: pointer;
+    }
+    
+
+/* 2.2. Rodapé de Navegação (Bottom Nav) */
+.glb-bottom-nav { /* Manter bottom-nav ou renomear para glb-bottom-nav */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 8px 0;
+  border-top: 1px solid #eee;
+  z-index: 1000;
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.05);
+  height: 54px;
+}
+
+.glb-nav-item { /* Manter nav-item ou renomear para glb-nav-item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.glb-nav-icon { /* Manter nav-icon ou renomear para glb-nav-icon */
+  margin-bottom: 4px;
+}
+
+.glb-nav-icon i {
+  font-size: 20px;
+  color: #000;
+}
+
+.glb-nav-label { /* Manter nav-label ou renomear para glb-nav-label */
+  font-size: 10px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.glb-nav-item.active .glb-nav-icon i {
+  color: #0f4c5c;
+}
+
+.glb-nav-item.active .glb-nav-label {
+  color: #0f4c5c;
+  font-weight: bold;
+}
+    /* Responsividade */
+    @media (max-width: 360px) {
+      .glb-nav-label {
+        display: none;
+      }
+      
+      .glb-nav-icon {
+        margin-bottom: 0;
+      }
+      .glb-bottom-nav {
+          height: 48px;
+      }
+      .glb-container {
+          padding-bottom: 60px;
+      }
+    }
+
+/* 2.3. Modais Globais (Pesquisa, Notificações, Criação de Post) */
+
+/* Modal de Pesquisa */
+.glb-search-overlay { /* Renomeado */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #fff;
+  z-index: 1500;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: slideDown 0.3s ease;
+}
+
+.glb-search-overlay.active {
+  display: block;
+}
+
+.glb-search-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.glb-search-back {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.glb-search-back i {
+  font-size: 18px;
+}
+
+.glb-search-input-container {
+  flex: 1;
+  position: relative;
+}
+
+.glb-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f5f5f5;
+  padding: 0 40px 0 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+.glb-search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* Modal de Notificações */
+.glb-notifications-overlay { /* Renomeado */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1500;
+}
+
+.glb-notifications-overlay.active {
+  display: block;
+}
+
+.glb-notifications-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.glb-notifications-overlay.active .glb-notifications-panel {
+  transform: translateX(0);
+}
+
+.glb-notifications-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.glb-notifications-back {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.glb-notifications-back i {
+  font-size: 18px;
+}
+
+.glb-notifications-title {
+  font-size: 18px;
+  font-weight: bold;
+  flex: 1;
+}
+
+.glb-notifications-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.glb-notification-item {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.glb-notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  border: 1px solid #eee;
+}
+
+.glb-notification-icon i {
+  font-size: 20px;
+  color: #000;
+}
+
+.glb-notification-content {
+  flex: 1;
+}
+
+.glb-notification-text {
+  font-size: 15px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.glb-notification-time {
+  font-size: 13px;
+  color: #666;
+}
+
+.glb-notification-item:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.glb-notification-item.unread {
+  background-color: #f0f7ff;
+}
+
+.glb-notification-item.unread .glb-notification-icon {
+  background-color: #0f4c5c;
+}
+
+.glb-notification-item.unread .glb-notification-icon i {
+  color: #fff;
+}
+
+/* Modal de Criação de Post */
+.glb-create-post-modal { /* Renomeado */
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.glb-create-post-modal.active {
+  display: flex;
+}
+
+.glb-create-post-options {
+  background-color: white;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 300px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  /* A linha 'transform: translateY(100%);' FOI REMOVIDA daqui. */
+}
+
+.glb-create-post-title {
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  color: #0f4c5c;
+}
+
+.glb-create-option {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.glb-create-option:hover {
+  background-color: #f5f5f5;
+}
+
+.glb-create-option-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0f4c5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.glb-create-option-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.glb-create-option-text {
+  font-size: 16px;
+}
+
+.glb-create-option-cancel {
+  text-align: center;
+  padding: 15px;
+  color: #ff3b30;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* --- 3. Estilos de Posts (Gerados Globalmente) --- */
+
+.glb-post { /* Renomeado */
+  margin: 0 0 12px 0; /* Aumentei a margem inferior entre os posts para 12px */
+  background-color: #fff;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px; /* Adicionado padding na parte inferior do post */
+}
+
+.glb-post-header { /* Renomeado */
+  display: flex;
+  align-items: center;
+  padding: 15px 15px 10px 15px; /* Ajustei o padding do cabeçalho */
+  position: relative;
+}
+
+.glb-post-profile { /* Renomeado */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.glb-post-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glb-post-info { /* Renomeado */
+  flex: 1;
+}
+
+.glb-post-author { /* Renomeado */
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.glb-post-time { /* Renomeado */
+  color: #666;
+  font-size: 14px;
+}
+
+.glb-post-options { /* Renomeado */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glb-post-options i {
+  font-size: 16px;
+  color: #666;
+}
+
+.glb-post-content { /* Renomeado */
+  /* padding: 0 15px; */ /* Removido para imagem ocupar largura total */
+}
+
+.glb-post-text { /* Renomeado */
+  padding: 0 15px 15px 15px; /* Aumentei o padding inferior do texto */
+  line-height: 1.5; /* Aumentei o espaçamento entre linhas para melhor leitura */
+  font-size: 16px; /* Aumentei o tamanho da fonte do texto do post */
+}
+
+.glb-post-media { /* Renomeado */
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
+  background-color: #eee; /* Placeholder */
+  min-height: 300px; /* Aumentado de 200px para 300px */
+  object-fit: cover;
+}
+
+.glb-post-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.glb-post-actions { /* Renomeado */
+  display: flex;
+  padding: 10px 15px;
+  align-items: center;
+}
+
+.glb-action-group { /* Renomeado */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaçamento entre ícone e contador dentro do grupo */
+  cursor: pointer;
+  margin-right: 35px; /* Aumentado de 24px para 35px */
+}
+
+.glb-action-icon { /* Renomeado */
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glb-action-icon i {
+  font-size: 18px;
+}
+
+.glb-star-icon i { /* Renomeado */
+  color: #000;
+}
+
+.glb-star-icon.active i {
+  color: #FFD700;
+}
+
+.glb-comment-icon i { /* Renomeado */
+  color: #FF7B7B;
+}
+
+.glb-register-icon { /* Renomeado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 35px;
+}
+
+.glb-register-icon i {
+  font-size: 18px;
+  color: #000;
+}
+
+.glb-register-icon.active i {
+  color: #0f4c5c; /* Azul petróleo quando ativo */
+}
+
+.glb-share-icon i { /* Renomeado */
+  color: #005b61;
+}
+
+.glb-action-count { /* Renomeado */
+  font-size: 14px;
+  color: #333;
+}
+
+/* Modal de Opções de post (movido para Global.css e renomeado) */
+.glb-options-modal { /* Renomeado */
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: flex-end;
+}
+
+.glb-options-modal.active {
+    display: flex;
+}
+
+.glb-options-content {
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 10px 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.glb-options-modal.active .glb-options-content {
+  transform: translateY(0); /* Adicionado para animar o modal de opções */
+}
+
+.glb-option-item {
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.glb-option-item:last-child {
+    border-bottom: none;
+}
+
+.glb-option-item:hover {
+  background-color: #f5f5f5;
+}
+
+.glb-option-item.cancel {
+  color: #ff3b30;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Indicador de Carregamento */
+.glb-loading-indicator { /* Renomeado */
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* Efeito de Estrelinhas ao Curtir */
+.glb-star-particle {
+  position: absolute;
+  /* Remova background-color, border-radius, width, height daqui */
+  opacity: 0; /* Começa invisível */
+  pointer-events: none; /* Garante que não interfira com cliques */
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+  font-family: "Font Awesome Free"; /* Usa a fonte do Font Awesome */
+  font-weight: 900; /* Para ícones sólidos */
+  content: "\f005"; /* Código Unicode para a estrela sólida */
+  color: gold; /* Cor da estrela */
+  font-size: 16px; /* Tamanho inicial da estrela (ajuste conforme necessário) */
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Sombra para dar um brilho */
+}
+
+/* Animação de explosão - MAIS DINÂMICA */
+@keyframes starExplosion {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg); /* Começa menor e visível */
+  }
+  20% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1) rotate(var(--rotate)); /* Se move e cresce */
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0) rotate(var(--rotate)); /* Desaparece e encolhe */
+  }
+}
+
+/* ================================================
+   📌 CSS — Modal de Comentários (Atualizado)
+   ================================================ */
+
+/* Fundo semitransparente que cobre a tela */
+.glb-comments-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.glb-comments-modal.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* O painel branco que desliza para cima */
+.glb-comments-content {
+  width: 100%;
+  height: 85vh;
+  max-height: 85vh;
+  background-color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease, height 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+}
+
+.glb-comments-modal.active .glb-comments-content {
+  transform: translateY(0);
+}
+
+/* Cabeçalho do modal */
+.glb-comments-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.glb-comments-back {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glb-comments-back i {
+  font-size: 18px;
+  color: #666;
+}
+
+.glb-comments-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: center;
+  margin-right: 30px;
+}
+
+/* Lista de comentários */
+.glb-comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item de comentário individual */
+.glb-comment-item {
+  display: flex;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: flex-start;
+}
+
+.glb-comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  flex-shrink: 0;
+  background-color: #f0f0f0;
+}
+
+.glb-comment-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glb-comment-content {
+  flex: 1;
+}
+
+.glb-comment-author {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.glb-comment-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 6px;
+  white-space: pre-wrap;
+}
+
+.glb-comment-time {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Seção de input de novo comentário */
+.glb-comments-input-section {
+  display: flex;
+  align-items: flex-end;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+.glb-comments-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  flex-shrink: 0;
+  background-color: #f0f0f0;
+}
+
+.glb-comments-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container do input e botão */
+.glb-comments-input-container {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+/* Campo de texto */
+.glb-comments-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1.4;
+  resize: none;
+  outline: none;
+  min-height: 20px;
+  max-height: 100px;
+  font-family: Arial, sans-serif;
+}
+
+.glb-comments-input::placeholder {
+  color: #999;
+}
+
+/* Botão de enviar */
+.glb-comments-send-btn {
+  flex-shrink: 0; /* Impede que o botão encolha ou cresça */
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.glb-comments-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.glb-comments-send-btn:not(:disabled) {
+  background-color: #0f4c5c;
+}
+
+.glb-comments-send-btn i {
+  font-size: 18px;
+  color: #fff;
+}
+
+.glb-comments-send-btn:disabled i {
+  color: #999;
+}
+
+/* Estado vazio (sem comentários) */
+.glb-comments-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  height: 100%;
+  color: #666;
+  text-align: center;
+}
+
+.glb-comments-empty-icon {
+  font-size: 48px;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.glb-comments-empty-text {
+  font-size: 16px;
+  color: #666;
+}
+
+/* ======================================================
+ * 📄 AJUSTE PARA BLOQUEIO DE SCROLL (Adicionar ao seu CSS)
+ * ====================================================== */
+
+body.modal-aberto {
+  overflow: hidden;
+}
+/* ================================================
+   📌 CORREÇÃO CRÍTICA PARA O MODAL DE COMENTÁRIOS
+   ================================================ */
+
+/*
+  Esta regra FORÇA o painel principal do modal a ser exibido
+  corretamente como um container flexível, sobrepondo qualquer
+  outra regra de 'display: none' que possa estar o afetando.
+  O !important é crucial aqui para garantir a prioridade.
+*/
+.glb-comments-content {
+  display: flex !important;
+  flex-direction: column;
+}
+
+
+
+/* ================================================
+   📌 CSS — Modais Específicos do Perfil
+   ================================================ */
+
+/* Modal de Configurações do Perfil */
+.glb-profile-settings-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.glb-profile-settings-modal.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.glb-profile-settings-content {
+  width: 100%;
+  height: 90vh;
+  max-height: 90vh;
+  background-color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+}
+
+.glb-profile-settings-modal.active .glb-profile-settings-content {
+  transform: translateY(0);
+}
+
+.glb-profile-settings-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.glb-profile-settings-back {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glb-profile-settings-back i {
+  font-size: 18px;
+  color: #666;
+}
+
+.glb-profile-settings-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.glb-profile-settings-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.glb-profile-setting-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.glb-profile-setting-item:hover {
+  background-color: #f8f9fa;
+}
+
+.glb-setting-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0f4c5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.glb-setting-icon i {
+  font-size: 18px;
+  color: white;
+}
+
+.glb-setting-content {
+  flex: 1;
+}
+
+.glb-setting-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.glb-setting-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.glb-setting-arrow {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Estilos para opções do modal do feed/perfil com ícones */
+.glb-options-modal .glb-option-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.glb-options-modal .glb-option-item i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+.glb-options-modal .glb-option-item span {
+  flex: 1;
+}
+
+.glb-options-modal .glb-option-item[data-action="delete-post"] i {
+  color: #ff3b30;
+}
+
+.glb-options-modal .glb-option-item[data-action="delete-post"] span {
+  color: #ff3b30;
+}
+
+.glb-options-modal .glb-option-item[data-action="report"] i {
+  color: #ff3b30;
+}
+
+.glb-options-modal .glb-option-item[data-action="report"] span {
+  color: #ff3b30;
+}
+
+.glb-options-modal .glb-option-item[data-action="interest"] i {
+  color: #ff4757;
+}
+
+.glb-options-modal .glb-option-item[data-action="save"] i {
+  color: #0f4c5c;
+}
+
+.glb-options-modal .glb-option-item[data-action="copy"] i {
+  color: #0f4c5c;
+}
+
+.glb-options-modal .glb-option-item:last-child {
+  border-bottom: none;
+}
+
+.glb-options-modal .glb-option-item:hover {
+  background-color: #f5f5f5;
+}
+
+.glb-options-modal .glb-option-item.cancel {
+  color: #ff3b30;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: center;
+  justify-content: center;
+}
+
+.glb-options-modal .glb-option-item.cancel i {
+  margin-right: 8px;
+}
+
+
+
+/* ================================================
+   🌟 MELHORIAS DO BOTÃO DE FAVORITAR
+   ================================================ */
+
+/* Estilo melhorado para o botão de registrar/favoritar */
+.glb-register-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 35px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.glb-register-icon i {
+  font-size: 18px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+/* Estado ativo com design mais visível */
+.glb-register-icon.active {
+  background-color: #0f4c5c;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(15, 76, 92, 0.3);
+}
+
+.glb-register-icon.active i {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Efeito hover */
+.glb-register-icon:hover {
+  background-color: rgba(15, 76, 92, 0.1);
+  transform: scale(1.05);
+}
+
+.glb-register-icon.active:hover {
+  background-color: #0c3b49;
+  transform: scale(1.15);
+}
+
+/* ================================================
+   💬 MENSAGEM DE FEEDBACK TEMPORÁRIA
+   ================================================ */
+
+.glb-favorite-feedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0f4c5c;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glb-favorite-feedback.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.glb-favorite-feedback i {
+  font-size: 16px;
+}
+
+/* Animação de pulso para o ícone na mensagem */
+.glb-favorite-feedback.show i {
+  animation: favoritePulse 0.6s ease-in-out;
+}
+
+@keyframes favoritePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ================================================
+   ✨ EFEITO DE PARTÍCULAS PARA FAVORITAR
+   ================================================ */
+
+.glb-favorite-particle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  font-family: "Font Awesome Free";
+  font-weight: 900;
+  color: #0f4c5c;
+  font-size: 14px;
+  text-shadow: 0 0 3px rgba(15, 76, 92, 0.5);
+}
+
+@keyframes favoriteExplosion {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1.2) rotate(var(--rotate));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0) rotate(var(--rotate));
+  }
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 480px) {
+  .glb-favorite-feedback {
+    font-size: 13px;
+    padding: 10px 20px;
+  }
+  
+  .glb-register-icon {
+    padding: 6px;
+  }
+  
+  .glb-register-icon i {
+    font-size: 16px;
+  }
+}
+
+/* Global.css */
+
+/* Em Global.css */
+
+/* ================================================
+   ✨ MODAL DE PESQUISA (ESTILO TELA CHEIA)
+   ================================================ */
+
+/* ... (outras regras do modal) ... */
+
+.glb-search-input-container {
+  flex-grow: 1;
+  position: relative;
+}
+
+.glb-search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.glb-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f0f2f5;
+  /* ✅ CORREÇÃO 2: Aumentar o padding esquerdo para dar espaço para a lupa */
+  padding: 0 20px 0 45px; /* Aumentado de 40px para 45px */
+  font-size: 16px;
+  outline: none;
+}
+
+/* ... (outras regras) ... */
+
+/* Corpo do modal onde os resultados são exibidos */
+.glb-search-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  /* ✅ CORREÇÃO 3: Adicionar padding lateral aos resultados */
+  padding: 0 15px; /* Adiciona 15px de espaço nas laterais */
+}
+
+/* Ajuste fino para o item de usuário para remover padding duplicado */
+.glb-search-body .interaction-user-item {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* Global.css */
+
+/* ================================================
+   ✨ MODAL DE PESQUISA (ESTILO TELA CHEIA)
+   ================================================ */
+
+/* O fundo que cobre a tela (começa invisível) */
+.glb-search-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff; /* Fundo branco sólido */
+  z-index: 1500;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(20px); /* Começa um pouco para baixo */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estado ativo do modal */
+.glb-search-modal.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* O conteúdo dentro do modal */
+.glb-search-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho do modal com a barra de busca */
+.glb-search-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.glb-search-input-container {
+  flex-grow: 1;
+  position: relative;
+}
+
+.glb-search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.glb-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f0f2f5;
+  padding: 0 15px 0 40px; /* Espaço para o ícone da lupa à esquerda */
+  font-size: 16px;
+  outline: none;
+}
+
+.glb-search-cancel {
+  margin-left: 15px;
+  color: #0f4c5c;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Corpo do modal onde os resultados são exibidos */
+.glb-search-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Estilo para o estado inicial (reutilizado do passo anterior) */
+.glb-search-initial-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: #ccc;
+}
+.glb-search-initial-state i { font-size: 48px; margin-bottom: 20px; }
+.glb-search-initial-state p { font-size: 16px; max-width: 250px; }
+/* Em Global.css, dentro da seção do MODAL DE PESQUISA */
+
+/* ... (outras regras do modal) ... */
+
+.glb-search-icon {
+  position: absolute;
+  /* ✅ MUDANÇA: Posiciona no lado direito */
+  right: 15px; 
+  /* ✅ REMOÇÃO: Remove o posicionamento da esquerda */
+  /* left: 15px; */ 
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.glb-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f0f2f5;
+  /* ✅ MUDANÇA: Ajusta os paddings */
+  /* Agora o padding maior fica na direita para dar espaço para a lupa */
+  padding: 0 45px 0 20px; 
+  font-size: 16px;
+  outline: none;
+}
+
+/* ... (resto das regras) ... */
+
+/* ================================================
+   ✅ CORREÇÃO CSS: Avatar com Iniciais (Centralizado)
+   ================================================ */
+.glb-avatar-initials {
+  /* Dimensionamento */
+  width: 100%;
+  height: 100%;
+  
+  /* Alinhamento Perfeito (A Mágica está aqui) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Estilo do Texto */
+  color: white;
+  font-weight: bold;
+  
+  /* O tamanho da fonte será relativo ao tamanho do avatar */
+  /* Para um avatar de 40px, 18px é um bom tamanho. */
+  font-size: 18px; 
+
+  /* Fundo (pode ser um gradiente ou cor sólida) */
+  background: linear-gradient(135deg, #0f4c5c, #1a6b7a);
+  
+  /* Garante que o círculo seja perfeito (caso o container não seja) */
+  border-radius: 50%; 
+}
+/* ================================================
+   ✅ CORREÇÃO CSS: Mídia Responsiva (Vídeos e Imagens)
+   ================================================ */
+
+/* 1. Define o comportamento do contêiner da mídia */
+.glb-post-media {
+  width: 100%;
+  /* Define a proporção. 4 / 5 = 0.8. 1 / 1 = 1. */
+  /* Vamos usar 4:5, que é um formato bom para mobile. */
+  aspect-ratio: 4 / 5; 
+  overflow: hidden; /* Garante que nada vaze para fora */
+  background-color: #e0e0e0; /* Cor de fundo enquanto a mídia carrega */
+  position: relative;
+}
+
+/* 2. Força a imagem ou vídeo a preencher o contêiner */
+.glb-post-media img,
+.glb-post-media video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* A propriedade mágica: preenche o espaço sem distorcer */
+  object-fit: cover; 
+}

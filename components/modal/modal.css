@@ -1,0 +1,164 @@
+/* =================================================================
+   🎨 MODAL.CSS - Estilos para o Componente de Modal Genérico
+   ================================================================= */
+
+.gen-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+.gen-modal-overlay.active { display: flex; }
+
+.gen-modal-pane {
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.gen-modal-overlay.active .gen-modal-pane {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.gen-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+.gen-modal-title { font-size: 18px; font-weight: 600; }
+.gen-modal-close { font-size: 20px; color: #888; cursor: pointer; }
+
+.gen-modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.gen-modal-spinner {
+  width: 30px; height: 30px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #0f4c5c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 40px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Estilos para formulários dentro do modal */
+.gen-modal-form-group { margin-bottom: 15px; }
+.gen-modal-form-group label { display: block; font-weight: 500; margin-bottom: 8px; font-size: 14px; }
+.gen-modal-form-group select, .gen-modal-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.gen-modal-form-group textarea { min-height: 80px; resize: vertical; }
+
+.gen-modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.gen-modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.gen-modal-btn.primary { background-color: #0f4c5c; color: white; }
+.gen-modal-btn.primary:hover { background-color: #0c3b49; }
+.gen-modal-btn.secondary { background-color: #e9ecef; color: #333; }
+.gen-modal-btn.secondary:hover { background-color: #dee2e6; }
+.gen-modal-btn.danger { background-color: #dc3545; color: white; }
+.gen-modal-btn.danger:hover { background-color: #c82333; }
+
+
+/* =================================================================
+   Estilos para Formulários de Denúncia
+   ================================================================= */
+
+.gen-modal-form {
+  width: 100%;
+}
+
+.gen-form-group {
+  margin-bottom: 20px;
+}
+
+.gen-form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.gen-form-select,
+.gen-form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.gen-form-select:focus,
+.gen-form-textarea:focus {
+  outline: none;
+  border-color: #0f4c5c;
+}
+
+.gen-form-select {
+  background-color: white;
+  cursor: pointer;
+}
+
+.gen-form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.gen-form-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #666;
+  margin-top: 15px;
+}
+
+.gen-form-info i {
+  color: #0f4c5c;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+

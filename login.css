@@ -1,0 +1,197 @@
+/* Importa os estilos base primeiro */
+@import url('base.css');
+
+/* ================================================
+   📌 CSS — Login (Versão com Opacidade Ajustada)
+   -----------------------------------------------
+   Descrição:
+   - Estilos para a tela de Login com a opacidade
+     do filtro de cor reduzida para valorizar a
+     imagem de fundo.
+   ================================================ */
+
+/* --- 1. Configuração do Corpo da Página --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- 2. Estilos do Fundo e Sobreposição --- */
+.login-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f4c5c;
+  /* ✅ CORREÇÃO: Opacidade reduzida para um tom mais suave */
+  opacity: 0.55; /* Estava 0.85, agora está mais sutil */
+  z-index: -1;
+}
+
+/* --- 3. Ajustes no Layout e Conteúdo --- */
+.container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 30px;
+  padding-bottom: 10vh;
+  box-sizing: border-box;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 .brand {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+label {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+input[type="email"],
+input[type="password"] {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  color: #333;
+  padding: 14px;
+  font-size: 16px;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: #999;
+}
+
+button[type="submit"],
+.outline-button {
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button[type="submit"] {
+  background-color: #0f4c5c;
+  border: none;
+}
+
+.outline-button {
+  background-color: transparent;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+}
+
+.outline-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.icon {
+  display: none;
+}
+
+/* login.css */
+
+/* ... todo o seu CSS original do login.css está aqui em cima ... */
+
+.link:hover {
+  opacity: 1;
+}
+
+.icon {
+  display: none;
+}
+
+/* ================================================
+   ✅ AJUSTE RESPONSIVO PARA DESKTOP
+   -----------------------------------------------
+   Descrição:
+   - Limita a largura do container em telas maiores
+     para evitar que o conteúdo fique esticado.
+   - Centraliza o container na tela.
+   ================================================ */
+
+/* Aplica estas regras apenas em telas com 768px de largura ou mais */
+@media (min-width: 768px) {
+
+  .container {
+    /* Define uma largura máxima para o formulário */
+    max-width: 420px;
+
+    /* Remove o alinhamento à esquerda e centraliza horizontalmente */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Ajusta a posição para que não fique colado na parte inferior */
+    justify-content: center; /* Centraliza verticalmente */
+    padding-bottom: 0; /* Remove o padding inferior que empurrava para cima */
+    height: 100vh; /* Garante que o container ocupe a altura toda para centralizar */
+  }
+
+  h1 {
+    /* Adiciona uma margem no topo para dar mais espaço */
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    /* Adiciona uma margem no final para o link "Esqueci a senha" não ficar colado */
+    margin-bottom: 40px;
+  }
+}

@@ -1,0 +1,185 @@
+/* Importa os estilos base primeiro */
+@import url('base.css');
+
+/* ================================================
+   📌 CSS — Nova Senha
+   -----------------------------------------------
+   Descrição:
+   - Estilos para a tela de Redefinição de Senha
+     seguindo o mesmo padrão visual do login JUPTI.
+   ================================================ */
+
+/* --- 1. Configuração do Corpo da Página --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- 2. Estilos do Fundo e Sobreposição --- */
+.login-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f4c5c;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+/* --- 3. Ajustes no Layout e Conteúdo --- */
+.container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 30px;
+  padding-bottom: 10vh;
+  box-sizing: border-box;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 .brand {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+label {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+input[type="password"] {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  color: #333;
+  padding: 14px;
+  font-size: 16px;
+}
+
+input[type="password"]::placeholder {
+  color: #999;
+}
+
+button[type="submit"] {
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  margin-top: 10px;
+  background-color: #0f4c5c;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0c3b49;
+}
+
+button[type="submit"]:disabled {
+  background-color: #7a9ca6;
+  cursor: not-allowed;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.icon {
+  display: none;
+}
+
+/* Mensagem de sucesso */
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Mensagem de erro */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ================================================
+   ✅ AJUSTE RESPONSIVO PARA DESKTOP (NOVA SENHA)
+   ================================================ */
+@media (min-width: 768px) {
+  .container {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding-bottom: 0;
+    height: 100vh;
+  }
+}

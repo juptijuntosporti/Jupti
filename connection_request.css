@@ -1,0 +1,157 @@
+/* Estilos para a página dedicada connection_request.html */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #e9ecef;
+}
+
+.conn-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.conn-pane {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 12px 50px -12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 35px 30px;
+    overflow: hidden;
+}
+
+.conn-step {
+    display: none;
+}
+.conn-step.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.conn-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #ffffff;
+}
+.conn-icon.yellow { background-color: #ffc107; }
+.conn-icon.green { background-color: #28a745; }
+.conn-icon.red { background-color: #dc3545; }
+
+.conn-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 25px;
+}
+
+.conn-avatars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.conn-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.conn-link-icon {
+    font-size: 24px;
+    color: #adb5bd;
+}
+
+.conn-body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #495057;
+    margin-bottom: 20px;
+}
+.conn-body strong {
+    color: #0f4c5c;
+}
+
+.conn-quote {
+    font-style: italic;
+    color: #6c757d;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.conn-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.conn-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.conn-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.conn-btn.primary {
+    background-color: #0f4c5c;
+    color: white;
+}
+.conn-btn.primary:hover:not(:disabled) {
+    background-color: #0a3d4a;
+    transform: translateY(-2px);
+}
+
+.conn-btn.secondary {
+    background-color: transparent;
+    color: #495057;
+    border: 2px solid #dee2e6;
+}
+.conn-btn.secondary:hover:not(:disabled) {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+.conn-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0f4c5c;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

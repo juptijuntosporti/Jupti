@@ -1,0 +1,139 @@
+/* ================================================
+   📌 CSS — Base/Global
+   -----------------------------------------------
+   Descrição:
+   - Estilos base compartilhados entre todas as telas
+   - Reset CSS, tipografia, cores e componentes comuns
+   ================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  padding: 30px 20px;
+  background-color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.brand {
+  color: #0f4c5c;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.icon img {
+  max-width: 80px;
+  height: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+button,
+.outline-button,
+.btn {
+  background-color: #0f4c5c;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.outline-button {
+  background-color: transparent;
+  border: 2px solid #0f4c5c;
+  color: #0f4c5c;
+}
+
+button:hover,
+.outline-button:hover,
+.btn:hover {
+  background-color: #0c3b49;
+  color: white;
+}
+
+.link {
+  font-size: 14px;
+  text-align: center;
+  color: #0f4c5c;
+  text-decoration: underline;
+}
+
+/* Mensagem de sucesso */
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Mensagem de erro */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Estilos para seleção de perfil */
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+.other-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.other-input input[type="text"] {
+  margin-left: 10px;
+  flex: 1;
+}
+

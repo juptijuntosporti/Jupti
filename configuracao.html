@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configurações - JUPTI</title>
+  <!-- Estilos Globais e Específicos -->
+  <link rel="stylesheet" href="style-v3.css" />
+  <link rel="stylesheet" href="Global.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página de Configurações -->
+  <header class="glb-app-header">
+    <div class="glb-header-left">
+      <div class="glb-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glb-header-title">Configurações</div>
+    </div>
+  </header>
+
+  <!-- Container Principal de Configurações -->
+  <div class="glb-container">
+    
+    <!-- Lista de Configurações -->
+    <div class="glb-profile-settings-list">
+      <div class="glb-profile-setting-item" data-setting="edit-profile">
+        <div class="glb-setting-icon"><i class="fas fa-user-edit"></i></div>
+        <div class="glb-setting-content">
+          <div class="glb-setting-title">Editar perfil</div>
+          <div class="glb-setting-description">Alterar foto, nome e biografia</div>
+        </div>
+        <div class="glb-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      
+      <div class="glb-profile-setting-item" data-setting="privacy">
+        <div class="glb-setting-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="glb-setting-content">
+          <div class="glb-setting-title">Privacidade</div>
+          <div class="glb-setting-description">Controlar quem pode ver seus posts</div>
+        </div>
+        <div class="glb-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      
+      <div class="glb-profile-setting-item" data-setting="account">
+        <div class="glb-setting-icon"><i class="fas fa-cog"></i></div>
+        <div class="glb-setting-content">
+          <div class="glb-setting-title">Configurações da conta</div>
+          <div class="glb-setting-description">Email, senha e dados pessoais</div>
+        </div>
+        <div class="glb-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      
+      <div class="glb-profile-setting-item" data-setting="logout" style="color: #ff3b30;">
+        <div class="glb-setting-icon" style="background-color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
+        <div class="glb-setting-content">
+          <div class="glb-setting-title">Sair</div>
+          <div class="glb-setting-description">Desconectar da sua conta</div>
+        </div>
+        <div class="glb-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Painel de Edição de Perfil -->
+  <div class="pus-edit-panel" id="editProfilePanel" style="display: none;">
+    <!-- Cabeçalho do Painel de Edição -->
+    <header class="glbs-app-header">
+      <div class="glbs-header-left">
+        <div class="glbs-back-button" id="backToConfigBtn">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="glbs-header-title">Editar Perfil</div>
+      </div>
+      <div class="glbs-header-right">
+        <button class="pus-save-btn" id="saveProfileChangesBtn">Salvar</button>
+      </div>
+    </header>
+  
+    <!-- Conteúdo do Painel de Edição -->
+    <div class="pus-edit-content">
+      <!-- Editor da Foto de Capa -->
+      <div class="pus-edit-cover-photo">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="editCoverPreview" alt="Pré-visualização da capa">
+        <label for="cover-photo-upload" class="pus-edit-cover-overlay">
+          <i class="fas fa-camera"></i>
+          <span>Alterar foto da capa</span>
+        </label>
+        <input type="file" id="cover-photo-upload" accept="image/*" style="display: none;">
+        
+        <button class="pus-remove-photo-btn" id="removeCoverBtn" title="Remover foto da capa">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+  
+      <!-- Editor do Avatar -->
+      <div class="pus-edit-avatar-section">
+        <div class="pus-edit-avatar">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="editAvatarPreview" alt="Pré-visualização do avatar">
+          <label for="avatar-photo-upload" class="pus-edit-avatar-overlay">
+            <i class="fas fa-camera"></i>
+          </label>
+          <input type="file" id="avatar-photo-upload" accept="image/*" style="display: none;">
+          
+          <button class="pus-remove-photo-btn" id="removeAvatarBtn" title="Remover foto de perfil">
+              <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Formulário de Edição -->
+      <form id="editProfileForm" class="pus-edit-form">
+        <div class="pus-form-group">
+          <label for="editUsername">Nome de usuário</label>
+          <input type="text" id="editUsername" name="username" placeholder="Seu nome de usuário">
+        </div>
+        <div class="pus-form-group">
+          <label for="editBio">Biografia</label>
+          <textarea id="editBio" name="bio" rows="4" placeholder="Fale um pouco sobre você..."></textarea>
+        </div>
+
+        <div class="pus-form-group-divider">
+          <span>Informações de Privacidade</span>
+        </div>
+
+        <div class="pus-form-group pus-info-group">
+          <label>Tipo de Perfil</label>
+          <div class="pus-info-field">
+            <span id="editProfileType">Carregando...</span>
+            <i class="fas fa-eye pus-visibility-toggle" data-field="profile_type_visible" title="Alterar visibilidade"></i>
+          </div>
+        </div>
+
+        <div class="pus-form-group pus-info-group">
+          <label>Localização</label>
+          <div class="pus-info-field">
+            <span id="editLocation">Carregando...</span>
+            <i class="fas fa-eye pus-visibility-toggle" data-field="location_visible" title="Alterar visibilidade"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rodapé de Navegação -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item" data-page="home"><div class="glb-nav-icon"><i class="fas fa-house"></i></div><div class="glb-nav-label">Início</div></div>
+    <div class="glb-nav-item" data-page="family"><div class="glb-nav-icon"><i class="fas fa-users"></i></div><div class="glb-nav-label">Pais e Filhos</div></div>
+    <div class="glb-nav-item" data-page="legal"><div class="glb-nav-icon"><i class="fas fa-scale-balanced"></i></div><div class="glb-nav-label">Linha Jurídica</div></div>
+    <div class="glb-nav-item" data-page="messages"><div class="glb-nav-icon"><i class="fas fa-comment-dots"></i></div><div class="glb-nav-label">Mensagens</div></div>
+    <div class="glb-nav-item" data-page="support"><div class="glb-nav-icon"><i class="fas fa-network-wired"></i></div><div class="glb-nav-label">Rede de Apoio</div></div>
+  </nav>
+  
+  <!-- Scripts -->
+  <script src="apiService.js" type="module"></script>
+  <script src="Global.js" type="module"></script>
+  <script src="navegacao.js"></script> 
+  <script src="configuracao.js" type="module"></script>
+
+</body>
+</html>
+

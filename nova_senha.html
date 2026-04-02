@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova Senha - JUPTI</title>
+  <link rel="stylesheet" href="nova_senha.css" />
+</head>
+<body>
+
+  <!-- Div para a imagem de fundo -->
+  <div class="login-background"></div>
+  
+  <!-- Div para a sobreposição de cor azulada -->
+  <div class="login-overlay"></div>
+
+  <!-- Container principal com o formulário -->
+  <div class="container">
+    <h1>Redefinir senha do <span class="brand">JUPTI</span></h1>
+    
+    <p class="subtitle">Digite sua nova senha abaixo.</p>
+
+    <form id="novaSenhaForm">
+      <!-- Grupo de Nova Senha -->
+      <div class="form-group">
+        <label for="novaSenha">NOVA SENHA</label>
+        <input type="password" id="novaSenha" placeholder="Digite sua nova senha" required />
+      </div>
+
+      <!-- Grupo de Confirmar Senha -->
+      <div class="form-group">
+        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+        <input type="password" id="confirmarSenha" placeholder="Confirme sua nova senha" required />
+      </div>
+
+      <button type="submit">SALVAR NOVA SENHA</button>
+      <a href="index.html" class="link">VOLTAR AO LOGIN</a>
+    </form>
+  </div>
+
+  <script src="nova_senha.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mensagens - JUPTI</title>
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="mensagens.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="header-title">Mensagens</div>
+    </div>
+    <div class="header-right">
+      <div class="header-icon">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="container">
+    <div class="content-container">
+      <!-- Lista de conversas -->
+      <div class="chat-list">
+        <!-- Conversa fixada (Pai/Mãe) -->
+        <div class="chat-item pinned" onclick="abrirConversa(1)">
+          <div class="chat-avatar">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Foto de perfil" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="chat-avatar-placeholder" style="display:none;">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="chat-status online"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <div class="chat-name">Erika (Mãe)</div>
+              <div class="chat-time">10:45</div>
+            </div>
+            <div class="chat-message">Vou buscar o João às 18h hoje, pode ser?</div>
+          </div>
+          <div class="chat-badge">2</div>
+        </div>
+        
+        <!-- Separador para Advogados -->
+        <div class="section-divider">
+          <div class="section-title">Advogados</div>
+          <div class="section-line"></div>
+        </div>
+        
+        <!-- Conversa com advogado -->
+        <div class="chat-item" onclick="abrirConversa(2)">
+          <div class="chat-avatar">
+            <div class="chat-avatar-placeholder">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="chat-status recent"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <div class="chat-name">Dr. Carlos Mendes</div>
+              <div class="chat-time">Ontem</div>
+            </div>
+            <div class="chat-message">Analisei seu caso e tenho algumas recomendações...</div>
+          </div>
+        </div>
+        
+        <!-- Separador para Outros Usuários -->
+        <div class="section-divider">
+          <div class="section-title">Outros Contatos</div>
+          <div class="section-line"></div>
+        </div>
+        
+        <!-- Outras conversas -->
+        <div class="chat-item" onclick="abrirConversa(3)">
+          <div class="chat-avatar">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Foto de perfil" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="chat-avatar-placeholder" style="display:none;">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="chat-status offline"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <div class="chat-name">Mediador Familiar</div>
+              <div class="chat-time">Seg</div>
+            </div>
+            <div class="chat-message">Podemos agendar uma sessão para a próxima semana?</div>
+          </div>
+        </div>
+        
+        <div class="chat-item" onclick="abrirConversa(4)">
+          <div class="chat-avatar">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto de perfil" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="chat-avatar-placeholder" style="display:none;">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="chat-status online"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <div class="chat-name">Psicóloga Ana</div>
+              <div class="chat-time">25/05</div>
+            </div>
+            <div class="chat-message">O relatório da última sessão já está disponível.</div>
+          </div>
+        </div>
+        
+        <div class="chat-item" onclick="abrirConversa(5)">
+          <div class="chat-avatar">
+            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Foto de perfil" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="chat-avatar-placeholder" style="display:none;">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="chat-status recent"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <div class="chat-name">Coordenador Escolar</div>
+              <div class="chat-time">20/05</div>
+            </div>
+            <div class="chat-message">Reunião de pais confirmada para dia 15/06.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Botão flutuante para nova mensagem -->
+  <div class="new-message-button" onclick="novaMensagem()">
+    <i class="fas fa-pen"></i>
+  </div>
+
+  <!-- Rodapé Fixo Corrigido -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon">
+        <i class="fas fa-house"></i>
+      </div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon">
+        <i class="fas fa-scale-balanced"></i>
+      </div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="network" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+  </nav>
+  
+  <!-- JavaScript Files -->
+  <script src="navegacao.js"></script>
+  <script src="mensagens.js"></script>
+</body>
+</html>
+

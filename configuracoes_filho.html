@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configurações do Filho - JUPTI</title>
+  <!-- Estilos Globais e Específicos -->
+  <link rel="stylesheet" href="Global.css" />
+  <link rel="stylesheet" href="configuracoes_filho.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página -->
+  <header class="glbs-app-header">
+    <div class="glbs-header-left">
+      <div class="glbs-back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="glbs-header-title">Configurações do Filho</div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="glb-container">
+    
+    <!-- Lista de Configurações -->
+    <div class="cfg-settings-list">
+
+      <!-- Categoria: Gestão -->
+      <div class="cfg-category-title">Gestão e Acordos</div>
+
+      <div class="cfg-setting-item" data-action="compromisso" id="compromissoLink">
+        <div class="cfg-setting-icon"><i class="fas fa-handshake"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Compromisso de Convivência</div>
+          <div class="cfg-setting-description">Definir regras de postagens, visitas, ligações e pensão</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      
+      <div class="cfg-setting-item" data-action="guardioes">
+        <div class="cfg-setting-icon"><i class="fas fa-user-shield"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Guardiões Conectados</div>
+          <div class="cfg-setting-description">Ver quem tem acesso ao perfil do filho</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <div class="cfg-setting-item" data-action="rede-apoio">
+        <div class="cfg-setting-icon"><i class="fas fa-users"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Rede de Apoio</div>
+          <div class="cfg-setting-description">Gerenciar acesso de profissionais e familiares</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- Categoria: Conteúdo -->
+      <div class="cfg-category-title">Conteúdo e Memórias</div>
+
+      <div class="cfg-setting-item" data-action="album">
+        <div class="cfg-setting-icon"><i class="fas fa-book-open"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Gerenciar Álbum Físico</div>
+          <div class="cfg-setting-description">Revisar e aprovar as fotos do álbum mensal</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <div class="cfg-setting-item" data-action="relatorios">
+        <div class="cfg-setting-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Gerar Relatórios</div>
+          <div class="cfg-setting-description">Exportar a linha do tempo e atividades como prova</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- Categoria: Ações Críticas -->
+      <div class="cfg-category-title">Ações do Perfil</div>
+
+      <div class="cfg-setting-item" data-action="editar">
+        <div class="cfg-setting-icon"><i class="fas fa-user-edit"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Editar Perfil</div>
+          <div class="cfg-setting-description">Corrigir nome, foto ou data de nascimento</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <div class="cfg-setting-item danger" data-action="excluir">
+        <div class="cfg-setting-icon"><i class="fas fa-trash-alt"></i></div>
+        <div class="cfg-setting-content">
+          <div class="cfg-setting-title">Excluir Perfil</div>
+          <div class="cfg-setting-description">Apagar permanentemente o perfil e todos os dados</div>
+        </div>
+        <div class="cfg-setting-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="configuracoes_filho.js"></script>
+
+</body>
+</html>

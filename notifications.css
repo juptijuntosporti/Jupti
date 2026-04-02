@@ -1,0 +1,196 @@
+/**
+ * =================================================================
+ * 🎨 NOTIFICATIONS.CSS - Estilos para o Componente de Notificações
+ * =================================================================
+ */
+
+/* --- 1. PAINEL DE NOTIFICAÇÕES (Ajustes no glb-notifications) --- */
+
+.glb-notification-item {
+  display: flex;
+  align-items: center; /* Alinha verticalmente avatar, texto e preview */
+  padding: 12px 15px;
+  gap: 12px; /* Espaçamento entre os elementos */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.glb-notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.glb-notification-item.unread {
+  background-color: #eaf5ff; /* Um azul bem claro para itens não lidos */
+  border-left: 3px solid #0f4c5c; /* Destaque na borda */
+  padding-left: 12px;
+}
+
+.glb-notification-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.glb-notification-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glb-notification-content {
+  flex: 1; /* Ocupa o espaço restante */
+}
+
+.glb-notification-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.glb-notification-text strong {
+  font-weight: 600;
+  color: #0f4c5c;
+}
+
+/* Estilo para o link do nome do primeiro usuário */
+.glb-notification-text .main-actor-link {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.glb-notification-text .main-actor-link:hover {
+  color: #0a3d4a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Estilo para o link "outras X pessoas" */
+.glb-notification-text .others-link {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.glb-notification-time {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Preview de mídia do post (imagem à direita) */
+.glb-notification-media-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f0f0f0;
+}
+
+.glb-notification-media-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* --- 2. NOVO MODAL DE INTERAÇÕES ("OUTRAS PESSOAS") --- */
+
+.interactions-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3000; /* Acima do painel de notificações */
+  align-items: flex-end;
+}
+
+.interactions-modal-overlay.active {
+  display: flex;
+}
+
+.interactions-modal-pane {
+  width: 100%;
+  max-height: 70vh;
+  background-color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.interactions-modal-overlay.active .interactions-modal-pane {
+  transform: translateY(0);
+}
+
+.interactions-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.interactions-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.interactions-modal-close {
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+}
+
+.interactions-modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px;
+}
+
+/* Estilo para cada usuário na lista do modal */
+.interaction-user-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+.interaction-user-item:last-child {
+  border-bottom: none;
+}
+.interaction-user-item:hover {
+  background-color: #f8f9fa;
+}
+
+.interaction-user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+.interaction-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.interaction-user-info {
+  flex: 1;
+}
+
+.interaction-user-name {
+  font-weight: 600;
+}
+
+.interaction-user-role {
+  font-size: 14px;
+  color: #666;
+}

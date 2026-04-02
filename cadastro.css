@@ -1,0 +1,169 @@
+/* ================================================
+   📌 CSS — Cadastro (Versão com fundo padronizado)
+   ================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #ffffff; /* Cor padrão do texto agora é branca */
+  padding: 20px;
+  /* ✅ CORREÇÃO APLICADA: O nome da imagem foi alterado para corresponder ao da tela de login. */
+  background-image: linear-gradient(to top, rgba(15, 76, 92, 0.6), rgba(15, 76, 92, 0.5)), url('background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  padding: 30px 20px;
+  background-color: transparent; /* Fundo do container fica transparente */
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.brand {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Título "Crie sua conta" e parágrafo */
+h2, p {
+    text-align: center;
+    color: #f0f0f0;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #f0f0f0;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  background-color: white;
+  color: #333;
+}
+
+button,
+.outline-button,
+.btn {
+  background-color: #0f4c5c;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.outline-button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+button:hover,
+.outline-button:hover,
+.btn:hover {
+  background-color: #0c3b49;
+  color: white;
+}
+
+.outline-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.link {
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ================================================
+   📌 CSS — Cadastro (Específicos)
+   =============================================== */
+.erro {
+  color: #ffcccc;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkbox-container label {
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+.checkbox-container a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* ================================================
+   ✅ AJUSTE RESPONSIVO PARA DESKTOP
+   ================================================ */
+@media (min-width: 768px) {
+  .container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  body {
+    background-color: #0f4c5c; /* Cor de fallback caso a imagem não carregue */
+  }
+}

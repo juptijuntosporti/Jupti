@@ -1,0 +1,326 @@
+/* ================================================
+   📌 CSS — Aba de Favoritos (Grid Layout)
+   -----------------------------------------------
+   Descrição:
+   - Layout em grid de miniaturas
+   - Modal de visualização de post
+   - Sistema de filtros (Todos, Registros, Momentos)
+   ================================================ */
+
+/* ====================================
+   FILTROS DE FAVORITOS
+   ==================================== */
+.fav-filters {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fav-filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #0f4c5c;
+    background-color: transparent;
+    color: #0f4c5c;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.fav-filter-btn:hover {
+    background-color: #f0f8fa;
+}
+
+.fav-filter-btn.active {
+    background-color: #0f4c5c;
+    color: #ffffff;
+}
+
+.fav-filter-btn i {
+    margin-right: 5px;
+}
+
+/* ====================================
+   GRID DE MINIATURAS
+   ==================================== */
+.fav-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+.fav-grid-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* Quadrado perfeito */
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.fav-grid-item-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fav-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.fav-grid-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Post de texto (sem imagem) */
+.fav-grid-item-text {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #0f4c5c 0%, #1a6b7f 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+/* Overlay com informações */
+.fav-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fav-grid-item:hover .fav-grid-overlay {
+    opacity: 1;
+}
+
+.fav-grid-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.fav-grid-stat i {
+    font-size: 16px;
+}
+
+/* Badge de tipo de post */
+.fav-grid-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(15, 76, 92, 0.9);
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+/* ====================================
+   MODAL DE VISUALIZAÇÃO
+   ==================================== */
+.fav-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.fav-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fav-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fav-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #ffffff;
+}
+
+.fav-modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fav-modal-close:hover {
+    background-color: #e0e0e0;
+}
+
+.fav-modal-close i {
+    font-size: 18px;
+    color: #333;
+}
+
+.fav-modal-body {
+    max-height: calc(90vh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Post dentro do modal */
+.fav-modal-post {
+    background-color: #ffffff;
+}
+
+/* ====================================
+   ESTADO VAZIO
+   ==================================== */
+.fav-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: #666;
+}
+
+.fav-empty-icon {
+    font-size: 64px;
+    color: #0f4c5c;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.fav-empty-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.fav-empty-description {
+    font-size: 14px;
+    color: #666;
+    max-width: 300px;
+}
+
+/* ====================================
+   RESPONSIVIDADE
+   ==================================== */
+@media (min-width: 768px) {
+    .fav-grid-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3px;
+    }
+    
+    .fav-filters {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    .fav-grid-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ====================================
+   LOADING STATE
+   ==================================== */
+.fav-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.fav-loading i {
+    font-size: 48px;
+    color: #0f4c5c;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

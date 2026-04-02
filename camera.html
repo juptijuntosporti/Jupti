@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Câmera - JUPTI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Container da câmera */
+    .camera-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Vídeo da câmera */
+    #cameraVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-color: #000;
+    }
+
+    /* Canvas oculto para captura */
+    #cameraCanvas {
+      display: none;
+    }
+
+    /* Header da câmera */
+    .camera-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+      z-index: 10;
+    }
+
+    .camera-close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .camera-close-btn:active {
+      background-color: rgba(255,255,255,0.4);
+    }
+
+    .camera-close-btn i {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .camera-flip-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .camera-flip-btn:active {
+      background-color: rgba(255,255,255,0.4);
+    }
+
+    .camera-flip-btn i {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    /* Controles da câmera */
+    .camera-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    /* Modo de captura (Foto/Vídeo) */
+    .camera-mode-selector {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 10px;
+    }
+
+    .camera-mode-btn {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s;
+      padding: 5px 10px;
+    }
+
+    .camera-mode-btn.active {
+      color: #fff;
+      border-bottom: 2px solid #fff;
+    }
+
+    /* Botões de ação */
+    .camera-action-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+    }
+
+    /* Botão de captura principal */
+    .camera-capture-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 4px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .camera-capture-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Indicador de gravação */
+    .camera-capture-btn.recording {
+      background-color: #ff3b30;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    /* Botão de galeria */
+    .camera-gallery-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .camera-gallery-btn i {
+      color: #fff;
+      font-size: 24px;
+    }
+
+    /* Timer de gravação */
+    .camera-recording-timer {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255,59,48,0.9);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .camera-recording-timer.active {
+      display: flex;
+    }
+
+    .recording-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #fff;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% {
+        opacity: 1;
+      }
+      51%, 100% {
+        opacity: 0;
+      }
+    }
+
+    /* Mensagem de erro */
+    .camera-error {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+      z-index: 20;
+    }
+
+    .camera-error.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="camera-container">
+    <!-- Vídeo da câmera -->
+    <video id="cameraVideo" autoplay playsinline></video>
+    
+    <!-- Canvas para captura -->
+    <canvas id="cameraCanvas"></canvas>
+
+    <!-- Header -->
+    <div class="camera-header">
+      <div class="camera-close-btn" id="cameraCloseBtn">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="camera-flip-btn" id="cameraFlipBtn">
+        <i class="fas fa-camera-rotate"></i>
+      </div>
+    </div>
+
+    <!-- Timer de gravação -->
+    <div class="camera-recording-timer" id="recordingTimer">
+      <div class="recording-dot"></div>
+      <span id="timerText">00:00</span>
+    </div>
+
+    <!-- Controles -->
+    <div class="camera-controls">
+      <!-- Seletor de modo -->
+      <div class="camera-mode-selector">
+        <div class="camera-mode-btn active" data-mode="photo">FOTO</div>
+        <div class="camera-mode-btn" data-mode="video">VÍDEO</div>
+      </div>
+
+      <!-- Botões de ação -->
+      <div class="camera-action-buttons">
+        <!-- Galeria -->
+        <div class="camera-gallery-btn" id="galleryBtn">
+          <i class="fas fa-image"></i>
+        </div>
+
+        <!-- Botão de captura -->
+        <div class="camera-capture-btn" id="captureBtn"></div>
+
+        <!-- Espaço vazio para simetria -->
+        <div style="width: 50px;"></div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div class="camera-error" id="cameraError">
+      <p>Não foi possível acessar a câmera.</p>
+      <p style="font-size: 12px; margin-top: 10px;">Verifique as permissões do navegador.</p>
+    </div>
+  </div>
+
+  <script src="camera.js"></script>
+</body>
+</html>
+

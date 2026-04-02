@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete seu Perfil - JUPTI</title>
+  <link rel="stylesheet" href="completar_perfil.css" />
+
+</head>
+<body>
+  <div class="container">
+    <h1>Bem-vindo ao <span class="brand">JUPTI</span></h1>
+    
+    <h2 class="profile-title" id="profileTitle">Complete seu perfil</h2>
+    <div class="profile-type-badge" id="profileBadge">Perfil</div>
+    
+    <div class="profile-photo">
+      <div class="add-icon">+</div>
+      <img id="preview" src="" style="display: none;">
+      <input type="file" id="photo-upload" accept="image/*">
+    </div>
+
+    <form id="profileForm">
+      <div class="section-divider">
+        <span class="section-title">Informações pessoais</span>
+      </div>
+      
+      <label for="nome">Nome de usuário</label>
+      <input type="text" id="username" name="username" placeholder="Crie um nome de usuário" required>
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="exemplo@dominio.com" required>
+
+      <label for="telefone">Telefone</label>
+      <input type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+      
+      <div class="section-divider">
+        <span class="section-title">Localização</span>
+      </div>
+
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" required>
+
+      <label for="estado">Estado</label>
+      <select id="estado" name="estado" required>
+        <option value="">Selecione seu estado</option>
+        <option value="AC">Acre</option>
+        <option value="AL">Alagoas</option>
+        <option value="AP">Amapá</option>
+        <option value="AM">Amazonas</option>
+        <option value="BA">Bahia</option>
+        <option value="CE">Ceará</option>
+        <option value="DF">Distrito Federal</option>
+        <option value="ES">Espírito Santo</option>
+        <option value="GO">Goiás</option>
+        <option value="MA">Maranhão</option>
+        <option value="MT">Mato Grosso</option>
+        <option value="MS">Mato Grosso do Sul</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="PA">Pará</option>
+        <option value="PB">Paraíba</option>
+        <option value="PR">Paraná</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PI">Piauí</option>
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="RN">Rio Grande do Norte</option>
+        <option value="RS">Rio Grande do Sul</option>
+        <option value="RO">Rondônia</option>
+        <option value="RR">Roraima</option>
+        <option value="SC">Santa Catarina</option>
+        <option value="SP">São Paulo</option>
+        <option value="SE">Sergipe</option>
+        <option value="TO">Tocantins</option>
+      </select>
+
+      <label for="nascimento">Ano de nascimento</label>
+      <input type="number" id="nascimento" name="nascimento" placeholder="Ex: 1985" min="1900" max="2010" required>
+      
+      <!-- Campos específicos para pais/mães -->
+      <div id="camposPais" style="display: none;">
+        <div class="section-divider">
+          <span class="section-title">Informações familiares</span>
+        </div>
+        
+        <label for="qtd_filhos">Quantidade de filhos</label>
+        <input type="number" id="qtd_filhos" name="qtd_filhos" placeholder="Número de filhos" min="1" max="10">
+                <div class="field-group" style="margin-top: 15px;">
+          <label>Atualmente, seus filhos vivem com você?</label>
+          
+          <div class="profile-option" onclick="selectRadioOption('children_live_yes')">
+            <input type="radio" id="children_live_yes" name="children_living_status" value="sim" required>
+            <label for="children_live_yes" class="profile-option-label">Sim</label>
+          </div>
+          
+          <div class="profile-option" onclick="selectRadioOption('children_live_no')">
+            <input type="radio" id="children_live_no" name="children_living_status" value="nao">
+            <label for="children_live_no" class="profile-option-label">Não</label>
+          </div>
+          
+          <div class="profile-option" onclick="selectRadioOption('children_live_shared')">
+            <input type="radio"id="children_live_shared" name="children_living_status" value="dividido">
+            <label for="children_live_shared" class="profile-option-label">Tempo dividido (guarda compartilhada)</label>
+          </div>
+        </div>
+        
+        <div id="camposPaisSeparados" style="display: none;">
+          <label for="processo_numero">Número do processo (opcional)</label>
+          <input type="text" id="processo_numero" name="processo_numero" placeholder="Número do processo judicial">
+          
+          <div class="field-group">
+            <label for="guarda">Tipo de guarda</label>
+            <select id="guarda" name="guarda">
+              <option value="">Selecione o tipo de guarda</option>
+              <option value="compartilhada">Compartilhada</option>
+              <option value="unilateral">Unilateral</option>
+              <option value="alternada">Alternada</option>
+              <option value="nenhuma">Nenhuma definida ainda</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="camposPaisJuntos" style="display: none;">
+          <label for="nome_conjuge">Nome do cônjuge</label>
+          <input type="text" id="nome_conjuge" name="nome_conjuge" placeholder="Nome do cônjuge">
+        </div>
+      </div>
+      
+      <!-- Campos específicos para profissionais -->
+      <div id="camposProfissionais" style="display: none;">
+        <div class="section-divider">
+          <span class="section-title">Informações profissionais</span>
+        </div>
+        
+        <label for="registro_profissional">Número de registro profissional</label>
+        <input type="text" id="registro_profissional" name="registro_profissional" placeholder="Ex: OAB, CRP, etc.">
+        
+        <label for="area_atuacao">Área de atuação</label>
+        <input type="text" id="area_atuacao" name="area_atuacao" placeholder="Ex: Direito de Família, Psicologia Infantil, etc.">
+      </div>
+      
+      <div class="checkbox-container">
+        <input type="checkbox" id="termos_perfil" name="termos_perfil" required>
+        <label for="termos_perfil">Concordo com o uso dessas informações para personalização da minha experiência, conforme a <a href="privacidade.html">Política de Privacidade</a></label>
+      </div>
+
+      <button type="submit" class="btn">Criar perfil</button>
+    </form>
+  </div>
+
+<script src="completar_perfil.js"></script>
+</body>
+</html>

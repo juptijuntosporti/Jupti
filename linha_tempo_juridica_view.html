@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linha do Tempo Jurídica - JUPTI</title>
+  <link rel="stylesheet" href="global.css"/>
+  <link rel="stylesheet" href="linha_tempo_juridica.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="header-title">Linha do Tempo Jurídica</div>
+    </div>
+    <div class="header-right">
+      <button class="filter-toggle-button" id="filterToggleButton">
+        <i class="fas fa-filter"></i>
+        <span>Filtrar</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <div class="container">
+    <div class="content-container">
+      <!-- Sidebar com filtros -->
+      <div class="sidebar hidden" id="filterSidebar">
+        <div class="filters-sidebar">
+          <div class="filters-title">
+            <div>
+              <i class="fas fa-filter"></i>
+              <span>Filtros</span>
+            </div>
+            <div class="close-filters" id="closeFilters">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">Status</div>
+            <div class="filter-list">
+              <div class="filter-item active" onclick="filtrarPor('todos')">
+                <i class="fas fa-sync-alt"></i>
+                <span>Todos</span>
+                <span class="filter-count">12</span>
+              </div>
+              <div class="filter-item" onclick="filtrarPor('cumpridos')">
+                <i class="fas fa-check"></i>
+                <span>Cumpridos</span>
+                <span class="filter-count">4</span>
+              </div>
+              <div class="filter-item" onclick="filtrarPor('nao-cumpridos')">
+                <i class="fas fa-times"></i>
+                <span>Não Cumpridos</span>
+                <span class="filter-count">3</span>
+              </div>
+              <div class="filter-item" onclick="filtrarPor('pendentes')">
+                <i class="fas fa-hourglass-half"></i>
+                <span>Pendentes</span>
+                <span class="filter-count">2</span>
+              </div>
+              <div class="filter-item" onclick="filtrarPor('justificados')">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Justificados</span>
+                <span class="filter-count">3</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">Provas</div>
+            <div class="filter-list">
+              <div class="filter-item" onclick="filtrarPor('sem-prova')">
+                <i class="fas fa-file-excel"></i>
+                <span>Sem Prova</span>
+                <span class="filter-count">5</span>
+              </div>
+              <div class="filter-item" onclick="filtrarPor('com-prova')">
+                <i class="fas fa-file-alt"></i>
+                <span>Com Prova</span>
+                <span class="filter-count">7</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">Tipo</div>
+            <div class="filter-list">
+              <div class="filter-item" onclick="filtrarTipo('visita')">
+                <i class="fas fa-home"></i>
+                <span>Visitas</span>
+                <span class="filter-count">3</span>
+              </div>
+              <div class="filter-item" onclick="filtrarTipo('chamada')">
+                <i class="fas fa-video"></i>
+                <span>Chamadas</span>
+                <span class="filter-count">4</span>
+              </div>
+              <div class="filter-item" onclick="filtrarTipo('escola')">
+                <i class="fas fa-school"></i>
+                <span>Escola</span>
+                <span class="filter-count">2</span>
+              </div>
+              <div class="filter-item" onclick="filtrarTipo('pensao')">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Pensão</span>
+                <span class="filter-count">3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Conteúdo principal -->
+      <div class="main-content">
+        <!-- Botão de seleção -->
+        <div class="filters-container">
+          <div class="botao-selecao" onclick="toggleModoSelecao()">
+            <i class="fas fa-check-square"></i> Selecionar
+          </div>
+        </div>
+        
+        <!-- Linha do tempo -->
+        <div class="timeline-container" id="timeline-container">
+          <!-- Registro 1 -->
+          <div class="registro-item" data-status="nao-cumprido" data-tipo="visita" data-prova="sem">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-home"></i>
+              Visita Semanal
+              <div class="registro-data">12/06/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon nao-cumprido">
+                <i class="fas fa-times"></i>
+              </div>
+              <div class="status-text nao-cumprido">Não Cumprido</div>
+            </div>
+            <div class="registro-justificativa">
+              "Não consegui comparecer devido a um compromisso de trabalho inadiável."
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 13/06/2025
+            </div>
+          </div>
+          
+          <!-- Registro 2 -->
+          <div class="registro-item" data-status="cumprido" data-tipo="chamada" data-prova="com">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-video"></i>
+              Chamada de Vídeo
+              <div class="registro-data">10/06/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon cumprido">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="status-text cumprido">Cumprido</div>
+            </div>
+            <div class="registro-prova" onclick="abrirDetalhes(this)">
+              <i class="fas fa-file-image"></i> Screenshot da chamada
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 11/06/2025
+            </div>
+          </div>
+          
+          <!-- Registro 3 -->
+          <div class="registro-item" data-status="justificado" data-tipo="escola" data-prova="com">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-school"></i>
+              Reunião Escolar
+              <div class="registro-data">05/06/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon justificado">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <div class="status-text justificado">Justificado</div>
+            </div>
+            <div class="registro-justificativa">
+              "Estava com febre e não pude comparecer. Remarcado para 15/06."
+            </div>
+            <div class="registro-prova" onclick="abrirDetalhes(this)">
+              <i class="fas fa-file-pdf"></i> Atestado médico
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 06/06/2025
+            </div>
+          </div>
+          
+          <!-- Registro 4 -->
+          <div class="registro-item" data-status="pendente" data-tipo="pensao" data-prova="sem">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-money-bill-wave"></i>
+              Pagamento de Pensão
+              <div class="registro-data">01/07/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon pendente">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+              <div class="status-text pendente">Pendente</div>
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-unlock"></i> Prazo: 05/07/2025
+            </div>
+          </div>
+          
+          <!-- Registro 5 -->
+          <div class="registro-item" data-status="cumprido" data-tipo="visita" data-prova="com">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-home"></i>
+              Visita de Fim de Semana
+              <div class="registro-data">01/06/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon cumprido">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="status-text cumprido">Cumprido</div>
+            </div>
+            <div class="registro-prova" onclick="abrirDetalhes(this)">
+              <i class="fas fa-file-image"></i> Foto com as crianças
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 02/06/2025
+            </div>
+          </div>
+          
+          <!-- Registro 6 -->
+          <div class="registro-item" data-status="nao-cumprido" data-tipo="chamada" data-prova="sem">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-video"></i>
+              Chamada de Vídeo
+              <div class="registro-data">28/05/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon nao-cumprido">
+                <i class="fas fa-times"></i>
+              </div>
+              <div class="status-text nao-cumprido">Não Cumprido</div>
+            </div>
+            <div class="registro-justificativa">
+              "Problemas técnicos com a internet impediram a conexão."
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 29/05/2025
+            </div>
+          </div>
+          
+          <!-- Registro 7 -->
+          <div class="registro-item" data-status="cumprido" data-tipo="pensao" data-prova="com">
+            <div class="registro-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="registro-titulo">
+              <i class="fas fa-money-bill-wave"></i>
+              Pagamento de Pensão
+              <div class="registro-data">01/06/2025</div>
+            </div>
+            <div class="registro-status">
+              <div class="status-icon cumprido">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="status-text cumprido">Cumprido</div>
+            </div>
+            <div class="registro-prova" onclick="abrirDetalhes(this)">
+              <i class="fas fa-file-pdf"></i> Comprovante de transferência
+            </div>
+            <div class="registro-fechado">
+              <i class="fas fa-lock"></i> Registro fechado em 02/06/2025
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão flutuante para gerar relatório -->
+  <div class="botao-relatorio" id="botaoRelatorio" onclick="gerarRelatorio()">
+    Gerar Relatório (<span id="contadorSelecionados">0</span> selecionados)
+  </div>
+
+  <!-- Modal de detalhes do registro -->
+  <div class="modal-overlay" id="modalDetalhes">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitulo">Detalhes do Registro</div>
+        <div class="modal-close" onclick="fecharModal()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="modal-section">
+          <div class="modal-section-title">Tipo</div>
+          <div class="modal-section-content" id="modalTipo">Visita Semanal</div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">Data</div>
+          <div class="modal-section-content" id="modalData">12/06/2025</div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">Status</div>
+          <div class="modal-status nao-cumprido" id="modalStatus">Não Cumprido</div>
+        </div>
+        <div class="modal-section" id="modalJustificativaSection">
+          <div class="modal-section-title">Justificativa</div>
+          <div class="modal-section-content" id="modalJustificativa">
+            "Não consegui comparecer devido a um compromisso de trabalho inadiável."
+          </div>
+        </div>
+        <div class="modal-section" id="modalResponsavelSection">
+          <div class="modal-section-title">Responsável</div>
+          <div class="modal-section-content" id="modalResponsavel">Pai</div>
+        </div>
+        <div class="modal-provas" id="modalProvasSection">
+          <div class="modal-section-title">Provas</div>
+          <div class="modal-prova-item">
+            <div class="modal-prova-icon">
+              <i class="fas fa-file-image"></i>
+            </div>
+            <div class="modal-prova-info">
+              <div class="modal-prova-nome">Screenshot da chamada</div>
+              <div class="modal-prova-data">Enviado em 10/06/2025</div>
+              <div class="modal-prova-acoes">
+                <button class="modal-prova-botao visualizar" onclick="visualizarProva('imagem1.jpg')">
+                  <i class="fas fa-eye"></i> Visualizar
+                </button>
+                <button class="modal-prova-botao baixar" onclick="baixarProva('imagem1.jpg')">
+                  <i class="fas fa-download"></i> Baixar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-button secondary" onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de visualização de prova -->
+  <div class="modal-prova-overlay" id="modalProva">
+    <div class="modal-prova-container">
+      <div class="modal-prova-header">
+        <div class="modal-prova-title" id="modalProvaTitulo">Visualização da Prova</div>
+        <div class="modal-prova-close" onclick="fecharModalProva()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-prova-content" id="modalProvaContent">
+        <!-- Conteúdo da prova será inserido aqui -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé Fixo com ícones Font Awesome -->
+  <nav class="glb-bottom-nav">
+    <div class="glb-nav-item active" data-page="home" aria-label="Início">
+      <div class="glb-nav-icon">
+        <i class="fas fa-house"></i>
+      </div>
+      <div class="glb-nav-label">Início</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="family" aria-label="Pais e Filhos">
+      <div class="glb-nav-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="glb-nav-label">Pais e Filhos</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="legal" aria-label="Linha Jurídica">
+      <div class="glb-nav-icon">
+        <i class="fas fa-scale-balanced"></i>
+      </div>
+      <div class="glb-nav-label">Linha Jurídica</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="messages" aria-label="Mensagens">
+      <div class="glb-nav-icon">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="glb-nav-label">Mensagens</div>
+    </div>
+    
+    <div class="glb-nav-item" data-page="support" aria-label="Rede de Apoio">
+      <div class="glb-nav-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="glb-nav-label">Rede de Apoio</div>
+    </div>
+  </nav>
+
+  <!-- Script de navegação centralizado -->
+  <script src="navegacao.js"></script>
+  
+  <script>
+    // --- Variáveis globais ---
+    let modoSelecao = false;
+    let registrosSelecionados = [];
+    
+    // --- Lógica para o botão de filtro ---
+    document.getElementById("filterToggleButton").addEventListener("click", function() {
+      const sidebar = document.getElementById("filterSidebar");
+      sidebar.classList.toggle("hidden");
+    });
+    
+    // --- Lógica para fechar filtros ---
+    document.getElementById("closeFilters").addEventListener("click", function() {
+      const sidebar = document.getElementById("filterSidebar");
+      sidebar.classList.add("hidden");
+    });
+    
+    // --- Lógica para fechar filtros ao clicar em um filtro (em mobile) ---
+    document.querySelectorAll(".filter-item").forEach(item => {
+      item.addEventListener("click", function() {
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            const sidebar = document.getElementById("filterSidebar");
+            sidebar.classList.add("hidden");
+          }, 300);
+        }
+      });
+    });
+    
+    // --- Verificar tamanho da tela ao carregar e redimensionar ---
+    function checkScreenSize() {
+      const sidebar = document.getElementById("filterSidebar");
+      if (window.innerWidth > 768) {
+        sidebar.classList.remove("hidden");
+      } else {
+        sidebar.classList.add("hidden");
+      }
+    }
+    
+    window.addEventListener("load", checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    
+    // --- Lógica para filtros ---
+    function filtrarPor(filtro) {
+      // Atualizar estado visual dos filtros laterais
+      document.querySelectorAll('.filter-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Encontrar e ativar o filtro lateral correspondente
+      const filtroAtivo = document.querySelector(`[onclick*="${filtro}"]`);
+      if (filtroAtivo) {
+        filtroAtivo.classList.add('active');
+      }
+      
+      // Aplicar filtro aos registros
+      const registros = document.querySelectorAll('.registro-item');
+      
+      registros.forEach(registro => {
+        const status = registro.getAttribute('data-status');
+        const prova = registro.getAttribute('data-prova');
+        
+        let mostrar = false;
+        
+        switch(filtro) {
+          case 'todos':
+            mostrar = true;
+            break;
+          case 'cumpridos':
+            mostrar = status === 'cumprido';
+            break;
+          case 'nao-cumpridos':
+            mostrar = status === 'nao-cumprido';
+            break;
+          case 'pendentes':
+            mostrar = status === 'pendente';
+            break;
+          case 'justificados':
+            mostrar = status === 'justificado';
+            break;
+          case 'sem-prova':
+            mostrar = prova === 'sem';
+            break;
+          case 'com-prova':
+            mostrar = prova === 'com';
+            break;
+        }
+        
+        if (mostrar) {
+          registro.style.display = 'block';
+          registro.style.opacity = '1';
+          registro.style.transform = 'translateY(0)';
+        } else {
+          registro.style.opacity = '0';
+          registro.style.transform = 'translateY(-20px)';
+          setTimeout(() => {
+            registro.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+    
+    function filtrarTipo(tipo) {
+      // Atualizar estado visual dos filtros laterais
+      document.querySelectorAll('.filter-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Encontrar e ativar o filtro lateral correspondente
+      const filtroAtivo = document.querySelector(`[onclick*="${tipo}"]`);
+      if (filtroAtivo) {
+        filtroAtivo.classList.add('active');
+      }
+      
+      // Aplicar filtro aos registros
+      const registros = document.querySelectorAll('.registro-item');
+      
+      registros.forEach(registro => {
+        const tipoRegistro = registro.getAttribute('data-tipo');
+        
+        if (tipoRegistro === tipo) {
+          registro.style.display = 'block';
+          registro.style.opacity = '1';
+          registro.style.transform = 'translateY(0)';
+        } else {
+          registro.style.opacity = '0';
+          registro.style.transform = 'translateY(-20px)';
+          setTimeout(() => {
+            registro.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+    
+    // --- Modo de seleção ---
+    function toggleModoSelecao() {
+      modoSelecao = !modoSelecao;
+      const container = document.getElementById('timeline-container');
+      const botaoSelecao = document.querySelector('.botao-selecao');
+      const botaoRelatorio = document.getElementById('botaoRelatorio');
+      
+      if (modoSelecao) {
+        container.classList.add('modo-selecao');
+        botaoSelecao.classList.add('active');
+        botaoSelecao.innerHTML = '<i class="fas fa-times"></i> Cancelar';
+        botaoRelatorio.style.display = 'block';
+      } else {
+        container.classList.remove('modo-selecao');
+        botaoSelecao.classList.remove('active');
+        botaoSelecao.innerHTML = '<i class="fas fa-check-square"></i> Selecionar';
+        botaoRelatorio.style.display = 'none';
+        
+        // Limpar seleções
+        registrosSelecionados = [];
+        document.querySelectorAll('.registro-item').forEach(item => {
+          item.classList.remove('selecionado');
+          item.querySelector('.registro-checkbox').classList.remove('checked');
+        });
+        
+        atualizarContadorSelecionados();
+      }
+    }
+    
+    // --- Seleção de registros ---
+    document.addEventListener('click', function(e) {
+      if (modoSelecao && e.target.closest('.registro-item')) {
+        const registro = e.target.closest('.registro-item');
+        const checkbox = registro.querySelector('.registro-checkbox');
+        
+        if (registro.classList.contains('selecionado')) {
+          // Desselecionar
+          registro.classList.remove('selecionado');
+          checkbox.classList.remove('checked');
+          registrosSelecionados = registrosSelecionados.filter(id => id !== registro.dataset.id);
+        } else {
+          // Selecionar
+          registro.classList.add('selecionado');
+          checkbox.classList.add('checked');
+          registrosSelecionados.push(registro.dataset.id || registrosSelecionados.length);
+        }
+        
+        atualizarContadorSelecionados();
+      }
+    });
+    
+    function atualizarContadorSelecionados() {
+      const contador = document.getElementById('contadorSelecionados');
+      contador.textContent = registrosSelecionados.length;
+    }
+    
+    // --- Gerar relatório ---
+    function gerarRelatorio() {
+      if (registrosSelecionados.length === 0) {
+        alert('Selecione pelo menos um registro para gerar o relatório.');
+        return;
+      }
+      
+      alert(`Gerando relatório com ${registrosSelecionados.length} registros selecionados...`);
+      // Aqui seria implementada a lógica real de geração de relatório
+    }
+    
+    // --- Modal de detalhes ---
+    function abrirDetalhes(elemento) {
+      const registro = elemento.closest('.registro-item');
+      const modal = document.getElementById('modalDetalhes');
+      
+      // Preencher dados do modal
+      const titulo = registro.querySelector('.registro-titulo').textContent.trim();
+      const data = registro.querySelector('.registro-data').textContent;
+      const status = registro.querySelector('.status-text').textContent;
+      const statusClass = registro.querySelector('.status-text').className.split(' ')[1];
+      
+      document.getElementById('modalTitulo').textContent = titulo;
+      document.getElementById('modalTipo').textContent = titulo;
+      document.getElementById('modalData').textContent = data;
+      document.getElementById('modalStatus').textContent = status;
+      document.getElementById('modalStatus').className = `modal-status ${statusClass}`;
+      
+      // Justificativa (se existir)
+      const justificativa = registro.querySelector('.registro-justificativa');
+      const justificativaSection = document.getElementById('modalJustificativaSection');
+      if (justificativa) {
+        document.getElementById('modalJustificativa').textContent = justificativa.textContent.trim();
+        justificativaSection.style.display = 'block';
+      } else {
+        justificativaSection.style.display = 'none';
+      }
+      
+      // Mostrar modal
+      modal.classList.add('active');
+    }
+    
+    function fecharModal() {
+      document.getElementById('modalDetalhes').classList.remove('active');
+    }
+    
+    // --- Modal de visualização de prova ---
+    function visualizarProva(arquivo) {
+      const modal = document.getElementById('modalProva');
+      const content = document.getElementById('modalProvaContent');
+      
+      // Simular carregamento da prova
+      if (arquivo.includes('.jpg') || arquivo.includes('.png')) {
+        content.innerHTML = `<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlbSBkZSBFeGVtcGxvPC90ZXh0Pgo8L3N2Zz4=" class="modal-prova-image" alt="Prova">`;
+      } else {
+        content.innerHTML = `<iframe src="about:blank" class="modal-prova-document"></iframe>`;
+      }
+      
+      modal.classList.add('active');
+    }
+    
+    function baixarProva(arquivo) {
+      alert(`Baixando arquivo: ${arquivo}`);
+      // Aqui seria implementada a lógica real de download
+    }
+    
+    function fecharModalProva() {
+      document.getElementById('modalProva').classList.remove('active');
+    }
+    
+    // --- Fechar modais ao clicar fora ---
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        fecharModal();
+      }
+      if (e.target.classList.contains('modal-prova-overlay')) {
+        fecharModalProva();
+      }
+    });
+  </script>
+</body>
+</html>
+

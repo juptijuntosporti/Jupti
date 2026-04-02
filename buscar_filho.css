@@ -1,0 +1,67 @@
+
+    /* Estilos específicos para esta página para manter o código organizado */
+    .search-container {
+      padding: 80px 20px 20px 20px; /* Espaço para o cabeçalho fixo */
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .search-title {
+      text-align: center;
+      color: #0f4c5c;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .search-instruction {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 30px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .search-results-container {
+      margin-top: 30px;
+      min-height: 100px; /* Espaço para o spinner ou mensagens */
+    }
+    .action-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-primary {
+      background-color: #0f4c5c;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #0c3b49;
+    }
+    .btn-secondary {
+      background-color: #ff9800;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #e68900;
+    }
+  

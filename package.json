@@ -1,0 +1,23 @@
+{
+  "name": "jupti-app",
+  "version": "1.0.0",
+  "description": "JUPTI - Juntos por todos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jupti",
+    "social",
+    "family"
+  ],
+  "author": "JUPTI Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "@sendgrid/mail": "^7.7.0"
+  }
+}

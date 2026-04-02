@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seleção de Perfil - JUPTI</title>
+  <!-- Links para os arquivos de estilo -->
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="Selecao_perfil.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Bem-vindo ao <span class="brand">JUPTI</span></h1>
+
+    <div class="profile-info">
+      <p>Selecione o perfil que melhor descreve você. Isso nos ajudará a personalizar sua experiência no JUPTI de acordo com suas necessidades específicas.</p>
+    </div>
+
+    <form id="profileSelectionForm">
+      <div class="profile-selection">
+        <!-- Grupo Pais e Mães -->
+        <div class="profile-group">
+          <div class="profile-group-title">Pais e Mães</div>
+          
+          <div class="profile-option" onclick="selectOption('pai_separado')">
+            <input type="radio" id="pai_separado" name="perfil" value="pai_separado">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Pai separado</span>
+              <span class="profile-option-description">Acesso a ferramentas para organizar provas, manter contato com seus filhos e receber apoio jurídico.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('mae_separada')">
+            <input type="radio" id="mae_separada" name="perfil" value="mae_separada">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Mãe separada</span>
+              <span class="profile-option-description">Acesso a ferramentas para organizar provas, manter contato com seus filhos e receber apoio jurídico.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('pai_junto')">
+            <input type="radio" id="pai_junto" name="perfil" value="pai_junto">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Pai junto</span>
+              <span class="profile-option-description">Crie perfis para seus filhos, guarde memórias, fotos e gerencie lembretes importantes.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('mae_junta')">
+            <input type="radio" id="mae_junta" name="perfil" value="mae_junta">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Mãe junta</span>
+              <span class="profile-option-description">Crie perfis para seus filhos, guarde memórias, fotos e gerencie lembretes importantes.</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grupo Profissionais -->
+        <div class="profile-group">
+          <div class="profile-group-title">Profissionais</div>
+          
+          <div class="profile-option" onclick="selectOption('advogado')">
+            <input type="radio" id="advogado" name="perfil" value="advogado">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Advogado(a)</span>
+              <span class="profile-option-description">Acesso a ferramentas específicas para profissionais da área jurídica que atuam em casos de família.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('psicologo')">
+            <input type="radio" id="psicologo" name="perfil" value="psicologo">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Psicólogo(a)</span>
+              <span class="profile-option-description">Recursos para profissionais que oferecem apoio psicológico em contextos familiares.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('juiz')">
+            <input type="radio" id="juiz" name="perfil" value="juiz">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Juiz(a)</span>
+              <span class="profile-option-description">Ferramentas específicas para magistrados que atuam em varas de família.</span>
+            </div>
+          </div>
+          
+          <div class="profile-option" onclick="selectOption('outro')">
+            <input type="radio" id="outro" name="perfil" value="outro">
+            <div class="profile-option-label">
+              <span class="profile-option-title">Outro</span>
+              <span class="profile-option-description">Selecione esta opção se nenhuma das anteriores descreve seu perfil.</span>
+            </div>
+          </div>
+          
+          <div class="other-input" id="outroInput">
+            <input type="text" name="outro_especifique" id="outro_especifique" placeholder="Especifique seu perfil">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Continuar</button>
+    </form>
+  </div>
+
+  <!-- SCRIPT ATUALIZADO E ENXUTO -->
+  <script>
+    // Função para destacar o card e marcar o radio button
+    function selectOption(id) {
+        document.querySelectorAll('.profile-option').forEach(opt => opt.classList.remove('selected'));
+        const radio = document.getElementById(id);
+        radio.checked = true;
+        radio.closest('.profile-option').classList.add('selected');
+        document.getElementById('outroInput').classList.toggle('visible', id === 'outro');
+    }
+
+    // Evento de submissão do formulário
+    document.getElementById('profileSelectionForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const selectedRadio = document.querySelector('input[name="perfil"]:checked');
+        if (!selectedRadio) {
+            return alert('Por favor, selecione um perfil para continuar.');
+        }
+
+        let perfil = selectedRadio.value;
+        let url = `completar_perfil.html?profile=${perfil}`;
+
+        if (perfil === 'outro') {
+            const outroValor = document.getElementById('outro_especifique').value.trim();
+            if (!outroValor) {
+                return alert('Por favor, especifique seu perfil.');
+            }
+            // Adiciona o valor de "outro" à URL, codificando para ser seguro
+            url += `&other=${encodeURIComponent(outroValor)}`;
+        }
+        
+        // Redireciona para a próxima página com os parâmetros na URL
+        window.location.href = url;
+    });
+  </script>
+</body>
+</html>

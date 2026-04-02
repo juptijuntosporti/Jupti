@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Perfil - JUPTI</title>
+    
+    <!-- Links de Estilo -->
+    <link rel="stylesheet" href="Global.css" />
+    <link rel="stylesheet" href="verificar_filho.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Cabeçalho Padrão -->
+    <header class="glbs-app-header">
+        <div class="glbs-header-left">
+            <div class="glbs-back-button" id="backButton">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="glbs-header-title">Verificar Perfil</div>
+        </div>
+    </header>
+
+    <!-- Container Principal da Página -->
+    <div class="glb-container">
+        <div class="verify-container">
+
+            <!-- Seção de Carregamento (será escondida após carregar) -->
+            <div id="loadingState" class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando perfil...</p>
+            </div>
+
+            <!-- Conteúdo do Perfil (começa escondido) -->
+            <div id="profileContent" style="display: none;">
+                <!-- Avatar e Informações Principais -->
+                <div class="profile-header">
+                    <div class="profile-avatar" id="childAvatar">
+                        <!-- A imagem ou iniciais serão inseridas aqui -->
+                    </div>
+                    <h2 class="profile-name" id="childName">Nome da Criança</h2>
+                    <p class="profile-details" id="childDetails">Idade e Data de Nascimento</p>
+                    <p class="profile-guardian" id="childGuardian">
+                        <i class="fas fa-user-shield"></i>
+                        Responsável: <span>Nome do Genitor</span>
+                    </p>
+                </div>
+
+                <!-- Galeria de Fotos Recentes -->
+                <div class="gallery-section">
+                    <h3 class="section-title">Fotos Recentes</h3>
+                    <div class="photo-gallery" id="photoGallery">
+                        <!-- As 3 fotos serão inseridas aqui. Exemplo: -->
+                        <div class="photo-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="photo-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="photo-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="action-buttons">
+                    <button class="action-button primary" id="connectButton">
+                        <i class="fas fa-check-circle"></i> Sim, este é meu filho. Conectar.
+                    </button>
+                    <button class="action-button secondary" id="goBackButton">
+                        Não, voltar para a busca
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script da Página (será criado no futuro) -->
+    <script src="verificar_filho.js" type="module"></script>
+</body>
+</html>

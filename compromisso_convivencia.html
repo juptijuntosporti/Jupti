@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compromisso de Convivência - JUPTI</title>
+  
+  <!-- Links para os arquivos de estilo (CSS) e ícones -->
+  <link rel="stylesheet" href="compromisso_convivencia.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho da Página -->
+  <header class="ccv-header">
+    <a href="#" class="ccv-header-link" id="backButton">
+      <i class="fas fa-arrow-left ccv-back-icon"></i>
+      <h1 class="ccv-header-title">Compromisso de Convivência</h1>
+    </a>
+  </header>
+
+  <!-- Container Principal com o Formulário -->
+  <div class="ccv-container">
+    
+    <!-- Status do Formulário -->
+    <div id="formStatus" class="form-status"></div>
+
+    <form id="commitmentForm">
+      <p class="form-description">
+        <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+        Construa uma proposta de acordo de convivência para o outro genitor. Os compromissos ajudam a manter a rotina da criança e a comunicação entre vocês.
+      </p>
+
+      <!-- Card 1: Compromisso de Postagens -->
+      <div class="commitment-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-camera-retro"></i></div>
+          <h2 class="card-title">Compromisso de Postagens</h2>
+        </div>
+        <div class="card-content">
+          <label for="postingGoal" class="input-label">Meta de postagens por semana:</label>
+          <select id="postingGoal" name="posting_goal" class="form-select" required>
+            <option value="">Selecione uma opção</option>
+            <option value="3">3 postagens por semana</option>
+            <option value="4">4 postagens por semana</option>
+            <option value="5">5 postagens por semana</option>
+            <option value="6">6 postagens por semana</option>
+            <option value="7">7 postagens por semana</option>
+          </select>
+
+          <label class="input-label">Dias preferenciais para postagem:</label>
+          <div class="checkbox-group">
+            <input type="checkbox" name="posting_days" value="seg" id="post-seg"><label for="post-seg">Seg</label>
+            <input type="checkbox" name="posting_days" value="ter" id="post-ter"><label for="post-ter">Ter</label>
+            <input type="checkbox" name="posting_days" value="qua" id="post-qua"><label for="post-qua">Qua</label>
+            <input type="checkbox" name="posting_days" value="qui" id="post-qui"><label for="post-qui">Qui</label>
+            <input type="checkbox" name="posting_days" value="sex" id="post-sex"><label for="post-sex">Sex</label>
+            <input type="checkbox" name="posting_days" value="sab" id="post-sab"><label for="post-sab">Sáb</label>
+            <input type="checkbox" name="posting_days" value="dom" id="post-dom"><label for="post-dom">Dom</label>
+          </div>
+
+          <label for="postingObservations" class="input-label">Observações:</label>
+          <textarea id="postingObservations" name="posting_observations" class="form-textarea" rows="3" placeholder="Ex: Lembretes para postar após a aula de natação."></textarea>
+        </div>
+      </div>
+
+      <!-- Card 2: Compromisso de Momentos JUPTI -->
+      <div class="commitment-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-video"></i></div>
+          <h2 class="card-title">Compromisso de Momentos JUPTI</h2>
+        </div>
+        <div class="card-content">
+          <label for="momentsGoal" class="input-label">Meta de Momentos por semana:</label>
+          <select id="momentsGoal" name="moments_goal" class="form-select" required>
+            <option value="">Selecione uma opção</option>
+            <option value="1">1 Momento por semana</option>
+            <option value="2">2 Momentos por semana</option>
+            <option value="3">3 Momentos por semana</option>
+          </select>
+
+          <label class="input-label">Dias preferenciais para Momentos:</label>
+          <div class="checkbox-group">
+            <input type="checkbox" name="moments_days" value="seg" id="moment-seg"><label for="moment-seg">Seg</label>
+            <input type="checkbox" name="moments_days" value="ter" id="moment-ter"><label for="moment-ter">Ter</label>
+            <input type="checkbox" name="moments_days" value="qua" id="moment-qua"><label for="moment-qua">Qua</label>
+            <input type="checkbox" name="moments_days" value="qui" id="moment-qui"><label for="moment-qui">Qui</label>
+            <input type="checkbox" name="moments_days" value="sex" id="moment-sex"><label for="moment-sex">Sex</label>
+            <input type="checkbox" name="moments_days" value="sab" id="moment-sab"><label for="moment-sab">Sáb</label>
+            <input type="checkbox" name="moments_days" value="dom" id="moment-dom"><label for="moment-dom">Dom</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Compromisso de Ligações -->
+      <div class="commitment-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-phone-alt"></i></div>
+          <h2 class="card-title">Compromisso de Ligações</h2>
+        </div>
+        <div class="card-content">
+          <label class="input-label">Dias para Ligações:</label>
+          <div class="checkbox-group">
+            <input type="checkbox" name="call_days" value="seg" id="call-seg"><label for="call-seg">Seg</label>
+            <input type="checkbox" name="call_days" value="ter" id="call-ter"><label for="call-ter">Ter</label>
+            <input type="checkbox" name="call_days" value="qua" id="call-qua"><label for="call-qua">Qua</label>
+            <input type="checkbox" name="call_days" value="qui" id="call-qui"><label for="call-qui">Qui</label>
+            <input type="checkbox" name="call_days" value="sex" id="call-sex"><label for="call-sex">Sex</label>
+            <input type="checkbox" name="call_days" value="sab" id="call-sab"><label for="call-sab">Sáb</label>
+            <input type="checkbox" name="call_days" value="dom" id="call-dom"><label for="call-dom">Dom</label>
+          </div>
+
+          <label for="callTime" class="input-label">Horário Combinado:</label>
+          <input type="time" id="callTime" name="call_time" class="form-input">
+
+          <label for="callObservations" class="input-label">Observações:</label>
+          <textarea id="callObservations" name="call_observations" class="form-textarea" rows="3" placeholder="Ex: 'Apenas após o jantar e antes de dormir.'"></textarea>
+        </div>
+      </div>
+
+      <!-- Card 4: Compromisso de Visitas -->
+      <div class="commitment-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-home"></i></div>
+          <h2 class="card-title">Compromisso de Visitas</h2>
+        </div>
+        <div class="card-content">
+          <label class="input-label">Tipo de Acordo:</label>
+          <div class="radio-group">
+            <input type="radio" name="visit_type" value="recorrente" id="visit-recurrent" checked><label for="visit-recurrent">Recorrente</label>
+            <input type="radio" name="visit_type" value="datas_especificas" id="visit-specific"><label for="visit-specific">Datas Específicas</label>
+          </div>
+
+          <!-- Formulário Recorrente (Visível por padrão) -->
+          <div id="recurrentVisits" class="visit-form-section">
+            <label class="input-label">Dias da Semana para Visitas:</label>
+            <div class="checkbox-group">
+              <input type="checkbox" name="recurrent_visit_days" value="seg" id="rec-visit-seg"><label for="rec-visit-seg">Seg</label>
+              <input type="checkbox" name="recurrent_visit_days" value="ter" id="rec-visit-ter"><label for="rec-visit-ter">Ter</label>
+              <input type="checkbox" name="recurrent_visit_days" value="qua" id="rec-visit-qua"><label for="rec-visit-qua">Qua</label>
+              <input type="checkbox" name="recurrent_visit_days" value="qui" id="rec-visit-qui"><label for="rec-visit-qui">Qui</label>
+              <input type="checkbox" name="recurrent_visit_days" value="sex" id="rec-visit-sex"><label for="rec-visit-sex">Sex</label>
+              <input type="checkbox" name="recurrent_visit_days" value="sab" id="rec-visit-sab"><label for="rec-visit-sab">Sáb</label>
+              <input type="checkbox" name="recurrent_visit_days" value="dom" id="rec-visit-dom"><label for="rec-visit-dom">Dom</label>
+            </div>
+          </div>
+
+          <!-- Formulário Datas Específicas (Escondido por padrão) -->
+          <div id="specificDatesVisits" class="visit-form-section hidden">
+            <label for="visitStartDate" class="input-label">Data de Início:</label>
+            <input type="date" id="visitStartDate" name="visit_start_date" class="form-input">
+
+            <label for="visitEndDate" class="input-label">Data de Fim:</label>
+            <input type="date" id="visitEndDate" name="visit_end_date" class="form-input">
+          </div>
+
+          <label for="visitObservations" class="input-label">Observações:</label>
+          <textarea id="visitObservations" name="visit_observations" class="form-textarea" rows="3" placeholder="Ex: 'As visitas devem ocorrer na casa da avó paterna.'"></textarea>
+        </div>
+      </div>
+
+      <!-- Card 5: Compromisso de Pensão (NOVO) -->
+      <div class="commitment-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+          <h2 class="card-title">Compromisso de Pensão</h2>
+        </div>
+        <div class="card-content">
+          <p style="color: var(--cor-texto-leve); font-size: 0.9rem; margin-bottom: 16px;">
+            <i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>
+            Defina a data e o valor da pensão alimentícia.
+          </p>
+
+          <div class="pension-fields">
+            <div class="pension-field-wrapper">
+              <label for="pensionDate" class="input-label">Data da Pensão:</label>
+              <input type="date" id="pensionDate" name="pension_date" class="form-input">
+            </div>
+            <div class="pension-field-wrapper">
+              <label for="pensionValue" class="input-label">Valor da Pensão (R$):</label>
+              <input type="number" id="pensionValue" name="pension_value" class="form-input" placeholder="0,00" step="0.01" min="0">
+            </div>
+          </div>
+
+          <label for="pensionObservations" class="input-label">Observações:</label>
+          <textarea id="pensionObservations" name="pension_observations" class="form-textarea" rows="3" placeholder="Ex: 'Pagamento via transferência bancária até o dia 5 de cada mês.'"></textarea>
+        </div>
+      </div>
+
+      <!-- Botão de Envio Final -->
+      <button type="submit" class="glbs-primary-button" id="submitBtn">
+        <i class="fas fa-paper-plane"></i> Enviar Proposta de Acordo
+      </button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="compromisso_convivencia.js"></script>
+
+</body>
+</html>
