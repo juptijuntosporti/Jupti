@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - JUPTI</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <!-- Div para a imagem de fundo -->
+  <div class="login-background"></div>
+  
+  <!-- Div para a sobreposição de cor azulada -->
+  <div class="login-overlay"></div>
+
+  <!-- Container principal com o formulário -->
+  <div class="container">
+    <h1>Bem-vindo ao <span class="brand">JUPTI</span></h1>
+    
+    <div class="icon">
+      <img src="icone.png" alt="Ícone do JUPTI" />
+    </div>
+
+    <form id="loginForm">
+      <!-- Grupo de E-mail -->
+      <div class="form-group">
+        <label for="email">E-MAIL</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      </div>
+
+      <!-- Grupo de Senha -->
+      <div class="form-group">
+        <label for="senha">SENHA</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" required />
+      </div>
+
+      <button type="submit">ENTRAR</button>
+      <a href="cadastro.html" class="outline-button">CRIAR CONTA</a>
+      <a href="recuperar_senha.html" class="link">ESQUECI A SENHA</a>
+    </form>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
